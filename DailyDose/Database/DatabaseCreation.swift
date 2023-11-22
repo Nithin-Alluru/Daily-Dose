@@ -44,7 +44,7 @@ public func init_db() {
     for n in NewsStructList {
         
         // Instantiate a new News object and dress it up
-        let newNews = News(id: n.id, name: n.name, author: n.author, title: n.title, description: n.description, url: n.url, urlToImage: n.urlToImage, publishedAt: n.publishedAt, content: n.content)
+        let newNews = News(name: n.name, author: n.author, title: n.title, description: n.description, url: n.url, urlToImage: n.urlToImage, publishedAt: n.publishedAt, content: n.content)
         
         // Insert the new News object into the database
         modelContext.insert(newNews)

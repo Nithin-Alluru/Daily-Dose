@@ -11,7 +11,6 @@ import SwiftData
 
 @Model
 final class News {
-    let id: String
     let name: String
     let author: String
     let title: String
@@ -21,8 +20,7 @@ final class News {
     let publishedAt: String
     let content: String
     
-    init(id: String, name: String, author: String, title: String, description: String, url: String, urlToImage: String, publishedAt: String, content: String) {
-        self.id = id
+    init(name: String, author: String, title: String, description: String, url: String, urlToImage: String, publishedAt: String, content: String) {
         self.name = name
         self.author = author
         self.title = title

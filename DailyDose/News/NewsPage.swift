@@ -11,11 +11,29 @@
 //
 //  Created by Caleb Kong on 9/18/23.
 //
+
 import SwiftUI
+import SwiftData
+
 
 struct NewsPage: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query(FetchDescriptor<News>(sortBy: [SortDescriptor(\News.name, order: .forward)])) private var listOfVideosInDatabase: [News]
+    
+    //@State private var toBeDeleted: IndexSet?
+    //@State private var showConfirmation = false
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView {
+            ForEach(listOfVideosInDatabase) {
+                n in Article(thisArticle: n)
+            }
+            
+        } //end TabView
+        .tabViewStyle(PageTabViewStyle())
+        .onAppear() {
+            UIPageControl.appearance().currentPageIndicatorTintColor = .black
+            UIPageControl.appearance().pageIndicatorTintColor = .gray
+        }
     }
 }
 

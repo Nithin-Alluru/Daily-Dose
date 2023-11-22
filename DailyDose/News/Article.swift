@@ -9,11 +9,9 @@
 import SwiftUI
 
 struct Article: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    let thisArticle: News
 
-#Preview {
-    Article()
+    var body: some View {
+        Text(thisArticle.title)
+    }
 }

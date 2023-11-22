@@ -1,6 +1,5 @@
 [
     {
-        "id":"bbc-news",
         "name":"BBC News",
         "author":"BBC News",
         "title":"Video shows car mauled by a trapped bear",
@@ -11,7 +10,6 @@
         "content":"'Oh my God, a bear!' Woman gets surprise visitor. Video, 00:00:37'Oh my God, a bear!' Woman gets surprise visitor"
     },
     {
-        "id":"bbc-news",
         "name":"BBC News",
         "author":"BBC News",
         "title":"Why Trump’s rivals in Iowa still think they can win",
@@ -22,7 +20,6 @@
         "content":"The first leg of the Republican race for the White House is just weeks away in Iowa and Donald Trump has what seems an insurmountable lead. But could the millions of dollars his rivals are still spen… [+6960 chars]"
     },
     {
-        "id":"bbc-news",
         "name":"BBC News",
         "author":"BBC News",
         "title":"Thanksgiving: 'Blackout Wednesday' prompts drink-driving concerns",
@@ -33,7 +30,6 @@
         "content":"Officials are warning Americans to be cautious on \"Blackout Wednesday\", the night before Thanksgiving, because of heavy holiday alcohol consumption. \r\nConsidered the heaviest drinking night of the ye… [+1889 chars]"
     },
     {
-        "id":"bbc-news",
         "name":"BBC News",
         "author":"BBC News","title":"Thanksgiving travel: Record crowds expected to flood US roads and skies",
         "description":"An historic 30 million people are traveling by air, all with the hope the weather will cooperate",
@@ -43,7 +39,6 @@
             "content":"By either plane, train or automobile, millions of Americans will brave record-breaking crowds this week to travel for US Thanksgiving.\r\nUS airlines are expecting nearly 30 million travellers to hit t… [+2109 chars]"
     },
     {
-        "id":"bbc-news",
         "name":"BBC News",
         "author":"BBC News","title":"US court rolls back key voting rights protection",
         "description":"Only the US attorney general, not individuals, can appeal racist voting practices, a federal court finds.",
@@ -53,7 +48,6 @@
         "content":"A US court dramatically rolled back key elements of a landmark civil rights act on Monday, blocking individual citizens' ability to appeal against discriminatory voting practices. \r\nThe decision - ap… [+7143 chars]"
     },
     {
-        "id":"bbc-news",
         "name":"BBC News",
         "author":"BBC News",
         "title":"Navy plane misses runway and lands in Hawaii water",
@@ -64,7 +58,6 @@
         "content":"A large US Navy surveillance aircraft overshot a runway at Marine Corps Base Hawaii and crashed into water off the island of Oahu, military officials say.\r\nNone of the nine passengers aboard the Boei… [+1574 chars]"
     },
     {
-        "id":"bbc-news",
         "name":"BBC News",
         "author":"BBC News","title":"Abercrombie & Fitch suspends payments to ex-CEO after sex-trafficking claims",
         "description":"US fashion retailer suspends payments made to former boss following BBC investigation.",
@@ -74,7 +67,6 @@
         "content":"Abercrombie &amp; Fitch says it's stopped providing additional retirement income to its former boss following allegations of sex trafficking. \r\nOn top of his standard pension, Mike Jeffries had been … [+4008 chars]"
     },
     {
-        "id":"bbc-news",
         "name":"BBC News",
         "author":"BBC News","title":"OpenAI: Microsoft wants changes after Sam Altman debacle",
         "description":"Microsoft's CEO responds to the chaos at OpenAI, where the boss's sacking has caused a staff revolt.",
@@ -84,7 +76,6 @@
         "content":"Microsoft boss Satya Nadella has called for changes to OpenAI's board after its shock firing of Sam Altman.\r\nHe told CNBC \"something has to change\" at the firm, but did not specify what that was, or … [+3604 chars]"
     },
     {
-        "id":"bbc-news",
         "name":"BBC News",
         "author":"BBC News",
         "title":"Uttarakhand tunnel collapse: First video emerges of trapped Indian workers","description":"The 41 workers have been trapped in an under-construction tunnel in northern India since 12 November.",
@@ -94,7 +85,6 @@
         "content":"Media caption, Watch the first video of trapped tunnel workers in Indias Uttarakhand\r\nA camera has captured footage of the 41 workers trapped in a tunnel in India's Uttarakhand state for the first ti… [+2997 chars]"
     },
     {
-        "id":"bbc-news",
         "name":"BBC News",
         "author":"BBC News","title":"Israel Gaza live news: Gaza doctor says more 'intermittent shooting' heard at hospital",
         "description":"The Indonesian Hospital boss tells the BBC hundreds of patients are still inside - but raises hopes of evacuations.",

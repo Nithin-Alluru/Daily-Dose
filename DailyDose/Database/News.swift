@@ -10,7 +10,6 @@
 import SwiftUI
 
 struct NewsStruct: Decodable {
-    let id: String
     let name: String
     let author: String
     let title: String

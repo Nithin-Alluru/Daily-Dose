@@ -19,7 +19,6 @@
 		3CC860212B0EB0C500A28666 /* InitialDBContent-News.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CC860202B0EB0C400A28666 /* InitialDBContent-News.json */; };
 		DB7F42C02B067C6E00628F6F /* DailyDoseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F42BF2B067C6E00628F6F /* DailyDoseApp.swift */; };
 		DB7F42C22B067C6E00628F6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F42C12B067C6E00628F6F /* ContentView.swift */; };
-		DB7F42C42B067C6E00628F6F /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F42C32B067C6E00628F6F /* Item.swift */; };
 		DB7F42C62B067C7100628F6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7F42C52B067C7100628F6F /* Assets.xcassets */; };
 		DB7F42C92B067C7100628F6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7F42C82B067C7100628F6F /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -38,7 +37,6 @@
 		DB7F42BC2B067C6E00628F6F /* DailyDose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyDose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7F42BF2B067C6E00628F6F /* DailyDoseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDoseApp.swift; sourceTree = "<group>"; };
 		DB7F42C12B067C6E00628F6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		DB7F42C32B067C6E00628F6F /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		DB7F42C52B067C7100628F6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB7F42C82B067C7100628F6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,12 +55,11 @@
 		3C5BB4F82B068173005F987D /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				3C5BB5072B0E9F86005F987D /* News.swift */,
-				3CC860202B0EB0C400A28666 /* InitialDBContent-News.json */,
-				3C5BB4FB2B0681A2005F987D /* OpenWeather.swift */,
-				3C5BB4F92B068199005F987D /* XkcdComic.swift */,
 				3CC8601B2B0EA25D00A28666 /* DatabaseClasses.swift */,
 				3CC860192B0EA1E600A28666 /* DatabaseCreation.swift */,
+				3CC860222B0EB19300A28666 /* News */,
+				3C5BB4FB2B0681A2005F987D /* OpenWeather.swift */,
+				3C5BB4F92B068199005F987D /* XkcdComic.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -83,6 +80,15 @@
 				3C5BB4FF2B0681B6005F987D /* Globals.swift */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		3CC860222B0EB19300A28666 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				3CC860202B0EB0C400A28666 /* InitialDBContent-News.json */,
+				3C5BB5072B0E9F86005F987D /* News.swift */,
+			);
+			name = News;
 			sourceTree = "<group>";
 		};
 		DB7F42B32B067C6E00628F6F = {
@@ -106,7 +112,6 @@
 			children = (
 				DB7F42BF2B067C6E00628F6F /* DailyDoseApp.swift */,
 				DB7F42C12B067C6E00628F6F /* ContentView.swift */,
-				DB7F42C32B067C6E00628F6F /* Item.swift */,
 				3C5BB4F82B068173005F987D /* Database */,
 				3CC8601D2B0EA36700A28666 /* SupportingFiles */,
 				3C5BB5012B0E9998005F987D /* News */,
@@ -203,7 +208,6 @@
 				3CC8601C2B0EA25D00A28666 /* DatabaseClasses.swift in Sources */,
 				3C5BB5082B0E9F86005F987D /* News.swift in Sources */,
 				3CC8601F2B0EA39C00A28666 /* UtilityFunctions.swift in Sources */,
-				DB7F42C42B067C6E00628F6F /* Item.swift in Sources */,
 				3C5BB5032B0E99F3005F987D /* NewsPage.swift in Sources */,
 				DB7F42C02B067C6E00628F6F /* DailyDoseApp.swift in Sources */,
 				3C5BB5002B0681B6005F987D /* Globals.swift in Sources */,
