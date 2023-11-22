@@ -24,14 +24,14 @@ public func init_db() {
     let modelContext = ModelContext(modelContainer)
     
     let NewsFetchDescriptor = FetchDescriptor<News>()
-    var listOfAllNewssInDatabase = [News]()
+    var listOfAllNewsInDatabase = [News]()
     do {
         // Obtain all of the News objects from the database
-        listOfAllNewssInDatabase = try modelContext.fetch(NewsFetchDescriptor)
+        listOfAllNewsInDatabase = try modelContext.fetch(NewsFetchDescriptor)
     } catch {
         fatalError("Unable to fetch data from the database")
     }
-    if !listOfAllNewssInDatabase.isEmpty {
+    if !listOfAllNewsInDatabase.isEmpty {
         print("Database has already been created!")
         return
     }
@@ -40,7 +40,7 @@ public func init_db() {
     var NewsStructList = [NewsStruct]()
     
     // The function is given in UtilityFunctions.swift
-    NewsStructList = decodeJsonFileIntoArrayOfStructs(fullFilename: "InitialData-News.json", fileLocation: "Main Bundle")
+    NewsStructList = decodeJsonFileIntoArrayOfStructs(fullFilename: "InitialDBContent-News.json", fileLocation: "Main Bundle")
     for n in NewsStructList {
         
         // Instantiate a new News object and dress it up
