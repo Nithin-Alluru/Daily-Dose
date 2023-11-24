@@ -31,7 +31,8 @@
     },
     {
         "name":"BBC News",
-        "author":"BBC News","title":"Thanksgiving travel: Record crowds expected to flood US roads and skies",
+        "author":"BBC News",
+        "title":"Thanksgiving travel: Record crowds expected to flood US roads and skies",
         "description":"An historic 30 million people are traveling by air, all with the hope the weather will cooperate",
         "url":"http://www.bbc.co.uk/news/world-us-canada-67489861",
         "urlToImage":"https://ichef.bbci.co.uk/news/1024/branded_news/BCDC/production/_131784384_gettyimages-1794172835-1.jpg",
@@ -40,7 +41,8 @@
     },
     {
         "name":"BBC News",
-        "author":"BBC News","title":"US court rolls back key voting rights protection",
+        "author":"BBC News",
+        "title":"US court rolls back key voting rights protection",
         "description":"Only the US attorney general, not individuals, can appeal racist voting practices, a federal court finds.",
         "url":"http://www.bbc.co.uk/news/world-us-canada-67480042",
         "urlToImage":"https://ichef.bbci.co.uk/news/1024/branded_news/1334B/production/_131776687_gettyimages-1780555263.jpg",
@@ -59,7 +61,8 @@
     },
     {
         "name":"BBC News",
-        "author":"BBC News","title":"Abercrombie & Fitch suspends payments to ex-CEO after sex-trafficking claims",
+        "author":"BBC News",
+        "title":"Abercrombie & Fitch suspends payments to ex-CEO after sex-trafficking claims",
         "description":"US fashion retailer suspends payments made to former boss following BBC investigation.",
         "url":"http://www.bbc.co.uk/news/business-67480142",
         "urlToImage":"https://ichef.bbci.co.uk/news/1024/branded_news/510E/production/_131305702_abercrombie_index_jeffries_976-2.png",
@@ -68,7 +71,8 @@
     },
     {
         "name":"BBC News",
-        "author":"BBC News","title":"OpenAI: Microsoft wants changes after Sam Altman debacle",
+        "author":"BBC News",
+        "title":"OpenAI: Microsoft wants changes after Sam Altman debacle",
         "description":"Microsoft's CEO responds to the chaos at OpenAI, where the boss's sacking has caused a staff revolt.",
         "url":"http://www.bbc.co.uk/news/technology-67484455",
         "urlToImage":"https://ichef.bbci.co.uk/news/1024/branded_news/180C1/production/_131779489_mediaitem131779487.jpg",

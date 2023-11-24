@@ -10,8 +10,28 @@ import SwiftUI
 
 struct Article: View {
     let thisArticle: News
-
+    
+    //var containerWidth:CGFloat = UIScreen.main.bounds.width - 32.0
     var body: some View {
-        Text(thisArticle.title)
+        
+        ZStack { // Article Element Outer Container
+            Color.red
+            
+            ZStack { //Article Element inner container
+                Color.yellow
+                VStack {
+                    getImageFromUrl(url: thisArticle.urlToImage, defaultFilename: "NULL")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 300)
+                    Text(thisArticle.title)
+                    
+                    Spacer()
+                }
+            } //END inner container
+            .padding()
+            
+        } //End outer container
+        .padding()
     }
 }

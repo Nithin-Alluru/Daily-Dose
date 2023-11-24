@@ -20,19 +20,63 @@ struct NewsPage: View {
     @Environment(\.modelContext) private var modelContext
     @Query(FetchDescriptor<News>(sortBy: [SortDescriptor(\News.name, order: .forward)])) private var listOfVideosInDatabase: [News]
     
-    //@State private var toBeDeleted: IndexSet?
-    //@State private var showConfirmation = false
+    @State var showFilters = false
+    @State private var searchFieldValue = ""
+
     var body: some View {
-        TabView {
-            ForEach(listOfVideosInDatabase) {
-                n in Article(thisArticle: n)
-            }
+        NavigationStack {
+            VStack {
+                HStack {
+                    TextField("Enter Search Query", text: $searchFieldValue)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .disableAutocorrection(true)
+                        .textInputAutocapitalization(.never)
+                        .padding()
+                    if showFilters {
+                        Button("Filters", systemImage: "arrowtriangle.down.fill") {
+                            showFilters = false
+                        }
+                    }
+                    else {
+                        Button("Filters", systemImage: "arrowtriangle.right.fill") {
+                            showFilters = true
+                        }
+                    }
+                }
+                if showFilters {
+                    Text("Row 1")
+                    Text("Row 2")
+                    Text("Row 3")
+                }
+                TabView {
+                    ForEach(listOfVideosInDatabase) {
+                        n in NavigationLink(destination: ArticleDetails(thisArticle: n)) {
+                            Article(thisArticle: n)
+                        }
+                    }
+                    
+                } //end TabView
+                .tabViewStyle(PageTabViewStyle())
+                .onAppear() {
+                    UIPageControl.appearance().currentPageIndicatorTintColor = .black
+                    UIPageControl.appearance().pageIndicatorTintColor = .gray
+                }
+                
+                
+            } //End VStack
+            //.navigationTitle("Photo Album")
+            .toolbarTitleDisplayMode(.inline)
+            //.toolbarBackground(Color.green, for: .navigationBar, .tabBar)
+            .navigationTitle("Daily Dose")
+            .toolbar {
+                ToolbarItem(id: "refresh") {
+                    Button("Refresh", systemImage: "arrow.clockwise") {
+                    }
+                }
+            }//END TOOLBAR
             
-        } //end TabView
-        .tabViewStyle(PageTabViewStyle())
-        .onAppear() {
-            UIPageControl.appearance().currentPageIndicatorTintColor = .black
-            UIPageControl.appearance().pageIndicatorTintColor = .gray
+
+
         }
     }
 }

@@ -11,11 +11,11 @@ import SwiftData
 struct ContentView: View {
     var body: some View {
         TabView {
-            NewsPage();
+            NewsPage()
+                .tabItem {
+                    Label("Feed", systemImage: "newspaper.fill")
+                }
         }
     }
 }
 
-#Preview {
-    ContentView()
-}
