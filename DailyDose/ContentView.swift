@@ -15,7 +15,16 @@ struct ContentView: View {
                 .tabItem {
                     Label("Feed", systemImage: "newspaper.fill")
                 }
+            WeatherPage()
+                .tabItem {
+                    Label("Weather", systemImage: "cloud.sun.bolt.fill")
+                }
+        }
+        .onAppear {
+            // Display TabView with opaque background
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithOpaqueBackground()
+            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         }
     }
 }
-

@@ -1,30 +1,122 @@
 //
-//  OpenWeather.swift
-//  FinalProject
+//  ForecastStructs.swift
+//  DailyDose
 //
-//  Created by Caleb Kong on 11/15/23.
+//  Created by Caleb Kong and Aaron Gomez on 11/15/23.
 //
 
-import SwiftUI
+import Foundation
 
-struct OpenWeather: Decodable {
-    
-    let lat: Double
-    let lon: Double
-    let Timezone: String
-    
-    //Current
-    let temp: Double        // in Kelvin
-    let feels_like: Double   // in Kelvin
+struct ForecastCollection {
+
+    let location: ForecastLocation
+
+    let current: CurrentForecastStruct
+    let minutely: [MinutelyForecastStruct]
+    let hourly: [HourlyForecastStruct]
+    let daily: [DailyForecastStruct]
+
+    let alerts: [WeatherAlertStruct]
+
+}
+
+struct ForecastLocation {
+
+    let latitude: Double        // in range (-90,90)
+    let longitude: Double       // in range (-180, 180)
+    let timezoneName: String    // of form Area/Location
+    let timezoneOffset: Int     // in seconds from UTC
+
+}
+
+struct ForecastDetailsStruct {
+
+    let temperature: Double // in Kelvin
+    let feelsLike: Double   // in Kelvin
     let pressure: Int       // in hPa
     let humidity: Int       // % out of 100
-    let dew_point: Double      // in Kelvin
-    let uvi: Double
+    let dewPoint: Double    // in Kelvin
+    let uvIndex: Double
     let clouds: Int         // % out of 100
-    let visibility: Int     // In meters (max 10,000)
-    let wind_speed: Double  // in meters / sec
-    let wind_deg: Int       // Wind directioon in degrees
-     
+    let visibility: Int     // in meters <= 10,000
+    let windSpeed: Double   // in meters/second
+    let windAngle: Int      // Wind direction in degrees
+    let windGust: Double?   // in meters/second
+
+    let weatherId: Int      // https://openweathermap.org/weather-conditions
+    let weather: String     // description of weather
+
+}
+
+struct CurrentForecastStruct {
+
+    let timestamp: Int  // in Unix epoch time
+    let sunrise: Int    // in Unix epoch time
+    let sunset: Int     // in Unix epoch time
+    let details: ForecastDetailsStruct
+
+}
+
+struct MinutelyForecastStruct {
+
+    let timestamp: Int          // in Unix epoch time
+    let precipitation: Double   // % out of 1
+
+}
+
+struct HourlyForecastStruct {
+
+    let timestamp: Int          // in Unix epoch time
+    let details: ForecastDetailsStruct
+    let precipitation: Double   // % out of 1
+
+}
+
+struct DailyForecastStruct {
+
+    let timestamp: Int      // in Unix epoch time
+    let sunrise: Int        // in Unix epoch time
+    let sunset: Int         // in Unix epoch time
+    let moonrise: Int       // in Unix epoch time
+    let moonset: Int        // in Unix epoch time
+    let moonPhase: Double   //
+    let summary: String
+
+    let dayTemp: Double     //
+    let minTemp: Double     //
+    let maxTemp: Double     //
+    let nightTemp: Double   //
+    let morningTemp: Double //
+    let eveningTemp: Double //
+
+    let dayFeel: Double     //
+    let nightFeel: Double   //
+    let morningFeel: Double //
+    let eveningFeel: Double //
+
+    let pressure: Int       // in hPa
+    let humidity: Int       // % out of 100
+    let dewPoint: Double    // in Kelvin
+    let uvIndex: Double
+    let clouds: Int         // % out of 100
+    let visibility: Int     // in meters <= 10,000
+    let windSpeed: Double   // in meters/second
+    let windAngle: Int      // Wind direction in degrees
+    let windGust: Double?   // in meters/second
+
+    let weatherId: Int      // https://openweathermap.org/weather-conditions
+    let weather: String     // description of weather
+
+}
+
+struct WeatherAlertStruct {
+
+    let sender: String
+    let start: Int
+    let end: Int
+    let title: String
+    let description: String
+
 }
 
 /*
@@ -147,7 +239,4 @@ struct OpenWeather: Decodable {
      },
      ...
    ]
-                 
-
-
  */
