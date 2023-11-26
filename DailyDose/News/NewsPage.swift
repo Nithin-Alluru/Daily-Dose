@@ -108,7 +108,6 @@ struct NewsPage: View {
                         if !runOnce {
                             getListOfArticles()
                             runOnce = true
-                            print("Here")
                         }
                     }
                 
@@ -121,6 +120,9 @@ struct NewsPage: View {
             .toolbar {
                 ToolbarItem(id: "refresh") {
                     Button("Refresh", systemImage: "arrow.clockwise") {
+                        displayedArticles.clear()
+                        displayedArticles.getNewsArticlesFromApi(trending: true, source: "", query: "")
+
                     }
                 }
             }//END TOOLBAR
@@ -136,7 +138,6 @@ struct NewsPage: View {
     }
     
     private func getListOfArticles() { //-> [NewsStruct]
-        print(displayedArticles.getSize())
         if !runOnce {
             displayedArticles.getNewsArticlesFromApi(trending: true, source: "", query: "")
         }

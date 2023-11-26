@@ -17,23 +17,47 @@ struct ArticleDetails: View {
     var body: some View {
         ScrollView {
             VStack {
+                Spacer()
+                    .frame(minHeight: 20)
                 Group {
                     Text(thisArticle.title)
+                        .font(.custom("Helvetica Neue Condensed Bold", size: 24))
+                        .font(.largeTitle)
+                        //.foregroundStyle(.black)
                     getImageFromUrl(url: thisArticle.urlToImage, defaultFilename: "Null")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                    Text(thisArticle.name)
                 }
-                Group {
-                    HStack {
-                        Image(systemName: "person.circle")
-                        Text(thisArticle.author)
+                HStack() {
+                    VStack(alignment: .leading) {
+                        Text(thisArticle.name)
+                            .font(.system(size: 20))
+                            .fontWeight(.heavy)
+                        HStack {
+                            Image(systemName: "person.circle")
+                            if (thisArticle.author.isEmpty) {
+                                Text("Not Found")
+                                    .font(.caption)
+                            } else {
+                                Text(thisArticle.author)
+                                    .font(.caption)
+                            }
+                        }
+                        HStack {
+                            Image(systemName: "calendar")
+                            Text(getTime(time: thisArticle.publishedAt))
+                                .font(.caption)
+                        }
                     }
-                    HStack {
-                        Image(systemName: "calendar")
-                        Text(getTime(time: thisArticle.publishedAt))
-                    }
+                    .padding(.leading)
+                    //.background(.cyan)
+                    Spacer()
                 }
+                .frame(maxWidth: .infinity)
+                //.background(.pink)
+                
+                Spacer()
+                    .frame(minHeight: 20)
                 Group {
 //                    Text(thisArticle._description)
                     Text(thisArticle.content)

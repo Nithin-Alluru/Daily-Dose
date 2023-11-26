@@ -118,7 +118,7 @@ public class ArticleList: ObservableObject {
                         }
                         
                         // Get Article Author
-                        if let articleAuthor = article!["overview"] as? String {
+                        if let articleAuthor = article!["author"] as? String {
                             author = articleAuthor
                         }
                         
@@ -162,7 +162,6 @@ public class ArticleList: ObservableObject {
             } else { return }
         } catch { return }
       
-        print(size)
         return
     }
 
