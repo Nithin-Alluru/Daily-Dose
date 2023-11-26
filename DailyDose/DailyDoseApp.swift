@@ -11,9 +11,9 @@ import SwiftData
 @main
 struct DailyDoseApp: App {
 
+    @StateObject var displayedArticles = ArticleList()
+
     init() {
-        // In DatabaseCreation.swift
-        init_db()
         // Ask user for location permission
         getPermissionForLocation()
     }
@@ -25,7 +25,7 @@ struct DailyDoseApp: App {
             ContentView()
                 // Change the color mode of the entire app to Dark or Light
                 //.preferredColorScheme(darkMode ? .dark : .light)
-
+                .environmentObject(displayedArticles)
                 .modelContainer(for: [News.self], isUndoEnabled: true)
         }
     }

@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct ArticleDetails: View {
-    let thisArticle: News
+    let thisArticle: NewsStruct
     
     @State var bookmarked: Bool = false
     

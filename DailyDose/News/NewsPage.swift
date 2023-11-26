@@ -18,52 +18,102 @@ import SwiftData
 
 struct NewsPage: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(FetchDescriptor<News>(sortBy: [SortDescriptor(\News.name, order: .forward)])) private var listOfVideosInDatabase: [News]
+    //@Query(FetchDescriptor<News>(sortBy: [SortDescriptor(\News.name, order: .forward)])) private var listOfVideosInDatabase: [News]
     
-    @State var showFilters = false
+    @EnvironmentObject private var displayedArticles: ArticleList
+
+    @State private var showFilters = false
     @State private var searchFieldValue = ""
+    
+    @State private var sourceFieldValue = ""
+    @State private var trending = true
+    @State private var showAlertMessage = false
+
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
+    
+    
+    @State var runOnce = false
 
     var body: some View {
+        
+        
         NavigationStack {
-            VStack {
-                HStack {
-                    TextField("Enter Search Query", text: $searchFieldValue)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .disableAutocorrection(true)
-                        .textInputAutocapitalization(.never)
-                        .padding()
-                    if showFilters {
-                        Button("Filters", systemImage: "arrowtriangle.down.fill") {
-                            showFilters = false
+            ZStack {
+                Color.gray.opacity(0.1)
+                VStack {
+                    Group {
+                        /*MARK: Search Bar + Filter*/
+                        HStack {
+                            TextField("Enter Search Query", text: $searchFieldValue)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            //.disableAutocorrection(true)
+                                .textInputAutocapitalization(.never)
+                                .padding(.leading)
+                            if showFilters {
+                                Button("", systemImage: "slider.horizontal.3") {
+                                    showFilters = false
+                                }
+                                .imageScale(.large)
+                                .fontWeight(.bold)
+                                .padding()
+                            }
+                            else {
+                                Button("", systemImage: "slider.horizontal.3") {
+                                    showFilters = true
+                                }
+                                .imageScale(.large)
+                                .padding()
+                            }
+                        } //END SEARCH BAR + FILTERS
+                        /*MARK: Filters*/
+                        if showFilters {
+                            HStack {
+                                Text("Specify News Source") //Search by Source
+                                TextField("Enter a News Source", text: $sourceFieldValue)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    .disableAutocorrection(true)
+                                    .textInputAutocapitalization(.never)
+                                    .padding(.leading)
+                            }
+                            .padding(.horizontal)
+                            Toggle("Only Trending Searches", isOn: $trending)
+                                .padding(.horizontal)
+                            
+                        } //END FILTERS
+                        Button("Go") {
+                            if (!trending && sourceFieldValue.isEmpty && searchFieldValue.isEmpty) {
+                                showAlertMessage = true
+                                alertTitle = "Missing Input Data!"
+                                alertMessage = "Please enter a source or a search query!"
+                                
+                            } else {
+                                displayedArticles.clear()
+                                displayedArticles.getNewsArticlesFromApi(trending: trending, source: sourceFieldValue, query: searchFieldValue)
+                            }
+                        }
+                        .buttonStyle(.bordered)
+                    }
+                    TabView {
+                        ForEach(displayedArticles.get(), id:\.title) {
+                            n in NavigationLink(destination: ArticleDetails(thisArticle: n)) {
+                                Article(thisArticle: n)
+                            }
+                        }
+                    } //end TabView
+                    .tabViewStyle(PageTabViewStyle())
+                    .onAppear() {
+                        UIPageControl.appearance().currentPageIndicatorTintColor = .black
+                        UIPageControl.appearance().pageIndicatorTintColor = .gray
+                        if !runOnce {
+                            getListOfArticles()
+                            runOnce = true
+                            print("Here")
                         }
                     }
-                    else {
-                        Button("Filters", systemImage: "arrowtriangle.right.fill") {
-                            showFilters = true
-                        }
-                    }
-                }
-                if showFilters {
-                    Text("Row 1")
-                    Text("Row 2")
-                    Text("Row 3")
-                }
-                TabView {
-                    ForEach(listOfVideosInDatabase) {
-                        n in NavigationLink(destination: ArticleDetails(thisArticle: n)) {
-                            Article(thisArticle: n)
-                        }
-                    }
-                    
-                } //end TabView
-                .tabViewStyle(PageTabViewStyle())
-                .onAppear() {
-                    UIPageControl.appearance().currentPageIndicatorTintColor = .black
-                    UIPageControl.appearance().pageIndicatorTintColor = .gray
-                }
                 
-                
-            } //End VStack
+                } //End VStack
+            }
             //.navigationTitle("Photo Album")
             .toolbarTitleDisplayMode(.inline)
             //.toolbarBackground(Color.green, for: .navigationBar, .tabBar)
@@ -74,78 +124,22 @@ struct NewsPage: View {
                     }
                 }
             }//END TOOLBAR
+            .alert(alertTitle, isPresented: $showAlertMessage, actions: {
+                Button("OK") {}
+            }, message: {
+                Text(alertMessage)
+            })
             
 
 
         }
     }
-}
-
-/*
-import SwiftUI
-
-// Preserve selected background color between views
-fileprivate var selectedColor = Color.gray.opacity(0.1)
-
-struct Photos: View {
     
-    // Default selected background color
-    @State private var selectedBgColor = Color.gray.opacity(0.1)
-    
-    var body: some View {
-        NavigationStack {
-            ZStack {            // Background
-                // Color entire background with selected color
-                selectedBgColor
-                
-                // Place color picker at upper right corner
-                VStack {        // Foreground
-                    HStack {
-                        Spacer()
-                        ColorPicker("", selection: $selectedBgColor)
-                            .padding()
-                    }
-                    Spacer()
-                    
-                    TabView {
-                        ForEach(modelStructList) { model in
-                            VStack {
-                                Link(destination: URL(string: model.websiteUrl)!) {
-                                    Text("\(model.brandName) \(model.modelName)")
-                                        .font(.headline)
-                                        .multilineTextAlignment(.center)
-                                        .foregroundColor(.blue)
-                                        .padding()
-                                }
-                                Image(model.photoFilename)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                            }
-                        }
-                    }   // End of TabView
-                    .tabViewStyle(PageTabViewStyle())
-                    .onAppear() {
-                        UIPageControl.appearance().currentPageIndicatorTintColor = .black
-                        UIPageControl.appearance().pageIndicatorTintColor = .gray
-                    }
-                    
-                }   // End of VStack
-                .navigationTitle("Car Models")
-                .toolbarTitleDisplayMode(.inline)
-                .onAppear() {
-                    selectedBgColor = selectedColor
-                }
-                .onDisappear() {
-                    selectedColor = selectedBgColor
-                }
-                
-            }   // End of ZStack
-        }   // End of NavigationStack
-    }   // End of body var
+    private func getListOfArticles() { //-> [NewsStruct]
+        print(displayedArticles.getSize())
+        if !runOnce {
+            displayedArticles.getNewsArticlesFromApi(trending: true, source: "", query: "")
+        }
+        return //displayedArticles.get()
+    }
 }
-
-#Preview {
-    Photos()
-}
-
-*/

@@ -9,6 +9,7 @@
 import SwiftUI
 import SwiftData
 
+/*
 public func init_db() {
     var modelContainer: ModelContainer
     do {
@@ -51,3 +52,4 @@ public func init_db() {
     }   // End of the for loop
     
 }
+*/

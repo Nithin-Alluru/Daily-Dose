@@ -9,12 +9,16 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    
+    @EnvironmentObject var displayedArticles: ArticleList
+
     var body: some View {
         TabView {
             NewsPage()
                 .tabItem {
                     Label("Feed", systemImage: "newspaper.fill")
                 }
+                .environmentObject(displayedArticles)
             WeatherPage()
                 .tabItem {
                     Label("Weather", systemImage: "cloud.sun.bolt.fill")
