@@ -20,8 +20,10 @@
 		3CC860212B0EB0C500A28666 /* InitialDBContent-News.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CC860202B0EB0C400A28666 /* InitialDBContent-News.json */; };
 		3CC860242B105BE900A28666 /* ArticleDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC860232B105BE900A28666 /* ArticleDetails.swift */; };
 		DB1458172B12BF27001825A9 /* OpenWeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1458162B12BF27001825A9 /* OpenWeatherAPI.swift */; };
-		DB14581A2B12C0D9001825A9 /* ForecastStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1458192B12C0D9001825A9 /* ForecastStructs.swift */; };
+		DB14581A2B12C0D9001825A9 /* WeatherStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1458192B12C0D9001825A9 /* WeatherStructs.swift */; };
+		DB14581D2B12D098001825A9 /* CurrentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14581C2B12D098001825A9 /* CurrentLocation.swift */; };
 		DB4ECC7C2B128880007E7A24 /* WeatherPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4ECC7B2B128880007E7A24 /* WeatherPage.swift */; };
+		DB7F34BF2B12FD8500202040 /* WeatherConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F34BE2B12FD8500202040 /* WeatherConversions.swift */; };
 		DB7F42C02B067C6E00628F6F /* DailyDoseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F42BF2B067C6E00628F6F /* DailyDoseApp.swift */; };
 		DB7F42C22B067C6E00628F6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F42C12B067C6E00628F6F /* ContentView.swift */; };
 		DB7F42C62B067C7100628F6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7F42C52B067C7100628F6F /* Assets.xcassets */; };
@@ -43,8 +45,11 @@
 		3CC860202B0EB0C400A28666 /* InitialDBContent-News.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "InitialDBContent-News.json"; sourceTree = "<group>"; };
 		3CC860232B105BE900A28666 /* ArticleDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetails.swift; sourceTree = "<group>"; };
 		DB1458162B12BF27001825A9 /* OpenWeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherAPI.swift; sourceTree = "<group>"; };
-		DB1458192B12C0D9001825A9 /* ForecastStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastStructs.swift; sourceTree = "<group>"; };
+		DB1458192B12C0D9001825A9 /* WeatherStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStructs.swift; sourceTree = "<group>"; };
+		DB14581C2B12D098001825A9 /* CurrentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocation.swift; sourceTree = "<group>"; };
+		DB14581E2B12D906001825A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DB4ECC7B2B128880007E7A24 /* WeatherPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPage.swift; sourceTree = "<group>"; };
+		DB7F34BE2B12FD8500202040 /* WeatherConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConversions.swift; sourceTree = "<group>"; };
 		DB7F42BC2B067C6E00628F6F /* DailyDose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyDose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7F42BF2B067C6E00628F6F /* DailyDoseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDoseApp.swift; sourceTree = "<group>"; };
 		DB7F42C12B067C6E00628F6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,9 +104,11 @@
 			isa = PBXGroup;
 			children = (
 				3C5BB4FF2B0681B6005F987D /* Globals.swift */,
+				DB14581C2B12D098001825A9 /* CurrentLocation.swift */,
+				DB86EEE02B129E7200FFF726 /* HexColor.swift */,
 				3C92951F2B10836100063ECC /* GetJsonDataFromApi.swift */,
 				3CC8601E2B0EA39C00A28666 /* UtilityFunctions.swift */,
-				DB86EEE02B129E7200FFF726 /* HexColor.swift */,
+				DB7F34BE2B12FD8500202040 /* WeatherConversions.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -119,7 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				DB1458162B12BF27001825A9 /* OpenWeatherAPI.swift */,
-				DB1458192B12C0D9001825A9 /* ForecastStructs.swift */,
+				DB1458192B12C0D9001825A9 /* WeatherStructs.swift */,
 			);
 			path = OpenWeather;
 			sourceTree = "<group>";
@@ -166,6 +173,7 @@
 				DB4ECC7A2B128867007E7A24 /* Weather */,
 				3CC8601D2B0EA36700A28666 /* Supporting Files */,
 				DB7F42C52B067C7100628F6F /* Assets.xcassets */,
+				DB14581E2B12D906001825A9 /* Info.plist */,
 				DB7F42C72B067C7100628F6F /* Preview Content */,
 			);
 			path = DailyDose;
@@ -260,10 +268,12 @@
 				3C5BB5082B0E9F86005F987D /* News.swift in Sources */,
 				3CC8601F2B0EA39C00A28666 /* UtilityFunctions.swift in Sources */,
 				3C5BB5032B0E99F3005F987D /* NewsPage.swift in Sources */,
+				DB7F34BF2B12FD8500202040 /* WeatherConversions.swift in Sources */,
 				3C9295202B10836100063ECC /* GetJsonDataFromApi.swift in Sources */,
 				DB7F42C02B067C6E00628F6F /* DailyDoseApp.swift in Sources */,
 				3C9295222B10838500063ECC /* NewsApiData.swift in Sources */,
-				DB14581A2B12C0D9001825A9 /* ForecastStructs.swift in Sources */,
+				DB14581D2B12D098001825A9 /* CurrentLocation.swift in Sources */,
+				DB14581A2B12C0D9001825A9 /* WeatherStructs.swift in Sources */,
 				DB1458172B12BF27001825A9 /* OpenWeatherAPI.swift in Sources */,
 				DB86EEE12B129E7200FFF726 /* HexColor.swift in Sources */,
 				3C5BB5002B0681B6005F987D /* Globals.swift in Sources */,
@@ -404,9 +414,9 @@
 				DEVELOPMENT_TEAM = WRDAELJV3M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DailyDose/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -433,9 +443,9 @@
 				DEVELOPMENT_TEAM = WRDAELJV3M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DailyDose/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

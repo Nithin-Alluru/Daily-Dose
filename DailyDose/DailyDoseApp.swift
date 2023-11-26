@@ -10,8 +10,12 @@ import SwiftData
 
 @main
 struct DailyDoseApp: App {
+
     init() {
-        init_db()       // In DatabaseCreation.swift
+        // In DatabaseCreation.swift
+        init_db()
+        // Ask user for location permission
+        getPermissionForLocation()
     }
 
     //@AppStorage("darkMode") private var darkMode = false
@@ -22,7 +26,6 @@ struct DailyDoseApp: App {
                 // Change the color mode of the entire app to Dark or Light
                 //.preferredColorScheme(darkMode ? .dark : .light)
 
-            
                 .modelContainer(for: [News.self], isUndoEnabled: true)
         }
     }

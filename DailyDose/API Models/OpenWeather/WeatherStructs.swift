@@ -1,5 +1,5 @@
 //
-//  ForecastStructs.swift
+//  WeatherStructs.swift
 //  DailyDose
 //
 //  Created by Caleb Kong and Aaron Gomez on 11/15/23.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct ForecastCollection {
+struct WeatherCollectionStruct {
 
-    let location: ForecastLocation
+    let location: WeatherLocationStruct
 
-    let current: CurrentForecastStruct
+    let current: CurrentWeatherStruct
     let minutely: [MinutelyForecastStruct]
     let hourly: [HourlyForecastStruct]
     let daily: [DailyForecastStruct]
@@ -20,7 +20,7 @@ struct ForecastCollection {
 
 }
 
-struct ForecastLocation {
+struct WeatherLocationStruct {
 
     let latitude: Double        // in range (-90,90)
     let longitude: Double       // in range (-180, 180)
@@ -29,16 +29,14 @@ struct ForecastLocation {
 
 }
 
-struct ForecastDetailsStruct {
+struct WeatherDetailsStruct {
 
-    let temperature: Double // in Kelvin
-    let feelsLike: Double   // in Kelvin
     let pressure: Int       // in hPa
     let humidity: Int       // % out of 100
     let dewPoint: Double    // in Kelvin
-    let uvIndex: Double
+    let uvIndex: Int
     let clouds: Int         // % out of 100
-    let visibility: Int     // in meters <= 10,000
+    let visibility: Int?    // in meters <= 10,000
     let windSpeed: Double   // in meters/second
     let windAngle: Int      // Wind direction in degrees
     let windGust: Double?   // in meters/second
@@ -48,12 +46,14 @@ struct ForecastDetailsStruct {
 
 }
 
-struct CurrentForecastStruct {
+struct CurrentWeatherStruct {
 
     let timestamp: Int  // in Unix epoch time
     let sunrise: Int    // in Unix epoch time
     let sunset: Int     // in Unix epoch time
-    let details: ForecastDetailsStruct
+    let temperature: Double // in Kelvin
+    let feelsLike: Double   // in Kelvin
+    let details: WeatherDetailsStruct
 
 }
 
@@ -67,7 +67,9 @@ struct MinutelyForecastStruct {
 struct HourlyForecastStruct {
 
     let timestamp: Int          // in Unix epoch time
-    let details: ForecastDetailsStruct
+    let temperature: Double     // in Kelvin
+    let feelsLike: Double       // in Kelvin
+    let details: WeatherDetailsStruct
     let precipitation: Double   // % out of 1
 
 }
@@ -82,9 +84,9 @@ struct DailyForecastStruct {
     let moonPhase: Double   //
     let summary: String
 
-    let dayTemp: Double     //
     let minTemp: Double     //
     let maxTemp: Double     //
+    let dayTemp: Double     //
     let nightTemp: Double   //
     let morningTemp: Double //
     let eveningTemp: Double //
@@ -94,18 +96,9 @@ struct DailyForecastStruct {
     let morningFeel: Double //
     let eveningFeel: Double //
 
-    let pressure: Int       // in hPa
-    let humidity: Int       // % out of 100
-    let dewPoint: Double    // in Kelvin
-    let uvIndex: Double
-    let clouds: Int         // % out of 100
-    let visibility: Int     // in meters <= 10,000
-    let windSpeed: Double   // in meters/second
-    let windAngle: Int      // Wind direction in degrees
-    let windGust: Double?   // in meters/second
+    let details: WeatherDetailsStruct
 
-    let weatherId: Int      // https://openweathermap.org/weather-conditions
-    let weather: String     // description of weather
+    let precipitation: Double   // % out of 1
 
 }
 
