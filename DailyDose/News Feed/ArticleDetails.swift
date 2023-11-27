@@ -8,11 +8,16 @@
 
 import SwiftUI
 
+fileprivate var alertTitle = ""
+fileprivate var alertMessage = ""
 
 struct ArticleDetails: View {
     let thisArticle: NewsStruct
     
     @State var bookmarked: Bool = false
+    @Environment(\.modelContext) private var modelContext
+    @State private var showAlertMessage = false
+    
     
     var body: some View {
         ScrollView {
@@ -80,17 +85,37 @@ struct ArticleDetails: View {
                     if !bookmarked {
                         Button("Bookmark This Article", systemImage: "bookmark") {
                             bookmarked = true
+                            
+                            alertTitle = "News Article Added"
+                            alertMessage = "This article has been bookmarked. You can find it later in the Bookmarks Tab"
+                            showAlertMessage = true
                         }
                     }
                     else {
                         Button("Unookmark This Article", systemImage: "bookmark.fill") {
                             bookmarked = false
+                            
+                            alertTitle = "News Article Removed"
+                            alertMessage = "This article has been removed from your Bookmarks"
+                            showAlertMessage = true
                         }
                     }
                 }
+            } //END TOOLBAR
+        } //END SCROLL VIEW
+        .onDisappear() {
+            if bookmarked {
+                let newArticle = News(name: thisArticle.name, author: thisArticle.author, title: thisArticle.title, description: thisArticle.description, url: thisArticle.url, urlToImage: thisArticle.urlToImage, publishedAt: thisArticle.publishedAt, content: thisArticle.content)
+                modelContext.insert(newArticle)
             }
         }
-    }
+        .alert(alertTitle, isPresented: $showAlertMessage, actions: {
+            Button("OK") {}
+        }, message: {
+            Text(alertMessage)
+        })
+    } //END BODY
+        
 }
 
 private func getTime(time: String) -> String {
@@ -102,7 +127,9 @@ private func getTime(time: String) -> String {
     return date.formatted(date: .complete, time: .complete)
 }
 
-private func toggleBookMark(bookmarked: Bool) {
-    //if NOT bookmarked (false) -> Add article to DB
-    //else (true) remove article from DB
+
+private func isBookmarked(thisArticle: NewsStruct) {
+    let newArticle = News(name: thisArticle.name, author: thisArticle.author, title: thisArticle.title, description: thisArticle.description, url: thisArticle.url, urlToImage: thisArticle.urlToImage, publishedAt: thisArticle.publishedAt, content: thisArticle.content)
+    
 }
+

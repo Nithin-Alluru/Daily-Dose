@@ -11,6 +11,7 @@ import SwiftData
 struct ContentView: View {
     
     @EnvironmentObject var displayedArticles: ArticleList
+    @EnvironmentObject var bookmarkedArticles: BookmarksList
 
     var body: some View {
         TabView {
@@ -19,6 +20,11 @@ struct ContentView: View {
                     Label("Feed", systemImage: "newspaper.fill")
                 }
                 .environmentObject(displayedArticles)
+            Bookmarks()
+                .tabItem {
+                    Label("Bookmarks", systemImage: "bookmark.fill")
+                }
+                .environmentObject(bookmarkedArticles)
             WeatherPage()
                 .tabItem {
                     Label("Weather", systemImage: "cloud.sun.bolt.fill")

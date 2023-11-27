@@ -12,6 +12,7 @@ import SwiftData
 struct DailyDoseApp: App {
 
     @StateObject var displayedArticles = ArticleList()
+    @StateObject var bookmarkedArticles = BookmarksList()
 
     init() {
         // Ask user for location permission
@@ -26,6 +27,7 @@ struct DailyDoseApp: App {
                 // Change the color mode of the entire app to Dark or Light
                 //.preferredColorScheme(darkMode ? .dark : .light)
                 .environmentObject(displayedArticles)
+                .environmentObject(bookmarkedArticles)
                 .modelContainer(for: [News.self], isUndoEnabled: true)
         }
     }

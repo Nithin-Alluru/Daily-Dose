@@ -17,7 +17,7 @@ import SwiftData
 
 
 struct NewsPage: View {
-    @Environment(\.modelContext) private var modelContext
+    //@Environment(\.modelContext) private var modelContext
     //@Query(FetchDescriptor<News>(sortBy: [SortDescriptor(\News.name, order: .forward)])) private var listOfVideosInDatabase: [News]
     
     @EnvironmentObject private var displayedArticles: ArticleList
@@ -106,6 +106,7 @@ struct NewsPage: View {
                         UIPageControl.appearance().currentPageIndicatorTintColor = .black
                         UIPageControl.appearance().pageIndicatorTintColor = .gray
                         if !runOnce {
+                            print("Hello".localizedStandardContains(""))
                             getListOfArticles()
                             runOnce = true
                         }
