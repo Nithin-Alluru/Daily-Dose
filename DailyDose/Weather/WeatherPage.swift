@@ -15,7 +15,7 @@ fileprivate let weatherRefreshInterval: Double = 3*60   // in seconds
 
 struct WeatherPage: View {
 
-    @State private var weatherInfo: WeatherCollectionStruct?
+    @State private var weatherInfo: CurrentWeatherStruct?
 
     @State private var timer = Timer.publish(every: weatherRefreshInterval, on: .main, in: .common).autoconnect()
 
@@ -30,12 +30,12 @@ struct WeatherPage: View {
                 .ignoresSafeArea()
                 Form {
                     Section(header: Text("Current Location")) {
-                        if let weather = weatherInfo {
+                        if let info = weatherInfo {
                             CurrentWeatherView(
-                                currentTemp: weather.current.temperature,
-                                description: "Sunny",
-                                lowTemp: 70,
-                                highTemp: 80,
+                                currentTemp: info.temp.current,
+                                description: info.weather[0].group,
+                                lowTemp: info.temp.low,
+                                highTemp: info.temp.high,
                                 city: "CityName",
                                 state: "AA",
                                 scale: .Fahrenheit
@@ -75,11 +75,11 @@ struct WeatherPage: View {
         // Wrap API call in a Task to avoid blocking
         Task {
             let currentLocation = getUsersCurrentLocation()
-            if let newWeather = fetchWeather(
+            if let newInfo = fetchCurrentWeather(
                 latitude: currentLocation.latitude,
                 longitude: currentLocation.longitude)
             {
-                weatherInfo = newWeather
+                weatherInfo = newInfo
             }
         }
     }

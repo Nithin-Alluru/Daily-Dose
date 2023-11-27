@@ -16,11 +16,10 @@ fileprivate let apiHeaders = [
 ]
 
 // Fetches current weather and forecast information from the OpenWeather API
-// https://openweathermap.org/api/one-call-3
-func fetchWeather(latitude: Double, longitude: Double) -> WeatherCollectionStruct? {
+// https://openweathermap.org/current
+func fetchCurrentWeather(latitude: Double, longitude: Double) -> CurrentWeatherStruct? {
 
-    // Use the OpenWeather One Call API 3.0's current weather and forecast endpoint
-    let apiUrlString = "https://api.openweathermap.org/data/3.0/onecall?lat=\(latitude)&lon=\(longitude)&appid=\(getWeatherApiKey())"
+    let apiUrlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(getWeatherApiKey())"
 
     print(apiUrlString)
 
@@ -36,8 +35,6 @@ func fetchWeather(latitude: Double, longitude: Double) -> WeatherCollectionStruc
         apiUrl: apiUrlString,
         timeout: 10.0
     )
-
-    print("\(jsonDataFetchedFromApi)")
 
     if let jsonData = jsonDataFetchedFromApi {
         jsonDataFromApi = jsonData
@@ -80,211 +77,166 @@ func fetchWeather(latitude: Double, longitude: Double) -> WeatherCollectionStruc
 
         print("\(weatherJsonObject)")
 
-        //-----------------------------
-        // Process location information
-        //-----------------------------
-
-        var weatherLocation: WeatherLocationStruct
-
-        weatherLocation = WeatherLocationStruct(
-            latitude: latitude,
-            longitude: longitude,
-            timezoneName: "",
-            timezoneOffset: 0
-        )
-
-        //--------------------------------
-        // Process each wrapper JSON array
-        //--------------------------------
-
-        if let currentWeatherJson = weatherJsonObject["current"] as? [String: Any],
-           let currentWeather = parseCurrentWeather(data: currentWeatherJson),
-           let minutelyForecastsJson = weatherJsonObject["minutely"] as? [[String: Any]],
-           let minutelyForecasts = parseMinutelyForecasts(data: minutelyForecastsJson),
-           let hourlyForecastsJson = weatherJsonObject["hourly"] as? [[String: Any]],
-           let hourlyForecasts = parseHourlyForecasts(data: hourlyForecastsJson),
-           let dailyForecastsJson = weatherJsonObject["daily"] as? [[String: Any]],
-           let dailyForecasts = parseDailyForecasts(data: dailyForecastsJson),
-           let weatherAlertsJson = weatherJsonObject["alerts"] as? [[String: Any]],
-           let weatherAlerts = parseWeatherAlerts(data: weatherAlertsJson)
-        {
-            return WeatherCollectionStruct(
-                location: weatherLocation,
-                current: currentWeather,
-                minutely: minutelyForecasts,
-                hourly: hourlyForecasts,
-                daily: dailyForecasts,
-                alerts: weatherAlerts
-            )
-        }
+        return parseCurrentWeather(data: weatherJsonObject)
     } catch {
         return nil
     }
-
-    return nil
-}
-
-func parseWeatherDetails(data: [String: Any]) -> WeatherDetailsStruct? {
-    if let pressure = data["pressure"] as? Int,
-       let humidity = data["humidity"] as? Int,
-       let dewPoint = data["dew_point"] as? Double,
-       let uvIndex = data["uvi"] as? Int,
-       let clouds = data["clouds"] as? Int,
-       let windSpeed = data["wind_speed"] as? Double,
-       let windAngle = data["wind_deg"] as? Int,
-       let weatherInfo = data["weather"] as? [String: Any],
-       let weatherId = weatherInfo["id"] as? Int,
-       let weatherDescription = weatherInfo["description"] as? String
-    {
-        return WeatherDetailsStruct(
-            pressure: pressure,
-            humidity: humidity,
-            dewPoint: dewPoint,
-            uvIndex: uvIndex,
-            clouds: clouds,
-            visibility: data["visibility"] as? Int,
-            windSpeed: windSpeed,
-            windAngle: windAngle,
-            windGust: data["wind_gust"] as? Double,
-            weatherId: weatherId,
-            weather: weatherDescription
-        )
-    }
-    return nil
 }
 
 func parseCurrentWeather(data: [String: Any]) -> CurrentWeatherStruct? {
-    if let timestamp = data["dt"] as? Int,
-       let sunrise = data["sunrise"] as? Int,
-       let sunset = data["sunset"] as? Int,
-       let temperature = data["temp"] as? Double,
-       let feelsLike = data["feels_like"] as? Double,
-       let details = parseWeatherDetails(data: data)
+    if let coordJson = data["coord"] as? [String: Any] {
+        if let latitude = coordJson["lat"] as? Double {} else {
+            print("lat")
+        }
+        if let longitude = coordJson["lon"] as? Double {} else {
+            print("lon")
+        }
+    } else {
+        print("coords")
+    }
+    if let timestamp = data["dt"] as? Int {} else {
+        print("dt")
+    }
+    if let timezone = data["timezone"] as? Int {} else {
+        print("tz")
+    }
+    if let weather = data["weather"] as? [String: Any] {} else {
+        print("weather")
+    }
+    if let temp = data["main"] as? [String: Any] {} else {
+        print("temp/main")
+    }
+    if let wind = data["wind"] as? [String: Any] {} else {
+        print("wind")
+    }
+
+    if let coordJson = data["coord"] as? [String: Any],
+       let latitude = coordJson["lat"] as? Double,
+       let longitude = coordJson["lon"] as? Double,
+       let timestamp = data["dt"] as? Int,
+       let timezone = data["timezone"] as? Int,
+       let weatherJson = data["weather"] as? [Any],
+       let tempJson = data["main"] as? [String: Any],
+       let temp = parseTemperatureDetails(data: tempJson),
+       let windJson = data["wind"] as? [String: Any],
+       let wind = parseWindDetails(data: windJson),
+       let extra = parseExtraDetails(data: data)
     {
+        // Rain/snow volumes are optional
+        var rain: PrecipitationDetailsStruct?
+        var snow: PrecipitationDetailsStruct?
+        // Parse optional precipitation data
+        if let rainJson = data["rain"] as? [String: Any] {
+            rain = parsePrecipitationDetails(data: rainJson)
+        }
+        if let snowJson = data["snow"] as? [String: Any] {
+            rain = parsePrecipitationDetails(data: snowJson)
+        }
+        // Return parsed weather struct
         return CurrentWeatherStruct(
+            latitude: latitude,
+            longitude: longitude,
             timestamp: timestamp,
-            sunrise: sunrise,
-            sunset: sunset,
-            temperature: temperature,
-            feelsLike: feelsLike,
-            details: details
+            timezone: timezone,
+            weather: parseWeatherArrays(arrays: weatherJson),
+            temp: temp,
+            wind: wind,
+            rain: rain,
+            snow: snow,
+            extra: extra
         )
     }
+    print("failed current")
     return nil
 }
 
-func parseMinutelyForecasts(data: [[String: Any]]) -> [MinutelyForecastStruct]? {
-    var forecasts = [MinutelyForecastStruct]()
-    for forecast in data {
-        if let timestamp = forecast["dt"] as? Int,
-           let precipitation = forecast["precipitation"] as? Double
+func parseWeatherArrays(arrays: [Any]) -> [WeatherDetailsStruct] {
+    var weatherStructs = [WeatherDetailsStruct]()
+    for array in arrays {
+        if let weatherJson = array as? [String: Any],
+           let weatherDetails = parseWeatherDetails(data: weatherJson)
         {
-            forecasts.append(MinutelyForecastStruct(
-                timestamp: timestamp,
-                precipitation: precipitation
-            ))
-        } else {
-            return nil
+            weatherStructs.append(weatherDetails)
         }
     }
-    return forecasts
+    return weatherStructs
 }
 
-func parseHourlyForecasts(data: [[String: Any]]) -> [HourlyForecastStruct]? {
-    var forecasts = [HourlyForecastStruct]()
-    for forecast in data {
-        if let timestamp = forecast["dt"] as? Int,
-           let temperature = forecast["temp"] as? Double,
-           let feelsLike = forecast["feels_like"] as? Double,
-           let details = parseWeatherDetails(data: forecast),
-           let precipitation = forecast["pop"] as? Double
-        {
-            forecasts.append(HourlyForecastStruct(
-                timestamp: timestamp,
-                temperature: temperature,
-                feelsLike: feelsLike,
-                details: details,
-                precipitation: precipitation
-            ))
-        } else {
-            return nil
-        }
+func parseWeatherDetails(data: [String: Any]) -> WeatherDetailsStruct? {
+    if let id = data["id"] as? Int,
+       let group = data["main"] as? String,
+       let description = data["description"] as? String
+    {
+        return WeatherDetailsStruct(
+            id: id,
+            group: group,
+            description: description
+        )
     }
-    return forecasts
+    print("failed weather")
+    return nil
 }
 
-func parseDailyForecasts(data: [[String: Any]]) -> [DailyForecastStruct]? {
-    var forecasts = [DailyForecastStruct]()
-    for forecast in data {
-        if let timestamp = forecast["dt"] as? Int,
-           let sunrise = forecast["sunrise"] as? Int,
-           let sunset = forecast["sunset"] as? Int,
-           let moonrise = forecast["moonrise"] as? Int,
-           let moonset = forecast["moonset"] as? Int,
-           let moonPhase = forecast["moon_phase"] as? Double,
-           let summary = forecast["summary"] as? String,
-           let tempData = forecast["temp"] as? [String: Any],
-           let minTemp = tempData["min"] as? Double,
-           let maxTemp = tempData["max"] as? Double,
-           let dayTemp = tempData["day"] as? Double,
-           let nightTemp = tempData["night"] as? Double,
-           let morningTemp = tempData["morn"] as? Double,
-           let eveningTemp = tempData["eve"] as? Double,
-           let feelsData = forecast["feels_like"] as? [String: Any],
-           let dayFeel = feelsData["day"] as? Double,
-           let nightFeel = feelsData["night"] as? Double,
-           let morningFeel = feelsData["morn"] as? Double,
-           let eveningFeel = feelsData["eve"] as? Double,
-           let details = parseWeatherDetails(data: forecast),
-           let precipitation = forecast["pop"] as? Double
-        {
-            forecasts.append(DailyForecastStruct(
-                timestamp: timestamp,
-                sunrise: sunrise,
-                sunset: sunset,
-                moonrise: moonrise,
-                moonset: moonset,
-                moonPhase: moonPhase,
-                summary: summary,
-                minTemp: minTemp,
-                maxTemp: maxTemp,
-                dayTemp: dayTemp,
-                nightTemp: nightTemp,
-                morningTemp: morningTemp,
-                eveningTemp: eveningTemp,
-                dayFeel: dayFeel,
-                nightFeel: nightFeel,
-                morningFeel: morningFeel,
-                eveningFeel: eveningFeel,
-                details: details,
-                precipitation: precipitation
-            ))
-        } else {
-            return nil
-        }
+func parseTemperatureDetails(data: [String: Any]) -> TemperatureDetailsStruct? {
+    if let current = data["temp"] as? Double,
+       let feelsLike = data["feels_like"] as? Double,
+       let low = data["temp_min"] as? Double,
+       let high = data["temp_max"] as? Double
+    {
+        return TemperatureDetailsStruct(
+            current: current,
+            feelsLike: feelsLike,
+            low: low,
+            high: high
+        )
     }
-    return forecasts
+    print("failed temp")
+    return nil
 }
 
-func parseWeatherAlerts(data: [[String: Any]]) -> [WeatherAlertStruct]? {
-    var alerts = [WeatherAlertStruct]()
-    for alert in data {
-        if let sender = alert["sender_name"] as? String,
-           let title = alert["event"] as? String,
-           let start = alert["start"] as? Int,
-           let end = alert["end"] as? Int,
-           let description = alert["description"] as? String
-        {
-            alerts.append(WeatherAlertStruct(
-                sender: sender,
-                start: start,
-                end: end,
-                title: title,
-                description: description
-            ))
-        } else {
-            return nil
-        }
+func parseWindDetails(data: [String: Any]) -> WindDetailsStruct? {
+    if let speed = data["speed"] as? Double,
+       let direction = data["deg"] as? Int
+    {
+        return WindDetailsStruct(
+            speed: speed,
+            direction: direction,
+            gust: data["gust"] as? Double   // not always available
+        )
     }
-    return alerts
+    print("failed wind")
+    return nil
+}
+
+func parsePrecipitationDetails(data: [String: Any]) -> PrecipitationDetailsStruct? {
+    return PrecipitationDetailsStruct(
+        volume1h: data["1h"] as? Double,
+        volume3h: data["3h"] as? Double
+    )
+}
+
+func parseExtraDetails(data: [String: Any]) -> ExtraDetailsStruct? {
+    if let cloudsJson = data["clouds"] as? [String: Any],
+       let clouds = cloudsJson["all"] as? Int,
+       let mainJson = data["main"] as? [String: Any],
+       let humidity = mainJson["humidity"] as? Int,
+       let pressure = mainJson["pressure"] as? Int,
+       let visibility = data["visibility"] as? Int,
+       let sysJson = data["sys"] as? [String: Any],
+       let sunrise = sysJson["sunrise"] as? Int,
+       let sunset = sysJson["sunset"] as? Int
+    {
+        return ExtraDetailsStruct(
+            clouds: clouds,
+            humidity: humidity,
+            visibility: visibility,
+            pressure: pressure,
+            pressureSea: mainJson["sea_level"] as? Int,
+            pressureGround: mainJson["grnd_level"] as? Int,
+            sunrise: sunrise,
+            sunset: sunset
+        )
+    }
+    print("failed extra")
+    return nil
 }
