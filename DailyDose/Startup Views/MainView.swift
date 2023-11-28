@@ -10,12 +10,22 @@
 import SwiftUI
 
 struct MainView: View {
+
+    @EnvironmentObject var displayedArticles: ArticleList
+    @EnvironmentObject var bookmarkedArticles: BookmarksList
+
     var body: some View {
         TabView {
             NewsTab()
                 .tabItem {
                     Label("Feed", systemImage: "newspaper.fill")
                 }
+                .environmentObject(displayedArticles)
+            Bookmarks()
+                .tabItem {
+                    Label("Bookmarks", systemImage: "bookmark.fill")
+                }
+                .environmentObject(bookmarkedArticles)
             WeatherTab()
                 .tabItem {
                     Label("Weather", systemImage: "cloud.sun.bolt.fill")
@@ -48,6 +58,7 @@ struct MainView: View {
             UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         }
     }
+
 }
 
 #Preview {

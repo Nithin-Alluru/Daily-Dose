@@ -40,6 +40,11 @@
 		DB14581A2B12C0D9001825A9 /* WeatherStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1458192B12C0D9001825A9 /* WeatherStructs.swift */; };
 		DB14581D2B12D098001825A9 /* CurrentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14581C2B12D098001825A9 /* CurrentLocation.swift */; };
 		DB4ECC7C2B128880007E7A24 /* WeatherTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4ECC7B2B128880007E7A24 /* WeatherTab.swift */; };
+		DB6762552B164BC800BB0AB4 /* ArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6762542B164BC800BB0AB4 /* ArticleList.swift */; };
+		DB6762582B164C4900BB0AB4 /* BookmarkDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6762572B164C4900BB0AB4 /* BookmarkDetails.swift */; };
+		DB67625A2B164C6A00BB0AB4 /* BookmarkedArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6762592B164C6A00BB0AB4 /* BookmarkedArticle.swift */; };
+		DB67625C2B164C7B00BB0AB4 /* Bookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB67625B2B164C7B00BB0AB4 /* Bookmarks.swift */; };
+		DB67625E2B164C9200BB0AB4 /* BookmarksList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB67625D2B164C9200BB0AB4 /* BookmarksList.swift */; };
 		DB7F34BF2B12FD8500202040 /* WeatherConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F34BE2B12FD8500202040 /* WeatherConversions.swift */; };
 		DB7F42C02B067C6E00628F6F /* DailyDoseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F42BF2B067C6E00628F6F /* DailyDoseApp.swift */; };
 		DB7F42C62B067C7100628F6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7F42C52B067C7100628F6F /* Assets.xcassets */; };
@@ -87,6 +92,11 @@
 		DB14581C2B12D098001825A9 /* CurrentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocation.swift; sourceTree = "<group>"; };
 		DB14581E2B12D906001825A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DB4ECC7B2B128880007E7A24 /* WeatherTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTab.swift; sourceTree = "<group>"; };
+		DB6762542B164BC800BB0AB4 /* ArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleList.swift; sourceTree = "<group>"; };
+		DB6762572B164C4900BB0AB4 /* BookmarkDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkDetails.swift; sourceTree = "<group>"; };
+		DB6762592B164C6A00BB0AB4 /* BookmarkedArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedArticle.swift; sourceTree = "<group>"; };
+		DB67625B2B164C7B00BB0AB4 /* Bookmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmarks.swift; sourceTree = "<group>"; };
+		DB67625D2B164C9200BB0AB4 /* BookmarksList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksList.swift; sourceTree = "<group>"; };
 		DB7F34BE2B12FD8500202040 /* WeatherConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConversions.swift; sourceTree = "<group>"; };
 		DB7F42BC2B067C6E00628F6F /* DailyDose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyDose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7F42BF2B067C6E00628F6F /* DailyDoseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDoseApp.swift; sourceTree = "<group>"; };
@@ -154,6 +164,7 @@
 		25119AAD2B15C00F00BE4B3B /* Tab View Items */ = {
 			isa = PBXGroup;
 			children = (
+				DB6762562B164C2C00BB0AB4 /* News DB */,
 				3C5BB5012B0E9998005F987D /* News */,
 				DB4ECC7A2B128867007E7A24 /* Weather */,
 				25119A972B15B72200BE4B3B /* Comics */,
@@ -198,6 +209,7 @@
 				3C5BB5022B0E99F3005F987D /* NewsTab.swift */,
 				3C5BB5042B0E9A7B005F987D /* Article.swift */,
 				3CC860232B105BE900A28666 /* ArticleDetails.swift */,
+				DB6762542B164BC800BB0AB4 /* ArticleList.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -254,6 +266,17 @@
 				DBA93A132B16147B007A155A /* Forecasts */,
 			);
 			path = Weather;
+			sourceTree = "<group>";
+		};
+		DB6762562B164C2C00BB0AB4 /* News DB */ = {
+			isa = PBXGroup;
+			children = (
+				DB6762572B164C4900BB0AB4 /* BookmarkDetails.swift */,
+				DB6762592B164C6A00BB0AB4 /* BookmarkedArticle.swift */,
+				DB67625B2B164C7B00BB0AB4 /* Bookmarks.swift */,
+				DB67625D2B164C9200BB0AB4 /* BookmarksList.swift */,
+			);
+			path = "News DB";
 			sourceTree = "<group>";
 		};
 		DB7F42B32B067C6E00628F6F = {
@@ -402,11 +425,14 @@
 				3C5BB5082B0E9F86005F987D /* NewsStruct.swift in Sources */,
 				3CC8601F2B0EA39C00A28666 /* UtilityFunctions.swift in Sources */,
 				3C5BB5032B0E99F3005F987D /* NewsTab.swift in Sources */,
+				DB6762552B164BC800BB0AB4 /* ArticleList.swift in Sources */,
 				DBA93A152B16257F007A155A /* WeatherMap.swift in Sources */,
 				DB9071CE2B15CFFF00562BB0 /* WeatherMapWrapper.swift in Sources */,
+				DB67625A2B164C6A00BB0AB4 /* BookmarkedArticle.swift in Sources */,
 				DB7F34BF2B12FD8500202040 /* WeatherConversions.swift in Sources */,
 				DBA93A122B16146F007A155A /* HourlyForecastItem.swift in Sources */,
 				25119AA82B15B72E00BE4B3B /* MemeItem.swift in Sources */,
+				DB6762582B164C4900BB0AB4 /* BookmarkDetails.swift in Sources */,
 				25119AA62B15B72E00BE4B3B /* MemeDetails.swift in Sources */,
 				3C9295202B10836100063ECC /* GetJsonDataFromApi.swift in Sources */,
 				25119AB52B15C06000BE4B3B /* MainView.swift in Sources */,
@@ -426,12 +452,14 @@
 				DB9071CC2B15CFC500562BB0 /* ImmersiveWeather.swift in Sources */,
 				25119A9E2B15B72200BE4B3B /* ComicDetails.swift in Sources */,
 				25119AAC2B15BFF000BE4B3B /* UserAuthentication.swift in Sources */,
+				DB67625C2B164C7B00BB0AB4 /* Bookmarks.swift in Sources */,
 				25119A9C2B15B72200BE4B3B /* ComicsTab.swift in Sources */,
 				25119A962B15B70800BE4B3B /* MemeStruct.swift in Sources */,
 				25119AA72B15B72E00BE4B3B /* FavoriteMemes.swift in Sources */,
 				25119A9F2B15B72200BE4B3B /* ComicItem.swift in Sources */,
 				DB86EEE12B129E7200FFF726 /* HexColor.swift in Sources */,
 				25119A902B15B6EC00BE4B3B /* ComicStruct.swift in Sources */,
+				DB67625E2B164C9200BB0AB4 /* BookmarksList.swift in Sources */,
 				25119AB32B15C06000BE4B3B /* LoginView.swift in Sources */,
 				3C5BB5002B0681B6005F987D /* Globals.swift in Sources */,
 			);

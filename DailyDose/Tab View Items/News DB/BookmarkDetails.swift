@@ -1,20 +1,22 @@
 //
-//  ArticleDetails.swift
+//  BookmarkDetails.swift
 //  DailyDose
 //
-//  Created by Caleb Kong on 11/23/23.
+//  Created by Caleb Kong on 11/27/23.
 //  Copyright © 2023 CS3714 Team 2. All rights reserved.
 //
 
+
 import SwiftUI
+import SwiftData
 
-struct ArticleDetails: View {
-    let thisArticle: NewsStruct
+struct BookmarkDetails: View {
+    let thisArticle: News
 
-    @State var bookmarked: Bool = false
+    @State var bookmarked: Bool = true
     @Environment(\.modelContext) private var modelContext
     @State private var showAlertMessage = false
-
+    //@State private var toBeDeleted: IndexSet?
 
     var body: some View {
         ScrollView {
@@ -81,6 +83,7 @@ struct ArticleDetails: View {
                 ToolbarItem(id: "bookmark") {
                     if !bookmarked {
                         Button("Bookmark This Article", systemImage: "bookmark") {
+                            modelContext.insert(thisArticle)
                             bookmarked = true
 
                             alertTitle = "News Article Added"
@@ -89,21 +92,16 @@ struct ArticleDetails: View {
                         }
                     }
                     else {
-                        Button("Unookmark This Article", systemImage: "bookmark.fill") {
+                        Button("Unbookmark This Article", systemImage: "bookmark.fill") {
+                            modelContext.delete(thisArticle)
                             bookmarked = false
 
-                            alertTitle = "News Article Removed"
-                            alertMessage = "This article has been removed from your Bookmarks"
+                            alertTitle = "Article Removed from Bookmarks"
+                            alertMessage = "This article been removed from your Bookmarks."
                             showAlertMessage = true
                         }
                     }
                 }
-            } //END TOOLBAR
-        } //END SCROLL VIEW
-        .onDisappear() {
-            if bookmarked {
-                let newArticle = News(name: thisArticle.name, author: thisArticle.author, title: thisArticle.title, description: thisArticle.description, url: thisArticle.url, urlToImage: thisArticle.urlToImage, publishedAt: thisArticle.publishedAt, content: thisArticle.content)
-                modelContext.insert(newArticle)
             }
         }
         .alert(alertTitle, isPresented: $showAlertMessage, actions: {
@@ -111,8 +109,7 @@ struct ArticleDetails: View {
         }, message: {
             Text(alertMessage)
         })
-    } //END BODY
-
+    } //END OF BODY
 }
 
 private func getTime(time: String) -> String {
@@ -122,11 +119,5 @@ private func getTime(time: String) -> String {
     formatter.formatOptions.insert(.withFractionalSeconds)
     let date = (formatter.date(from: time) ?? Date()) as Date
     return date.formatted(date: .complete, time: .complete)
-}
-
-
-private func isBookmarked(thisArticle: NewsStruct) {
-    let newArticle = News(name: thisArticle.name, author: thisArticle.author, title: thisArticle.title, description: thisArticle.description, url: thisArticle.url, urlToImage: thisArticle.urlToImage, publishedAt: thisArticle.publishedAt, content: thisArticle.content)
-
 }
 
