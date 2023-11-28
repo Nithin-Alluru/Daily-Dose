@@ -1,9 +1,15 @@
 //
 //  Globals.swift
-//  FinalProject
+//  Daily Dose
 //
 //  Created by Caleb Kong on 11/15/23.
 //
+
+//-----------------------------------------
+// Global Alert Title and Message Variables
+//-----------------------------------------
+var alertTitle = ""
+var alertMessage = ""
 
 private let openWeatherAPIKey_Caleb = "e39c8687dd6113bce5e9b5bf14af6bb9"
 private let newsAPIKey_Caleb = "c472c5f827cb4f61b1eb48e725504974"

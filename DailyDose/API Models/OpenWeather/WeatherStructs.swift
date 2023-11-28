@@ -2,22 +2,21 @@
 //  WeatherStructs.swift
 //  DailyDose
 //
-//  Created by Caleb Kong and Aaron Gomez on 11/15/23.
+//  Created by Aaron Gomez on 11/15/23.
+//  Copyright © 2023 CS3714 Team 2. All rights reserved.
 //
 
 import Foundation
 
-struct CurrentWeatherStruct {
+struct WeatherStruct {
 
-    let latitude: Double        // in range (-90,90)
-    let longitude: Double       // in range (-180, 180)
+    let locationName: String?
 
-    let timestamp: Int          // in Unix epoch time
-    let timezone: Int           // shift in seconds from UTC
+    let timestamp: Int  // in Unix epoch time
 
     let weather: [WeatherDetailsStruct]
     let temp: TemperatureDetailsStruct
-    let wind: WindDetailsStruct
+    let wind: WindDetailsStruct?
 
     // Volumes in last 1h/3h
     let rain: PrecipitationDetailsStruct?
@@ -33,6 +32,7 @@ struct WeatherDetailsStruct {
     let id: Int
     let group: String
     let description: String
+    let icon: String
 
 }
 
@@ -61,23 +61,22 @@ struct PrecipitationDetailsStruct {
 
 }
 
-
 struct ExtraDetailsStruct {
 
-    let clouds: Int             // % out of 100
-    let humidity: Int           // % out of 100
+    let clouds: Int?            // % out of 100
+    let humidity: Int?          // % out of 100
     let visibility: Int?        // in meters <= 10,000
 
-    let pressure: Int           // in hPa
+    let pressure: Int?          // in hPa
     let pressureSea: Int?       // in hPa
     let pressureGround: Int?    // in hPa
 
-    let sunrise: Int            // in Unix epoch time
-    let sunset: Int             // in Unix epoch time
+    let sunrise: Int?           // in Unix epoch time
+    let sunset: Int?            // in Unix epoch time
 
 }
 
-//  JSON format API response example
+//  Current weather JSON format API response example
 //{
 //    "coord": {
 //        "lon": 10.99,
@@ -128,58 +127,6 @@ struct ExtraDetailsStruct {
 //    "cod": 200
 //}
 
-
-struct MinutelyForecastStruct {
-
-    let timestamp: Int          // in Unix epoch time
-    let precipitation: Double   // % out of 1
-
-}
-
-struct HourlyForecastStruct {
-
-    let timestamp: Int          // in Unix epoch time
-    let temperature: Double     // in Kelvin
-    let feelsLike: Double       // in Kelvin
-    let details: WeatherDetailsStruct
-    let precipitation: Double   // % out of 1
-
-}
-
-struct DailyForecastStruct {
-
-    let timestamp: Int      // in Unix epoch time
-    let sunrise: Int        // in Unix epoch time
-    let sunset: Int         // in Unix epoch time
-    let moonrise: Int       // in Unix epoch time
-    let moonset: Int        // in Unix epoch time
-    let moonPhase: Double   //
-    let summary: String
-
-    let minTemp: Double     //
-    let maxTemp: Double     //
-    let dayTemp: Double     //
-    let nightTemp: Double   //
-    let morningTemp: Double //
-    let eveningTemp: Double //
-
-    let dayFeel: Double     //
-    let nightFeel: Double   //
-    let morningFeel: Double //
-    let eveningFeel: Double //
-
-    let details: WeatherDetailsStruct
-
-    let precipitation: Double   // % out of 1
-
-}
-
-struct WeatherAlertStruct {
-
-    let sender: String
-    let start: Int
-    let end: Int
-    let title: String
-    let description: String
-
+struct ForecastStruct {
+    let forecasts: [WeatherStruct]
 }

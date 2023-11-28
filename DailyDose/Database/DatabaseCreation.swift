@@ -9,6 +9,7 @@
 import SwiftUI
 import SwiftData
 
+/*
 public func init_db() {
     var modelContainer: ModelContainer
     do {
@@ -22,7 +23,7 @@ public func init_db() {
      */
     // Create the context (workspace) where News objects will be managed
     let modelContext = ModelContext(modelContainer)
-    
+
     let NewsFetchDescriptor = FetchDescriptor<News>()
     var listOfAllNewsInDatabase = [News]()
     do {
@@ -38,16 +39,17 @@ public func init_db() {
     print("Database will be created!")
 
     var NewsStructList = [NewsStruct]()
-    
+
     // The function is given in UtilityFunctions.swift
     NewsStructList = decodeJsonFileIntoArrayOfStructs(fullFilename: "InitialDBContent-News.json", fileLocation: "Main Bundle")
     for n in NewsStructList {
-        
+
         // Instantiate a new News object and dress it up
         let newNews = News(name: n.name, author: n.author, title: n.title, description: n.description, url: n.url, urlToImage: n.urlToImage, publishedAt: n.publishedAt, content: n.content)
-        
+
         // Insert the new News object into the database
         modelContext.insert(newNews)
     }   // End of the for loop
-    
+
 }
+*/
