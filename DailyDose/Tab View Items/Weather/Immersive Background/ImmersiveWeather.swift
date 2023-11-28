@@ -24,7 +24,7 @@ fileprivate let weatherBackgrounds = [
 
 struct DynamicWeatherBackground: View {
 
-    @State private var currentWeather = "01d"
+    @Binding var currentWeather: String
 
     var body: some View {
         ZStack {
@@ -43,8 +43,3 @@ struct DynamicWeatherBackground: View {
     }
 
 }
-
-#Preview {
-    DynamicWeatherBackground()
-}
-

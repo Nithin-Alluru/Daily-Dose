@@ -4,8 +4,8 @@
 <dict>
 	<key>UILaunchScreen</key>
 	<dict>
-		<key>UILaunchScreen</key>
-		<string></string>
+		<key>UIImageName</key>
+		<string>LaunchImage</string>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location is required to obtain local weather information.</string>

@@ -18,13 +18,13 @@ struct DailyDoseApp: App {
         getPermissionForLocation()
     }
 
-    // @AppStorage("darkMode") private var darkMode = false
+    @AppStorage("darkMode") private var darkMode = false
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 // Change the color mode of the entire app to Dark or Light
-                //.preferredColorScheme(darkMode ? .dark : .light)
+                .preferredColorScheme(darkMode ? .dark : .light)
                 .modelContainer(for: [News.self, Comic.self, Meme.self], isUndoEnabled: true)
         }
     }

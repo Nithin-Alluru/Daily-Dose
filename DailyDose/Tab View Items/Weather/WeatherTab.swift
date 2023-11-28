@@ -55,6 +55,8 @@ struct WeatherTab: View {
 
     @State private var timer = Timer.publish(every: weatherRefreshInterval, on: .main, in: .common).autoconnect()
 
+    @State private var immersiveBg = "01d"
+
     var body: some View {
         NavigationStack {
             Form {
@@ -64,6 +66,18 @@ struct WeatherTab: View {
                             weather: info,
                             scale: temperatureScale
                         )
+                        .contextMenu {
+                            Button(action: {
+                                immersiveBg = "01d"
+                            }) {
+                                Text("Day")
+                            }
+                            Button(action: {
+                                immersiveBg = "01n"
+                            }) {
+                                Text("Night")
+                            }
+                        }
                     } else {
                         if weatherFetchCompleted {
                             Text("Unavailable")
@@ -75,10 +89,17 @@ struct WeatherTab: View {
                 .onReceive(timer) { _ in
                     refreshWeatherData()
                 }
-                Section(header: Text("Today's forecast")) {
+                Section(header: Text("3h forecasts")) {
                     if let info = forecastInfo {
                         ScrollView(.horizontal) {
                             HStack(spacing: 0) {
+                                if let current = weatherInfo {
+                                    HourlyForecastItem(
+                                        forecast: current,
+                                        scale: temperatureScale,
+                                        now: true
+                                    )
+                                }
                                 ForEach(info.forecasts, id: \.timestamp) { forecast in
                                     HourlyForecastItem(
                                         forecast: forecast,
@@ -100,7 +121,7 @@ struct WeatherTab: View {
             // dynamic background show through
             .scrollContentBackground(.hidden)
             .background {
-                DynamicWeatherBackground()
+                DynamicWeatherBackground(currentWeather: $immersiveBg)
                     .edgesIgnoringSafeArea(.all)
             }
             .toolbarTitleDisplayMode(.inline)

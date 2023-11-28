@@ -20,12 +20,18 @@ struct HourlyForecastItem: View {
 
     let forecast: WeatherStruct
     let scale: TemperatureScale
+    var now = false
 
     // The icons and VStack itself have fixed sizes to be more visually appealing
     var body: some View {
         VStack(spacing: 4) {
-            Text("\(formatTimeStamp(timestamp: forecast.timestamp))")
-                .font(.body.smallCaps())
+            if now {
+                Text("Now")
+                    .font(.body.smallCaps())
+            } else {
+                Text("\(formatTimeStamp(timestamp: forecast.timestamp))")
+                    .font(.body.smallCaps())
+            }
             Image(systemName: weatherIcons[forecast.weather[0].icon] ?? "questionmark")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
