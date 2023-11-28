@@ -15,13 +15,12 @@ fileprivate let apiHeaders = [
     "host": "api.openweathermap.org"
 ]
 
-// Fetches current weather and forecast information from the OpenWeather API
+// MARK: Current Weather Information
+// Fetches current weather information from the OpenWeather API
 // https://openweathermap.org/current
 func fetchCurrentWeather(latitude: Double, longitude: Double) -> CurrentWeatherStruct? {
 
     let apiUrlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(getWeatherApiKey())"
-
-    print(apiUrlString)
 
     /*
     ************************************
@@ -75,8 +74,6 @@ func fetchCurrentWeather(latitude: Double, longitude: Double) -> CurrentWeatherS
             return nil
         }
 
-        print("\(weatherJsonObject)")
-
         return parseCurrentWeather(data: weatherJsonObject)
     } catch {
         return nil
@@ -84,35 +81,10 @@ func fetchCurrentWeather(latitude: Double, longitude: Double) -> CurrentWeatherS
 }
 
 func parseCurrentWeather(data: [String: Any]) -> CurrentWeatherStruct? {
-    if let coordJson = data["coord"] as? [String: Any] {
-        if let latitude = coordJson["lat"] as? Double {} else {
-            print("lat")
-        }
-        if let longitude = coordJson["lon"] as? Double {} else {
-            print("lon")
-        }
-    } else {
-        print("coords")
-    }
-    if let timestamp = data["dt"] as? Int {} else {
-        print("dt")
-    }
-    if let timezone = data["timezone"] as? Int {} else {
-        print("tz")
-    }
-    if let weather = data["weather"] as? [String: Any] {} else {
-        print("weather")
-    }
-    if let temp = data["main"] as? [String: Any] {} else {
-        print("temp/main")
-    }
-    if let wind = data["wind"] as? [String: Any] {} else {
-        print("wind")
-    }
-
     if let coordJson = data["coord"] as? [String: Any],
        let latitude = coordJson["lat"] as? Double,
        let longitude = coordJson["lon"] as? Double,
+       let locationName = data["name"] as? String,
        let timestamp = data["dt"] as? Int,
        let timezone = data["timezone"] as? Int,
        let weatherJson = data["weather"] as? [Any],
@@ -130,12 +102,13 @@ func parseCurrentWeather(data: [String: Any]) -> CurrentWeatherStruct? {
             rain = parsePrecipitationDetails(data: rainJson)
         }
         if let snowJson = data["snow"] as? [String: Any] {
-            rain = parsePrecipitationDetails(data: snowJson)
+            snow = parsePrecipitationDetails(data: snowJson)
         }
         // Return parsed weather struct
         return CurrentWeatherStruct(
             latitude: latitude,
             longitude: longitude,
+            locationName: locationName,
             timestamp: timestamp,
             timezone: timezone,
             weather: parseWeatherArrays(arrays: weatherJson),
@@ -146,7 +119,6 @@ func parseCurrentWeather(data: [String: Any]) -> CurrentWeatherStruct? {
             extra: extra
         )
     }
-    print("failed current")
     return nil
 }
 
@@ -165,15 +137,16 @@ func parseWeatherArrays(arrays: [Any]) -> [WeatherDetailsStruct] {
 func parseWeatherDetails(data: [String: Any]) -> WeatherDetailsStruct? {
     if let id = data["id"] as? Int,
        let group = data["main"] as? String,
-       let description = data["description"] as? String
+       let description = data["description"] as? String,
+       let icon = data["icon"] as? String
     {
         return WeatherDetailsStruct(
             id: id,
             group: group,
-            description: description
+            description: description,
+            icon: icon
         )
     }
-    print("failed weather")
     return nil
 }
 
@@ -190,7 +163,6 @@ func parseTemperatureDetails(data: [String: Any]) -> TemperatureDetailsStruct? {
             high: high
         )
     }
-    print("failed temp")
     return nil
 }
 
@@ -204,7 +176,6 @@ func parseWindDetails(data: [String: Any]) -> WindDetailsStruct? {
             gust: data["gust"] as? Double   // not always available
         )
     }
-    print("failed wind")
     return nil
 }
 
@@ -237,6 +208,12 @@ func parseExtraDetails(data: [String: Any]) -> ExtraDetailsStruct? {
             sunset: sunset
         )
     }
-    print("failed extra")
     return nil
+}
+
+// MARK: Forecast Information
+// Fetches forecast information from the OpenWeather API
+// https://openweathermap.org/forecast5
+func fetchForecasts(latitude: Double, longitude: Double) {
+
 }

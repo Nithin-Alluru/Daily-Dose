@@ -8,10 +8,39 @@
 
 import SwiftUI
 
-let sunnyGradient = Gradient(colors: [Color(hex: 0x73b1e6), Color(hex: 0xa5c9e8)])
-let rainyGradient = Gradient(colors: [Color(hex: 0x1b3045), Color(hex: 0x8196ab)])
+// For converting OpenWeather icon codes to SF Symbol names
+// https://openweathermap.org/weather-conditions
+fileprivate let weatherIcons = [
+    // clear sky
+    "01d": "sun.max.fill",
+    "01n": "moon.stars.fill",
+    // few clouds
+    "02d": "cloud.sun.fill",
+    "02n": "cloud.moon.fill",
+    // scattered clouds
+    "03d": "cloud.fill",
+    "03n": "cloud.fill",
+    // broken clouds
+    "04d": "cloud.fill",
+    "04n": "cloud.fill",
+    // shower rain
+    "09d": "cloud.drizzle.fill",
+    "09n": "cloud.drizzle.fill",
+    // rain
+    "10d": "cloud.rain.fill",
+    "10n": "cloud.rain.fill",
+    // thunderstorm
+    "11d": "cloud.sun.bolt.fill",
+    "11n": "cloud.moon.bolt.fill",
+    // snow
+    "13d": "snowflake",
+    "13n": "snowflake",
+    // mist
+    "50d": "cloud.fog.fill",
+    "50n": "cloud.fog.fill",
+]
 
-fileprivate let weatherRefreshInterval: Double = 3*60   // in seconds
+fileprivate let weatherRefreshInterval: Double = 5*60   // in seconds
 
 struct WeatherPage: View {
 
@@ -22,25 +51,20 @@ struct WeatherPage: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                LinearGradient(
-                    gradient: sunnyGradient,
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .ignoresSafeArea()
+                DynamicWeatherBackground()
+                    .ignoresSafeArea()
                 Form {
                     Section(header: Text("Current Location")) {
                         if let info = weatherInfo {
                             CurrentWeatherView(
                                 currentTemp: info.temp.current,
                                 description: info.weather[0].group,
+                                icon: info.weather[0].icon,
                                 lowTemp: info.temp.low,
                                 highTemp: info.temp.high,
-                                city: "CityName",
-                                state: "AA",
+                                location: info.locationName,
                                 scale: .Fahrenheit
                             )
-
                         } else {
                             Text("Loading...")
                         }
@@ -59,6 +83,16 @@ struct WeatherPage: View {
                 // dynamic background show through
                 .scrollContentBackground(.hidden)
             }   // End of ZStack
+            .toolbarTitleDisplayMode(.inline)
+            .navigationTitle("Weather")
+            .toolbar {
+                ToolbarItem(id: "map") {
+                    NavigationLink(destination: WeatherMap()) {
+                        Image(systemName: "map")
+                    }
+                }
+            }
+
         }   // End of NavigationStack
         .onAppear() {
             startTimer()
@@ -70,8 +104,9 @@ struct WeatherPage: View {
             stopTimer()
         }
     }   // End of body var
-    
+
     func refreshForecastData() {
+        return;
         // Wrap API call in a Task to avoid blocking
         Task {
             let currentLocation = getUsersCurrentLocation()
@@ -83,7 +118,7 @@ struct WeatherPage: View {
             }
         }
     }
-    
+
     func startTimer() {
         timer = Timer.publish(every: weatherRefreshInterval, on: .main, in: .common).autoconnect()
     }
@@ -98,10 +133,10 @@ struct CurrentWeatherView: View {
 
     let currentTemp: Double
     let description: String
+    let icon: String
     let lowTemp: Double
     let highTemp: Double
-    let city: String
-    let state: String
+    let location: String
 
     let scale: TemperatureScale
 
@@ -110,38 +145,23 @@ struct CurrentWeatherView: View {
             Spacer()
             VStack {
                 HStack {
-                    Image(systemName: "sun.max.fill")
+                    Image(systemName: weatherIcons[icon] ?? "questionmark")
                         .font(.system(size: 80))
                     VStack(alignment: .leading) {
-                        Text("\(round(convertKelvinTemp(kelvin: currentTemp, scale: scale)))°")
-                        Text("\(description)")
+                        Text("\(Int(convertKelvinTemp(kelvin: currentTemp, scale: scale).rounded()))°")
+                        Text(description)
                     }
                     .font(.system(size: 24))
                 }
                 HStack {
                     Image(systemName: "arrow.down")
-                    Text("\(round(convertKelvinTemp(kelvin: lowTemp, scale: scale)))° ")
+                    Text("\(Int(convertKelvinTemp(kelvin: lowTemp, scale: scale).rounded()))° ")
                     Image(systemName: "arrow.up")
-                    Text("\(round(convertKelvinTemp(kelvin: highTemp, scale: scale)))°")
+                    Text("\(Int(convertKelvinTemp(kelvin: highTemp, scale: scale).rounded()))°")
                 }
-                Text("\(city), \(state)")
+                Text(location)
             }
             Spacer()
-        }
-    }
-
-}
-
-struct HourlyForecastItem: View {
-    
-    let time: String
-    let temperature: Int
-    
-    var body: some View {
-        VStack {
-            Text(time)
-            Image(systemName: "cloud.fill")
-            Text("\(temperature)°")
         }
     }
 
