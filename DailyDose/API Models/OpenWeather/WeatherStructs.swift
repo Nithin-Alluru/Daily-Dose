@@ -11,6 +11,7 @@ struct CurrentWeatherStruct {
 
     let latitude: Double        // in range (-90,90)
     let longitude: Double       // in range (-180, 180)
+    let locationName: String
 
     let timestamp: Int          // in Unix epoch time
     let timezone: Int           // shift in seconds from UTC
@@ -33,6 +34,7 @@ struct WeatherDetailsStruct {
     let id: Int
     let group: String
     let description: String
+    let icon: String
 
 }
 
@@ -127,59 +129,3 @@ struct ExtraDetailsStruct {
 //    "name": "Zocca",
 //    "cod": 200
 //}
-
-
-struct MinutelyForecastStruct {
-
-    let timestamp: Int          // in Unix epoch time
-    let precipitation: Double   // % out of 1
-
-}
-
-struct HourlyForecastStruct {
-
-    let timestamp: Int          // in Unix epoch time
-    let temperature: Double     // in Kelvin
-    let feelsLike: Double       // in Kelvin
-    let details: WeatherDetailsStruct
-    let precipitation: Double   // % out of 1
-
-}
-
-struct DailyForecastStruct {
-
-    let timestamp: Int      // in Unix epoch time
-    let sunrise: Int        // in Unix epoch time
-    let sunset: Int         // in Unix epoch time
-    let moonrise: Int       // in Unix epoch time
-    let moonset: Int        // in Unix epoch time
-    let moonPhase: Double   //
-    let summary: String
-
-    let minTemp: Double     //
-    let maxTemp: Double     //
-    let dayTemp: Double     //
-    let nightTemp: Double   //
-    let morningTemp: Double //
-    let eveningTemp: Double //
-
-    let dayFeel: Double     //
-    let nightFeel: Double   //
-    let morningFeel: Double //
-    let eveningFeel: Double //
-
-    let details: WeatherDetailsStruct
-
-    let precipitation: Double   // % out of 1
-
-}
-
-struct WeatherAlertStruct {
-
-    let sender: String
-    let start: Int
-    let end: Int
-    let title: String
-    let description: String
-
-}

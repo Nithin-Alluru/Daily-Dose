@@ -29,6 +29,7 @@
 		DB7F42C62B067C7100628F6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7F42C52B067C7100628F6F /* Assets.xcassets */; };
 		DB7F42C92B067C7100628F6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7F42C82B067C7100628F6F /* Preview Assets.xcassets */; };
 		DB86EEE12B129E7200FFF726 /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB86EEE02B129E7200FFF726 /* HexColor.swift */; };
+		DB9071C82B1576D300562BB0 /* DynamicWeatherBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9071C72B1576D300562BB0 /* DynamicWeatherBackground.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		DB7F42C52B067C7100628F6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB7F42C82B067C7100628F6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DB86EEE02B129E7200FFF726 /* HexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
+		DB9071C72B1576D300562BB0 /* DynamicWeatherBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicWeatherBackground.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				DB4ECC7B2B128880007E7A24 /* WeatherPage.swift */,
+				DB9071C72B1576D300562BB0 /* DynamicWeatherBackground.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				DB7F42C02B067C6E00628F6F /* DailyDoseApp.swift in Sources */,
 				3C9295222B10838500063ECC /* NewsApiData.swift in Sources */,
 				DB14581D2B12D098001825A9 /* CurrentLocation.swift in Sources */,
+				DB9071C82B1576D300562BB0 /* DynamicWeatherBackground.swift in Sources */,
 				DB14581A2B12C0D9001825A9 /* WeatherStructs.swift in Sources */,
 				DB1458172B12BF27001825A9 /* OpenWeatherAPI.swift in Sources */,
 				DB86EEE12B129E7200FFF726 /* HexColor.swift in Sources */,
