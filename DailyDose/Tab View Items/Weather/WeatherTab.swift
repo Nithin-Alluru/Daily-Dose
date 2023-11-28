@@ -10,7 +10,7 @@ import SwiftUI
 
 // For converting OpenWeather icon codes to SF Symbol names
 // https://openweathermap.org/weather-conditions
-fileprivate let weatherIcons = [
+let weatherIcons = [
     // clear sky
     "01d": "sun.max.fill",
     "01n": "moon.stars.fill",
@@ -44,45 +44,76 @@ fileprivate let weatherRefreshInterval: Double = 5*60   // in seconds
 
 struct WeatherTab: View {
 
-    @State private var weatherInfo: CurrentWeatherStruct?
+    @State private var temperatureScale = TemperatureScale.Fahrenheit
+
+    // Has at least one fetch attempt completed yet?
+    @State private var weatherFetchCompleted = false
+    @State private var forecastFetchCompleted = false
+    // Currently displayed weather information
+    @State private var weatherInfo: WeatherStruct?
+    @State private var forecastInfo: ForecastStruct?
 
     @State private var timer = Timer.publish(every: weatherRefreshInterval, on: .main, in: .common).autoconnect()
 
     var body: some View {
         NavigationStack {
-            ZStack {
-                DynamicWeatherBackground()
-                    .edgesIgnoringSafeArea(.all)
-                Form {
-                    Section(header: Text("Current Location")) {
-                        if let info = weatherInfo {
-                            CurrentWeatherView(
-                                currentTemp: info.temp.current,
-                                description: info.weather[0].group,
-                                icon: info.weather[0].icon,
-                                lowTemp: info.temp.low,
-                                highTemp: info.temp.high,
-                                location: info.locationName,
-                                scale: .Fahrenheit
-                            )
+            Form {
+                Section(header: Text("Current Location")) {
+                    if let info = weatherInfo {
+                        CurrentWeatherView(
+                            weather: info,
+                            scale: temperatureScale
+                        )
+                    } else {
+                        if weatherFetchCompleted {
+                            Text("Unavailable")
                         } else {
-                            Text("Loading...")
+                            ProgressView()
                         }
                     }
-                    .onReceive(timer) { _ in
-                        refreshForecastData()
+                }
+                .onReceive(timer) { _ in
+                    refreshWeatherData()
+                }
+                Section(header: Text("Today's forecast")) {
+                    if let info = forecastInfo {
+                        ScrollView(.horizontal) {
+                            HStack(spacing: 0) {
+                                ForEach(info.forecasts, id: \.timestamp) { forecast in
+                                    HourlyForecastItem(
+                                        forecast: forecast,
+                                        scale: temperatureScale
+                                    )
+                                }
+                            }
+                        }
+                    } else {
+                        if forecastFetchCompleted {
+                            Text("Unavailable")
+                        } else {
+                            ProgressView()
+                        }
                     }
-                    Section(header: Text("Today's forecast")) {
-                        Text("Hourly")
+                }
+                Section(header: Text("Weekly forecast")) {
+                    if let info = forecastInfo {
+
+                    } else {
+                        if forecastFetchCompleted {
+                            Text("Unavailable")
+                        } else {
+                            ProgressView()
+                        }
                     }
-                    Section(header: Text("Weekly forecast")) {
-                        Text("Daily")
-                    }
-                }   // End of Form
-                // Forms are scrollable, so we can hide the background color to let our
-                // dynamic background show through
-                .scrollContentBackground(.hidden)
-            }   // End of ZStack
+                }
+            }   // End of Form
+            // Forms are scrollable, so we can hide the background color to let our
+            // dynamic background show through
+            .scrollContentBackground(.hidden)
+            .background {
+                DynamicWeatherBackground()
+                    .edgesIgnoringSafeArea(.all)
+            }
             .toolbarTitleDisplayMode(.inline)
             .navigationTitle("Weather")
             .toolbar {
@@ -92,12 +123,11 @@ struct WeatherTab: View {
                     }
                 }
             }
-
         }   // End of NavigationStack
         .onAppear() {
             startTimer()
             if weatherInfo == nil {
-                refreshForecastData()
+                refreshWeatherData()
             }
         }
         .onDisappear() {
@@ -105,18 +135,31 @@ struct WeatherTab: View {
         }
     }   // End of body var
 
-    func refreshForecastData() {
-        return;
-        // Wrap API call in a Task to avoid blocking
+    func refreshWeatherData() {
+        // Wrap API call in Tasks to avoid blocking
         Task {
             let currentLocation = getUsersCurrentLocation()
             if let newInfo = fetchCurrentWeather(
                 latitude: currentLocation.latitude,
-                longitude: currentLocation.longitude)
-            {
+                longitude: currentLocation.longitude
+            ) {
                 weatherInfo = newInfo
             }
+            weatherFetchCompleted = true
         }
+        Task {
+            let currentLocation = getUsersCurrentLocation()
+            if let newInfo = fetchForecasts(
+                latitude: currentLocation.latitude,
+                longitude: currentLocation.longitude
+            ) {
+                forecastInfo = newInfo
+            }
+            forecastFetchCompleted = true
+        }
+    }
+
+    func refreshForecastData() {
     }
 
     func startTimer() {
@@ -131,13 +174,7 @@ struct WeatherTab: View {
 
 struct CurrentWeatherView: View {
 
-    let currentTemp: Double
-    let description: String
-    let icon: String
-    let lowTemp: Double
-    let highTemp: Double
-    let location: String
-
+    let weather: WeatherStruct
     let scale: TemperatureScale
 
     var body: some View {
@@ -145,21 +182,23 @@ struct CurrentWeatherView: View {
             Spacer()
             VStack {
                 HStack {
-                    Image(systemName: weatherIcons[icon] ?? "questionmark")
+                    Image(systemName: weatherIcons[weather.weather[0].icon] ?? "questionmark")
                         .font(.system(size: 80))
                     VStack(alignment: .leading) {
-                        Text("\(Int(convertKelvinTemp(kelvin: currentTemp, scale: scale).rounded()))°")
-                        Text(description)
+                        Text("\(Int(convertKelvinTemp(kelvin: weather.temp.current, scale: scale).rounded()))°")
+                        Text(weather.weather[0].group)
                     }
                     .font(.system(size: 24))
                 }
                 HStack {
                     Image(systemName: "arrow.down")
-                    Text("\(Int(convertKelvinTemp(kelvin: lowTemp, scale: scale).rounded()))° ")
+                    Text("\(Int(convertKelvinTemp(kelvin: weather.temp.low, scale: scale).rounded()))° ")
                     Image(systemName: "arrow.up")
-                    Text("\(Int(convertKelvinTemp(kelvin: highTemp, scale: scale).rounded()))°")
+                    Text("\(Int(convertKelvinTemp(kelvin: weather.temp.high, scale: scale).rounded()))°")
                 }
-                Text(location)
+                if let location = weather.locationName {
+                    Text(location)
+                }
             }
             Spacer()
         }

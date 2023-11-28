@@ -18,7 +18,7 @@ fileprivate let apiHeaders = [
 // MARK: Current Weather Information
 // Fetches current weather information from the OpenWeather API
 // https://openweathermap.org/current
-func fetchCurrentWeather(latitude: Double, longitude: Double) -> CurrentWeatherStruct? {
+func fetchCurrentWeather(latitude: Double, longitude: Double) -> WeatherStruct? {
 
     let apiUrlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(getWeatherApiKey())"
 
@@ -74,25 +74,95 @@ func fetchCurrentWeather(latitude: Double, longitude: Double) -> CurrentWeatherS
             return nil
         }
 
-        return parseCurrentWeather(data: weatherJsonObject)
+        return parseWeather(data: weatherJsonObject)
     } catch {
         return nil
     }
 }
 
-func parseCurrentWeather(data: [String: Any]) -> CurrentWeatherStruct? {
-    if let coordJson = data["coord"] as? [String: Any],
-       let latitude = coordJson["lat"] as? Double,
-       let longitude = coordJson["lon"] as? Double,
-       let locationName = data["name"] as? String,
-       let timestamp = data["dt"] as? Int,
-       let timezone = data["timezone"] as? Int,
+// MARK: Forecast Information
+// Fetches forecast information from the OpenWeather API
+// https://openweathermap.org/forecast5
+func fetchForecasts(latitude: Double, longitude: Double) -> ForecastStruct? {
+
+    let apiUrlString = "https://api.openweathermap.org/data/2.5/forecast?lat=\(latitude)&lon=\(longitude)&appid=\(getWeatherApiKey())"
+
+    /*
+    ************************************
+    *   Fetch JSON Data from the API   *
+    ************************************
+    */
+    var jsonDataFromApi: Data
+
+    let jsonDataFetchedFromApi = getJsonDataFromApi(
+        apiHeaders: apiHeaders,
+        apiUrl: apiUrlString,
+        timeout: 10.0
+    )
+
+    if let jsonData = jsonDataFetchedFromApi {
+        jsonDataFromApi = jsonData
+    } else {
+        return nil
+    }
+
+    /*
+    **************************************************
+    *   Process the JSON Data Fetched from the API   *
+    **************************************************
+    */
+    do {
+        /*
+         Foundation framework’s JSONSerialization class is used to convert JSON data
+         into Swift data types such as Dictionary, Array, String, Int, Double or Bool.
+         */
+        let jsonResponse = try JSONSerialization.jsonObject(
+            with: jsonDataFromApi,
+            options: JSONSerialization.ReadingOptions.mutableContainers
+        )
+
+        /*
+         JSON object with Attribute-Value pairs corresponds to Swift Dictionary type with
+         Key-Value pairs. Therefore, we use a Dictionary to represent a JSON object
+         where Dictionary Key type is String and Value type is Any (instance of any type)
+         */
+
+        //-----------------------------
+        // Obtain Top Level JSON Object
+        //-----------------------------
+
+        var forecastsJsonObject = [String: Any]()
+
+        if let jsonObject = jsonResponse as? [String: Any] {
+            forecastsJsonObject = jsonObject
+        } else {
+            return nil
+        }
+
+        //----------------------------
+        // Obtain Top Level JSON Array
+        //----------------------------
+
+        var forecastsJsonArray = [Any]()
+
+        if let jsonArray = forecastsJsonObject["list"] as? [Any] {
+            forecastsJsonArray = jsonArray
+        } else {
+            return nil
+        }
+
+        return parseForecasts(data: forecastsJsonArray)
+    } catch {
+        return nil
+    }
+}
+
+func parseWeather(data: [String: Any]) -> WeatherStruct? {
+    if let timestamp = data["dt"] as? Int,
        let weatherJson = data["weather"] as? [Any],
        let tempJson = data["main"] as? [String: Any],
        let temp = parseTemperatureDetails(data: tempJson),
-       let windJson = data["wind"] as? [String: Any],
-       let wind = parseWindDetails(data: windJson),
-       let extra = parseExtraDetails(data: data)
+       let windJson = data["wind"] as? [String: Any]
     {
         // Rain/snow volumes are optional
         var rain: PrecipitationDetailsStruct?
@@ -105,18 +175,15 @@ func parseCurrentWeather(data: [String: Any]) -> CurrentWeatherStruct? {
             snow = parsePrecipitationDetails(data: snowJson)
         }
         // Return parsed weather struct
-        return CurrentWeatherStruct(
-            latitude: latitude,
-            longitude: longitude,
-            locationName: locationName,
+        return WeatherStruct(
+            locationName: data["name"] as? String,
             timestamp: timestamp,
-            timezone: timezone,
             weather: parseWeatherArrays(arrays: weatherJson),
             temp: temp,
-            wind: wind,
+            wind: parseWindDetails(data: windJson),
             rain: rain,
             snow: snow,
-            extra: extra
+            extra: parseExtraDetails(data: data)
         )
     }
     return nil
@@ -186,34 +253,64 @@ func parsePrecipitationDetails(data: [String: Any]) -> PrecipitationDetailsStruc
     )
 }
 
-func parseExtraDetails(data: [String: Any]) -> ExtraDetailsStruct? {
-    if let cloudsJson = data["clouds"] as? [String: Any],
-       let clouds = cloudsJson["all"] as? Int,
-       let mainJson = data["main"] as? [String: Any],
-       let humidity = mainJson["humidity"] as? Int,
-       let pressure = mainJson["pressure"] as? Int,
-       let visibility = data["visibility"] as? Int,
-       let sysJson = data["sys"] as? [String: Any],
-       let sunrise = sysJson["sunrise"] as? Int,
-       let sunset = sysJson["sunset"] as? Int
-    {
-        return ExtraDetailsStruct(
-            clouds: clouds,
-            humidity: humidity,
-            visibility: visibility,
-            pressure: pressure,
-            pressureSea: mainJson["sea_level"] as? Int,
-            pressureGround: mainJson["grnd_level"] as? Int,
-            sunrise: sunrise,
-            sunset: sunset
-        )
+func parseExtraDetails(data: [String: Any]) -> ExtraDetailsStruct {
+    // main
+    var humidity: Int?
+    var pressure: Int?
+    var pressureSea: Int?
+    var pressureGround: Int?
+    if let mainJson = data["main"] as? [String: Any] {
+        if let value = mainJson["humidity"] as? Int {
+            humidity = value
+        }
+        if let value = mainJson["pressure"] as? Int {
+            pressure = value
+        }
+        if let value = mainJson["sea_level"] as? Int {
+            pressureSea = value
+        }
+        if let value = mainJson["grnd_level"] as? Int {
+            pressureGround = value
+        }
     }
-    return nil
+    // clouds
+    var clouds: Int?
+    if let cloudsJson = data["clouds"] as? [String: Any],
+       let value = cloudsJson["all"] as? Int
+    {
+        clouds = value
+    }
+    // sys
+    var sunrise: Int?
+    var sunset: Int?
+    if let sysJson = data["sys"] as? [String: Any] {
+        if let value = sysJson["sunrise"] as? Int {
+            sunrise = value
+        }
+        if let value = sysJson["sunset"] as? Int {
+            sunset = value
+        }
+    }
+    return ExtraDetailsStruct(
+        clouds: clouds,
+        humidity: humidity,
+        visibility: data["visibility"] as? Int,
+        pressure: pressure,
+        pressureSea: pressureSea,
+        pressureGround: pressureGround,
+        sunrise: sunrise,
+        sunset: sunset
+    )
 }
 
-// MARK: Forecast Information
-// Fetches forecast information from the OpenWeather API
-// https://openweathermap.org/forecast5
-func fetchForecasts(latitude: Double, longitude: Double) {
-
+func parseForecasts(data: [Any]) -> ForecastStruct? {
+    var forecasts = [WeatherStruct]()
+    for object in data {
+        if let forecastJson = object as? [String: Any],
+           let forecast = parseWeather(data: forecastJson)
+        {
+            forecasts.append(forecast)
+        }
+    }
+    return ForecastStruct(forecasts: forecasts)
 }

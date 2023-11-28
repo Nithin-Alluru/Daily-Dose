@@ -8,18 +8,15 @@
 
 import Foundation
 
-struct CurrentWeatherStruct {
+struct WeatherStruct {
 
-    let latitude: Double        // in range (-90,90)
-    let longitude: Double       // in range (-180, 180)
-    let locationName: String
+    let locationName: String?
 
-    let timestamp: Int          // in Unix epoch time
-    let timezone: Int           // shift in seconds from UTC
+    let timestamp: Int  // in Unix epoch time
 
     let weather: [WeatherDetailsStruct]
     let temp: TemperatureDetailsStruct
-    let wind: WindDetailsStruct
+    let wind: WindDetailsStruct?
 
     // Volumes in last 1h/3h
     let rain: PrecipitationDetailsStruct?
@@ -64,19 +61,18 @@ struct PrecipitationDetailsStruct {
 
 }
 
-
 struct ExtraDetailsStruct {
 
-    let clouds: Int             // % out of 100
-    let humidity: Int           // % out of 100
+    let clouds: Int?            // % out of 100
+    let humidity: Int?          // % out of 100
     let visibility: Int?        // in meters <= 10,000
 
-    let pressure: Int           // in hPa
+    let pressure: Int?          // in hPa
     let pressureSea: Int?       // in hPa
     let pressureGround: Int?    // in hPa
 
-    let sunrise: Int            // in Unix epoch time
-    let sunset: Int             // in Unix epoch time
+    let sunrise: Int?           // in Unix epoch time
+    let sunset: Int?            // in Unix epoch time
 
 }
 
@@ -132,5 +128,5 @@ struct ExtraDetailsStruct {
 //}
 
 struct ForecastStruct {
-
+    let forecasts: [WeatherStruct]
 }
