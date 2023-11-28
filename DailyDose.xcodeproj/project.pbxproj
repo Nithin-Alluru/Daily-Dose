@@ -7,15 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C5BB4FA2B068199005F987D /* XkcdComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5BB4F92B068199005F987D /* XkcdComic.swift */; };
+		25119A8C2B15B6CD00BE4B3B /* DatabaseCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A8B2B15B6CD00BE4B3B /* DatabaseCreation.swift */; };
+		25119A902B15B6EC00BE4B3B /* ComicStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A8E2B15B6EC00BE4B3B /* ComicStruct.swift */; };
+		25119A912B15B6EC00BE4B3B /* ComicAPIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A8F2B15B6EC00BE4B3B /* ComicAPIData.swift */; };
+		25119A952B15B70800BE4B3B /* MemesAPIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A932B15B70800BE4B3B /* MemesAPIData.swift */; };
+		25119A962B15B70800BE4B3B /* MemeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A942B15B70800BE4B3B /* MemeStruct.swift */; };
+		25119A9C2B15B72200BE4B3B /* DailyComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A982B15B72200BE4B3B /* DailyComic.swift */; };
+		25119A9D2B15B72200BE4B3B /* FavoriteComics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A992B15B72200BE4B3B /* FavoriteComics.swift */; };
+		25119A9E2B15B72200BE4B3B /* ComicDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A9A2B15B72200BE4B3B /* ComicDetails.swift */; };
+		25119A9F2B15B72200BE4B3B /* ComicItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A9B2B15B72200BE4B3B /* ComicItem.swift */; };
+		25119AA52B15B72E00BE4B3B /* Memes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119AA12B15B72E00BE4B3B /* Memes.swift */; };
+		25119AA62B15B72E00BE4B3B /* MemeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119AA22B15B72E00BE4B3B /* MemeDetails.swift */; };
+		25119AA72B15B72E00BE4B3B /* FavoriteMemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119AA32B15B72E00BE4B3B /* FavoriteMemes.swift */; };
+		25119AA82B15B72E00BE4B3B /* MemeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119AA42B15B72E00BE4B3B /* MemeItem.swift */; };
+		25119AAA2B15BA3700BE4B3B /* DatabaseClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119AA92B15BA3700BE4B3B /* DatabaseClasses.swift */; };
+		25119AAC2B15BFF000BE4B3B /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119AAB2B15BFF000BE4B3B /* UserAuthentication.swift */; };
+		25119AB32B15C06000BE4B3B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119AAF2B15C06000BE4B3B /* LoginView.swift */; };
+		25119AB52B15C06000BE4B3B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119AB12B15C06000BE4B3B /* MainView.swift */; };
+		25119AB62B15C06000BE4B3B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119AB22B15C06000BE4B3B /* ContentView.swift */; };
+		25119AB82B15C2CC00BE4B3B /* ResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119AB72B15C2CB00BE4B3B /* ResetPassword.swift */; };
+		25119ABB2B15C38100BE4B3B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119ABA2B15C38100BE4B3B /* Settings.swift */; };
 		3C5BB5002B0681B6005F987D /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5BB4FF2B0681B6005F987D /* Globals.swift */; };
 		3C5BB5032B0E99F3005F987D /* NewsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5BB5022B0E99F3005F987D /* NewsPage.swift */; };
 		3C5BB5052B0E9A7B005F987D /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5BB5042B0E9A7B005F987D /* Article.swift */; };
 		3C5BB5082B0E9F86005F987D /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5BB5072B0E9F86005F987D /* News.swift */; };
 		3C9295202B10836100063ECC /* GetJsonDataFromApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C92951F2B10836100063ECC /* GetJsonDataFromApi.swift */; };
 		3C9295222B10838500063ECC /* NewsApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9295212B10838500063ECC /* NewsApiData.swift */; };
-		3CC8601A2B0EA1E600A28666 /* DatabaseCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC860192B0EA1E600A28666 /* DatabaseCreation.swift */; };
-		3CC8601C2B0EA25D00A28666 /* DatabaseClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC8601B2B0EA25D00A28666 /* DatabaseClasses.swift */; };
 		3CC8601F2B0EA39C00A28666 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC8601E2B0EA39C00A28666 /* UtilityFunctions.swift */; };
 		3CC860212B0EB0C500A28666 /* InitialDBContent-News.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CC860202B0EB0C400A28666 /* InitialDBContent-News.json */; };
 		3CC860242B105BE900A28666 /* ArticleDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC860232B105BE900A28666 /* ArticleDetails.swift */; };
@@ -25,22 +42,38 @@
 		DB4ECC7C2B128880007E7A24 /* WeatherPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4ECC7B2B128880007E7A24 /* WeatherPage.swift */; };
 		DB7F34BF2B12FD8500202040 /* WeatherConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F34BE2B12FD8500202040 /* WeatherConversions.swift */; };
 		DB7F42C02B067C6E00628F6F /* DailyDoseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F42BF2B067C6E00628F6F /* DailyDoseApp.swift */; };
-		DB7F42C22B067C6E00628F6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F42C12B067C6E00628F6F /* ContentView.swift */; };
 		DB7F42C62B067C7100628F6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7F42C52B067C7100628F6F /* Assets.xcassets */; };
 		DB7F42C92B067C7100628F6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7F42C82B067C7100628F6F /* Preview Assets.xcassets */; };
 		DB86EEE12B129E7200FFF726 /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB86EEE02B129E7200FFF726 /* HexColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3C5BB4F92B068199005F987D /* XkcdComic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XkcdComic.swift; sourceTree = "<group>"; };
+		25119A8B2B15B6CD00BE4B3B /* DatabaseCreation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseCreation.swift; sourceTree = "<group>"; };
+		25119A8E2B15B6EC00BE4B3B /* ComicStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicStruct.swift; sourceTree = "<group>"; };
+		25119A8F2B15B6EC00BE4B3B /* ComicAPIData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicAPIData.swift; sourceTree = "<group>"; };
+		25119A932B15B70800BE4B3B /* MemesAPIData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemesAPIData.swift; sourceTree = "<group>"; };
+		25119A942B15B70800BE4B3B /* MemeStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeStruct.swift; sourceTree = "<group>"; };
+		25119A982B15B72200BE4B3B /* DailyComic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyComic.swift; sourceTree = "<group>"; };
+		25119A992B15B72200BE4B3B /* FavoriteComics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteComics.swift; sourceTree = "<group>"; };
+		25119A9A2B15B72200BE4B3B /* ComicDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicDetails.swift; sourceTree = "<group>"; };
+		25119A9B2B15B72200BE4B3B /* ComicItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicItem.swift; sourceTree = "<group>"; };
+		25119AA12B15B72E00BE4B3B /* Memes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memes.swift; sourceTree = "<group>"; };
+		25119AA22B15B72E00BE4B3B /* MemeDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeDetails.swift; sourceTree = "<group>"; };
+		25119AA32B15B72E00BE4B3B /* FavoriteMemes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteMemes.swift; sourceTree = "<group>"; };
+		25119AA42B15B72E00BE4B3B /* MemeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeItem.swift; sourceTree = "<group>"; };
+		25119AA92B15BA3700BE4B3B /* DatabaseClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseClasses.swift; sourceTree = "<group>"; };
+		25119AAB2B15BFF000BE4B3B /* UserAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
+		25119AAF2B15C06000BE4B3B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		25119AB12B15C06000BE4B3B /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		25119AB22B15C06000BE4B3B /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		25119AB72B15C2CB00BE4B3B /* ResetPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPassword.swift; sourceTree = "<group>"; };
+		25119ABA2B15C38100BE4B3B /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		3C5BB4FF2B0681B6005F987D /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		3C5BB5022B0E99F3005F987D /* NewsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPage.swift; sourceTree = "<group>"; };
 		3C5BB5042B0E9A7B005F987D /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		3C5BB5072B0E9F86005F987D /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		3C92951F2B10836100063ECC /* GetJsonDataFromApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetJsonDataFromApi.swift; sourceTree = "<group>"; };
 		3C9295212B10838500063ECC /* NewsApiData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApiData.swift; sourceTree = "<group>"; };
-		3CC860192B0EA1E600A28666 /* DatabaseCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseCreation.swift; sourceTree = "<group>"; };
-		3CC8601B2B0EA25D00A28666 /* DatabaseClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseClasses.swift; sourceTree = "<group>"; };
 		3CC8601E2B0EA39C00A28666 /* UtilityFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		3CC860202B0EB0C400A28666 /* InitialDBContent-News.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "InitialDBContent-News.json"; sourceTree = "<group>"; };
 		3CC860232B105BE900A28666 /* ArticleDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetails.swift; sourceTree = "<group>"; };
@@ -52,7 +85,6 @@
 		DB7F34BE2B12FD8500202040 /* WeatherConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConversions.swift; sourceTree = "<group>"; };
 		DB7F42BC2B067C6E00628F6F /* DailyDose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyDose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7F42BF2B067C6E00628F6F /* DailyDoseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDoseApp.swift; sourceTree = "<group>"; };
-		DB7F42C12B067C6E00628F6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DB7F42C52B067C7100628F6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB7F42C82B067C7100628F6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DB86EEE02B129E7200FFF726 /* HexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
@@ -69,13 +101,83 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25119A8D2B15B6EC00BE4B3B /* Comics */ = {
+			isa = PBXGroup;
+			children = (
+				25119A8E2B15B6EC00BE4B3B /* ComicStruct.swift */,
+				25119A8F2B15B6EC00BE4B3B /* ComicAPIData.swift */,
+			);
+			path = Comics;
+			sourceTree = "<group>";
+		};
+		25119A922B15B70800BE4B3B /* Memes */ = {
+			isa = PBXGroup;
+			children = (
+				25119A932B15B70800BE4B3B /* MemesAPIData.swift */,
+				25119A942B15B70800BE4B3B /* MemeStruct.swift */,
+			);
+			path = Memes;
+			sourceTree = "<group>";
+		};
+		25119A972B15B72200BE4B3B /* Comics */ = {
+			isa = PBXGroup;
+			children = (
+				25119A982B15B72200BE4B3B /* DailyComic.swift */,
+				25119A992B15B72200BE4B3B /* FavoriteComics.swift */,
+				25119A9A2B15B72200BE4B3B /* ComicDetails.swift */,
+				25119A9B2B15B72200BE4B3B /* ComicItem.swift */,
+			);
+			path = Comics;
+			sourceTree = "<group>";
+		};
+		25119AA02B15B72E00BE4B3B /* Memes */ = {
+			isa = PBXGroup;
+			children = (
+				25119AA12B15B72E00BE4B3B /* Memes.swift */,
+				25119AA22B15B72E00BE4B3B /* MemeDetails.swift */,
+				25119AA32B15B72E00BE4B3B /* FavoriteMemes.swift */,
+				25119AA42B15B72E00BE4B3B /* MemeItem.swift */,
+			);
+			path = Memes;
+			sourceTree = "<group>";
+		};
+		25119AAD2B15C00F00BE4B3B /* Tab View Items */ = {
+			isa = PBXGroup;
+			children = (
+				DB4ECC7A2B128867007E7A24 /* Weather */,
+				25119AA02B15B72E00BE4B3B /* Memes */,
+				25119A972B15B72200BE4B3B /* Comics */,
+				3C5BB5012B0E9998005F987D /* News */,
+				25119AB92B15C38100BE4B3B /* Settings */,
+			);
+			path = "Tab View Items";
+			sourceTree = "<group>";
+		};
+		25119AAE2B15C06000BE4B3B /* Startup Views */ = {
+			isa = PBXGroup;
+			children = (
+				25119AAF2B15C06000BE4B3B /* LoginView.swift */,
+				25119AB72B15C2CB00BE4B3B /* ResetPassword.swift */,
+				25119AB12B15C06000BE4B3B /* MainView.swift */,
+				25119AB22B15C06000BE4B3B /* ContentView.swift */,
+			);
+			path = "Startup Views";
+			sourceTree = "<group>";
+		};
+		25119AB92B15C38100BE4B3B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				25119ABA2B15C38100BE4B3B /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		3C5BB4F82B068173005F987D /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				3CC8601B2B0EA25D00A28666 /* DatabaseClasses.swift */,
-				3CC860192B0EA1E600A28666 /* DatabaseCreation.swift */,
+				25119AA92B15BA3700BE4B3B /* DatabaseClasses.swift */,
+				25119A8B2B15B6CD00BE4B3B /* DatabaseCreation.swift */,
 				3CC860222B0EB19300A28666 /* News */,
-				3C5BB4F92B068199005F987D /* XkcdComic.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -95,7 +197,8 @@
 			children = (
 				3C9295212B10838500063ECC /* NewsApiData.swift */,
 				DB1458182B12C0BC001825A9 /* OpenWeather */,
-				DB14581B2B12CE52001825A9 /* Mapbox */,
+				25119A8D2B15B6EC00BE4B3B /* Comics */,
+				25119A922B15B70800BE4B3B /* Memes */,
 			);
 			path = "API Models";
 			sourceTree = "<group>";
@@ -109,6 +212,7 @@
 				3C92951F2B10836100063ECC /* GetJsonDataFromApi.swift */,
 				3CC8601E2B0EA39C00A28666 /* UtilityFunctions.swift */,
 				DB7F34BE2B12FD8500202040 /* WeatherConversions.swift */,
+				25119AAB2B15BFF000BE4B3B /* UserAuthentication.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -129,13 +233,6 @@
 				DB1458192B12C0D9001825A9 /* WeatherStructs.swift */,
 			);
 			path = OpenWeather;
-			sourceTree = "<group>";
-		};
-		DB14581B2B12CE52001825A9 /* Mapbox */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mapbox;
 			sourceTree = "<group>";
 		};
 		DB4ECC7A2B128867007E7A24 /* Weather */ = {
@@ -166,12 +263,11 @@
 			isa = PBXGroup;
 			children = (
 				DB7F42BF2B067C6E00628F6F /* DailyDoseApp.swift */,
-				DB7F42C12B067C6E00628F6F /* ContentView.swift */,
+				3CC8601D2B0EA36700A28666 /* Supporting Files */,
 				3C92951E2B1082F800063ECC /* API Models */,
 				3C5BB4F82B068173005F987D /* Database */,
-				3C5BB5012B0E9998005F987D /* News */,
-				DB4ECC7A2B128867007E7A24 /* Weather */,
-				3CC8601D2B0EA36700A28666 /* Supporting Files */,
+				25119AAE2B15C06000BE4B3B /* Startup Views */,
+				25119AAD2B15C00F00BE4B3B /* Tab View Items */,
 				DB7F42C52B067C7100628F6F /* Assets.xcassets */,
 				DB14581E2B12D906001825A9 /* Info.plist */,
 				DB7F42C72B067C7100628F6F /* Preview Content */,
@@ -259,25 +355,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB7F42C22B067C6E00628F6F /* ContentView.swift in Sources */,
-				3CC8601A2B0EA1E600A28666 /* DatabaseCreation.swift in Sources */,
 				DB4ECC7C2B128880007E7A24 /* WeatherPage.swift in Sources */,
 				3C5BB5052B0E9A7B005F987D /* Article.swift in Sources */,
-				3CC8601C2B0EA25D00A28666 /* DatabaseClasses.swift in Sources */,
+				25119AB82B15C2CC00BE4B3B /* ResetPassword.swift in Sources */,
 				3CC860242B105BE900A28666 /* ArticleDetails.swift in Sources */,
+				25119ABB2B15C38100BE4B3B /* Settings.swift in Sources */,
 				3C5BB5082B0E9F86005F987D /* News.swift in Sources */,
 				3CC8601F2B0EA39C00A28666 /* UtilityFunctions.swift in Sources */,
 				3C5BB5032B0E99F3005F987D /* NewsPage.swift in Sources */,
 				DB7F34BF2B12FD8500202040 /* WeatherConversions.swift in Sources */,
+				25119AA82B15B72E00BE4B3B /* MemeItem.swift in Sources */,
+				25119AA62B15B72E00BE4B3B /* MemeDetails.swift in Sources */,
 				3C9295202B10836100063ECC /* GetJsonDataFromApi.swift in Sources */,
+				25119AB52B15C06000BE4B3B /* MainView.swift in Sources */,
+				25119A8C2B15B6CD00BE4B3B /* DatabaseCreation.swift in Sources */,
 				DB7F42C02B067C6E00628F6F /* DailyDoseApp.swift in Sources */,
 				3C9295222B10838500063ECC /* NewsApiData.swift in Sources */,
+				25119A952B15B70800BE4B3B /* MemesAPIData.swift in Sources */,
+				25119AB62B15C06000BE4B3B /* ContentView.swift in Sources */,
 				DB14581D2B12D098001825A9 /* CurrentLocation.swift in Sources */,
 				DB14581A2B12C0D9001825A9 /* WeatherStructs.swift in Sources */,
+				25119A9D2B15B72200BE4B3B /* FavoriteComics.swift in Sources */,
+				25119AAA2B15BA3700BE4B3B /* DatabaseClasses.swift in Sources */,
 				DB1458172B12BF27001825A9 /* OpenWeatherAPI.swift in Sources */,
+				25119AA52B15B72E00BE4B3B /* Memes.swift in Sources */,
+				25119A912B15B6EC00BE4B3B /* ComicAPIData.swift in Sources */,
+				25119A9E2B15B72200BE4B3B /* ComicDetails.swift in Sources */,
+				25119AAC2B15BFF000BE4B3B /* UserAuthentication.swift in Sources */,
+				25119A9C2B15B72200BE4B3B /* DailyComic.swift in Sources */,
+				25119A962B15B70800BE4B3B /* MemeStruct.swift in Sources */,
+				25119AA72B15B72E00BE4B3B /* FavoriteMemes.swift in Sources */,
+				25119A9F2B15B72200BE4B3B /* ComicItem.swift in Sources */,
 				DB86EEE12B129E7200FFF726 /* HexColor.swift in Sources */,
+				25119A902B15B6EC00BE4B3B /* ComicStruct.swift in Sources */,
+				25119AB32B15C06000BE4B3B /* LoginView.swift in Sources */,
 				3C5BB5002B0681B6005F987D /* Globals.swift in Sources */,
-				3C5BB4FA2B068199005F987D /* XkcdComic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

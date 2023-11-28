@@ -26,7 +26,7 @@ struct DailyDoseApp: App {
                 // Change the color mode of the entire app to Dark or Light
                 //.preferredColorScheme(darkMode ? .dark : .light)
 
-                .modelContainer(for: [News.self], isUndoEnabled: true)
+                .modelContainer(for: [News.self, Comic.self, Meme.self], isUndoEnabled: true)
         }
     }
 }
