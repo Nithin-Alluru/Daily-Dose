@@ -1,5 +1,5 @@
 //
-//  News.swift
+//  NewsStruct.swift
 //  DailyDose
 //
 //  Created by Caleb Kong on 11/22/23.

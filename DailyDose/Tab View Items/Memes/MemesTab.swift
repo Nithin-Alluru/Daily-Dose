@@ -1,5 +1,5 @@
 //
-//  Memes.swift
+//  MemesTab.swift
 //  DailyDose
 //
 //  Created by Nithin VT on 11/26/23.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct Memes: View {
+struct MemesTab: View {
     @Environment(\.modelContext) private var modelContext
 
     // Alert Message

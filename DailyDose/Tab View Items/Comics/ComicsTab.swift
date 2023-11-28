@@ -1,5 +1,5 @@
 //
-//  DailyComic.swift
+//  ComicsTab.swift
 //  DailyDose
 //
 //  Created by Nithin VT on 11/25/23.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct DailyComic: View {
+struct ComicsTab: View {
     @Environment(\.modelContext) private var modelContext
     //--------------
     // Alert Message
@@ -111,6 +111,6 @@ struct DailyComic: View {
 }
 
 #Preview {
-    DailyComic()
+    ComicsTab()
 }
 

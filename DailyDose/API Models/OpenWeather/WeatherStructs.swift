@@ -2,7 +2,8 @@
 //  WeatherStructs.swift
 //  DailyDose
 //
-//  Created by Caleb Kong and Aaron Gomez on 11/15/23.
+//  Created by Aaron Gomez on 11/15/23.
+//  Copyright © 2023 CS3714 Team 2. All rights reserved.
 //
 
 import Foundation

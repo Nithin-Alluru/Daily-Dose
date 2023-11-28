@@ -1,5 +1,5 @@
 //
-//  Settings.swift
+//  SettingsTab.swift
 //  PhotosVideos
 //
 //  Created by Osman Balci on 6/30/23.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct Settings: View {
+struct SettingsTab: View {
     
     @AppStorage("darkMode") private var darkMode = false
     
@@ -191,7 +191,7 @@ struct Settings: View {
 }
 
 #Preview {
-    Settings()
+    SettingsTab()
 }
 
 

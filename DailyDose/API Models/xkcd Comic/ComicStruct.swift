@@ -1,6 +1,6 @@
 //
-//  XkcdComic.swift
-//  FinalProject
+//  ComicStruct.swift
+//  DailyDose
 //
 //  Created by Caleb Kong on 11/15/23.
 //

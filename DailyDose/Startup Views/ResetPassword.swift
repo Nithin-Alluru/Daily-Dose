@@ -60,7 +60,7 @@ struct ResetPassword: View {
             
             if answerEntered == UserDefaults.standard.string(forKey: "SecurityAnswer")! {
                 Section(header: Text("Go to Settings to Reset Password")) {
-                    NavigationLink(destination: Settings()) {
+                    NavigationLink(destination: SettingsTab()) {
                         HStack {
                             Image(systemName: "gear")
                                 .imageScale(.medium)

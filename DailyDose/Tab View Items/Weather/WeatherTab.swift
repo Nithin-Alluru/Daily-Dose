@@ -1,5 +1,5 @@
 //
-//  WeatherPage.swift
+//  WeatherTab.swift
 //  DailyDose
 //
 //  Created by Aaron Gomez on 11/25/23.
@@ -42,7 +42,7 @@ fileprivate let weatherIcons = [
 
 fileprivate let weatherRefreshInterval: Double = 5*60   // in seconds
 
-struct WeatherPage: View {
+struct WeatherTab: View {
 
     @State private var weatherInfo: CurrentWeatherStruct?
 
@@ -52,7 +52,7 @@ struct WeatherPage: View {
         NavigationStack {
             ZStack {
                 DynamicWeatherBackground()
-                    .ignoresSafeArea()
+                    .edgesIgnoringSafeArea(.all)
                 Form {
                     Section(header: Text("Current Location")) {
                         if let info = weatherInfo {
@@ -168,5 +168,5 @@ struct CurrentWeatherView: View {
 }
 
 #Preview {
-    WeatherPage()
+    WeatherTab()
 }

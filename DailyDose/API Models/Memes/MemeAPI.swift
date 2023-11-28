@@ -1,15 +1,15 @@
 //
-//  ComicAPIData.swift
+//  MemesAPIData.swift
 //  DailyDose
 //
-//  Created by Nithin VT on 11/25/23.
+//  Created by Nithin Alluru on 11/26/23.
 //  Copyright © 2023 CS3714 Team 2. All rights reserved.
 //
 
 import Foundation
 
 // Global variable to contain the API search results
-var ComicsList = [ComicStruct]()
+var MemesList = [MemeStruct]()
 
 fileprivate var previousQuery = ""
 
@@ -19,10 +19,11 @@ fileprivate var previousQuery = ""
  |   for Recipes for the Given API Search URL   |
  ================================================
 */
-public func getComicsFromApi() {
+// https://github.com/D3vd/Meme_Api
+public func getMemesFromApi() {
     
     // Initialize the global variable to contain the API search results
-    ComicsList = [ComicStruct]()
+    MemesList = [MemeStruct]()
     
     /*
     ************************************
@@ -33,10 +34,10 @@ public func getComicsFromApi() {
         "accept": "application/json",
         "cache-control": "no-cache",
         "connection": "keep-alive",
-        "host": "xkcd.com"
+        "host": "meme-api.com"
     ]
     
-    let apiUrlString = "https://xkcd.com/info.0.json"
+    let apiUrlString = "https://meme-api.com/gimme"
     
     /*
     ***************************************************
@@ -66,27 +67,24 @@ public func getComicsFromApi() {
         let jsonResponse = try JSONSerialization.jsonObject(with: jsonDataFromApi,
                                options: JSONSerialization.ReadingOptions.mutableContainers)
         /*
-         {"month": "11", 
-         "num": 2859,
-         "link": "",
-         "year": "2023",
-         "news": "",
-         "safe_title":
-         "Oceanography Gift",
-         "transcript": "",
-         "alt": "Shipping times vary. Same-ocean delivery may only take a few years, but delivery from the Weddell Sea in Antarctica may take multiple decades, and molecules meant for inland seas like the Mediterranean may be returned as undeliverable by surface currents.", 
-         "img": "https://imgs.xkcd.com/comics/oceanography_gift.png",
-         "title": "Oceanography Gift",
-         "day": "24"}
-         
-         let month: String
-         let num: Int
-         let year: String
-         let safe_title: String
-         let transcript: String
-         let img: String             //the URL
-         let day: String
+         {
+           "postLink": "https://redd.it/jiovfz",
+           "subreddit": "dankmemes",
+           "title": "*leaves call*",
+           "url": "https://i.redd.it/f7ibqp1dmiv51.gif",
+           "nsfw": false,
+           "spoiler": false,
+           "author": "Spartan-Yeet",
+           "ups": 3363,
 
+           // preview images of the meme sorted from lowest to highest quality
+           "preview": [
+             "https://preview.redd.it/f7ibqp1dmiv51.gif?width=108&crop=smart&format=png8&s=02b12609100c14f55c31fe046f413a9415804d62",
+             "https://preview.redd.it/f7ibqp1dmiv51.gif?width=216&crop=smart&format=png8&s=8da35457641a045e88e42a25eca64c14a6759f82",
+             "https://preview.redd.it/f7ibqp1dmiv51.gif?width=320&crop=smart&format=png8&s=f2250b007b8252c7063b8580c2aa72c5741766ae",
+             "https://preview.redd.it/f7ibqp1dmiv51.gif?width=640&crop=smart&format=png8&s=6cd99df5e58c976bc115bd080a1e6afdbd0d71e7"
+           ]
+         }
          */
         
         //----------------------------
@@ -101,65 +99,43 @@ public func getComicsFromApi() {
         }
         
         //--------------
-        // Get Comic safe_title
+        // Get meme url
+        //--------------
+        var meme = ""
+        if let pun_meme = topLevelDictionary["url"] as? String {
+            meme = pun_meme
+        }
+        //--------------
+        // Get meme title
         //--------------
         var title = ""
-        if let comic_title = topLevelDictionary["title"] as? String {
-            title = comic_title
+        if let memeTitle = topLevelDictionary["title"] as? String {
+            title = memeTitle
         }
         //--------------
-        // Get Comic transcript
+        // Get meme author
         //--------------
-        var transcript = ""
-        if let comic_det = topLevelDictionary["transcript"] as? String {
-            transcript = comic_det
+        var author = ""
+        if let memeAuthor = topLevelDictionary["author"] as? String {
+            author = memeAuthor
         }
         //--------------
-        // Get Comic image
+        // Get meme subreddit
         //--------------
-        var img = ""
-        if let com = topLevelDictionary["img"] as? String {
-            img = com
+        var subreddit = ""
+        if let memeSubreddit = topLevelDictionary["subreddit"] as? String {
+            subreddit = memeSubreddit
         }
-        //--------------
-        // Get Comic alt
-        //--------------
-        var alt = ""
-        if let description = topLevelDictionary["alt"] as? String {
-            alt = description
-        }
-        //--------------
-        // Get Comic year
-        //--------------
-        var year = ""
-        if let comic_year = topLevelDictionary["year"] as? String {
-            year = comic_year
-        }
-        //--------------
-        // Get Comic month
-        //--------------
-        var month = ""
-        if let comic_month = topLevelDictionary["month"] as? String {
-            month = comic_month
-        }
-        //--------------
-        // Get Comic day
-        //--------------
-        var day = ""
-        if let comic_day = topLevelDictionary["day"] as? String {
-            day = comic_day
-        }
-        
-        let date = "\(month)-\(day)-\(year)"
         //------------------------------------------------------------------------
         // Create an Instance of BusinessStruct and Append it to foundBusinessesList
         //------------------------------------------------------------------------
-        let foundComic = ComicStruct(date: date, safe_title: title, transcript: transcript, img: img, alt: alt)
+        let randomMeme = MemeStruct(memeUrl: meme, title: title, author: author, subreddit: subreddit)
         
-        ComicsList.append(foundComic)
+        MemesList.append(randomMeme)
     } catch {
         // foundBusinessList will be empty
         return
     }
 }
+
 

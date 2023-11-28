@@ -1,6 +1,6 @@
 //
 //  Globals.swift
-//  FinalProject
+//  Daily Dose
 //
 //  Created by Caleb Kong on 11/15/23.
 //

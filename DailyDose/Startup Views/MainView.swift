@@ -12,21 +12,21 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         TabView {
-            NewsPage()
+            NewsTab()
                 .tabItem {
                     Label("Feed", systemImage: "newspaper.fill")
                 }
-            WeatherPage()
+            WeatherTab()
                 .tabItem {
                     Label("Weather", systemImage: "cloud.sun.bolt.fill")
                 }
-            DailyComic()
-            .tabItem {
-                Label("Today's Comic", systemImage: "book.pages.fill")
-            }
-            Memes()
+            ComicsTab()
                 .tabItem {
-                    Label("Memes", systemImage: "book.pages.fill")
+                    Label("Comics", systemImage: "book.pages.fill")
+                }
+            MemesTab()
+                .tabItem {
+                    Label("Memes", systemImage: "photo.fill")
                 }
             FavComicsList()
                 .tabItem {
@@ -36,7 +36,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Favorite Memes", systemImage: "bookmark.fill")
                 }
-            Settings()
+            SettingsTab()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }

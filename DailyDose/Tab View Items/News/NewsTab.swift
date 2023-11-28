@@ -5,6 +5,7 @@
 //  Created by Caleb Kong on 11/22/23.
 //  Copyright © 2023 CS3714 Team 2. All rights reserved.
 //
+
 // Referenced:
 //  Photos.swift
 //  Cars
@@ -16,7 +17,7 @@ import SwiftUI
 import SwiftData
 
 
-struct NewsPage: View {
+struct NewsTab: View {
     @Environment(\.modelContext) private var modelContext
     @Query(FetchDescriptor<News>(sortBy: [SortDescriptor(\News.name, order: .forward)])) private var listOfVideosInDatabase: [News]
     
@@ -67,7 +68,7 @@ struct NewsPage: View {
             //.navigationTitle("Photo Album")
             .toolbarTitleDisplayMode(.inline)
             //.toolbarBackground(Color.green, for: .navigationBar, .tabBar)
-            .navigationTitle("Daily Dose")
+            .navigationTitle("News Feed")
             .toolbar {
                 ToolbarItem(id: "refresh") {
                     Button("Refresh", systemImage: "arrow.clockwise") {
