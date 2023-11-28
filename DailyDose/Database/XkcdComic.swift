@@ -7,12 +7,14 @@
 
 import SwiftUI
 
-struct ComicStruct: Decodable {
-    let date: String
+struct XkcdComic: Decodable {
+    let month: String
+    let num: Int
+    let year: String
     let safe_title: String
     let transcript: String
     let img: String             //the URL
-    let alt: String
+    let day: String
 }
 
 /*

@@ -13,7 +13,7 @@ public func init_db() {
     var modelContainer: ModelContainer
     do {
         // Create a database container to manage News objects
-        modelContainer = try ModelContainer(for: News.self, Comic.self, Meme.self)
+        modelContainer = try ModelContainer(for: News.self)
     } catch {
         fatalError("Unable to create ModelContainer")
     }
@@ -50,46 +50,4 @@ public func init_db() {
         modelContext.insert(newNews)
     }   // End of the for loop
     
-    // Comics
-    let ComicsFetchDescriptor = FetchDescriptor<Comic>()
-    var listOfAllComicsInDatabase = [Comic]()
-    do {
-        // Obtain all of the News objects from the database
-        listOfAllComicsInDatabase = try modelContext.fetch(ComicsFetchDescriptor)
-    } catch {
-        fatalError("Unable to fetch data from the database")
-    }
-    if !listOfAllComicsInDatabase.isEmpty {
-        print("Database has already been created!")
-        return
-    }
-    
-    // Pun Memes
-    let MemesFetchDescriptor = FetchDescriptor<Meme>()
-    var listOfAllMemesInDatabase = [Meme]()
-    do {
-        // Obtain all of the News objects from the database
-        listOfAllMemesInDatabase = try modelContext.fetch(MemesFetchDescriptor)
-    } catch {
-        fatalError("Unable to fetch data from the database")
-    }
-    if !listOfAllMemesInDatabase.isEmpty {
-        print("Database has already been created!")
-        return
-    }
-    /*
-     =================================
-     |   Save All Database Changes   |
-     =================================
-     🔴 NOTE: Database changes are automatically saved and SwiftUI Views are
-     automatically refreshed upon State change in the UI or after a certain time period.
-     But sometimes, you can manually save the database changes just to be sure.
-     */
-    do {
-        try modelContext.save()
-    } catch {
-        fatalError("Unable to save database changes")
-    }
-    
-    print("Database is successfully created!")
 }
