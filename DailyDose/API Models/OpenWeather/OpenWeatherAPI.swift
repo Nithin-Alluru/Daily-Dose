@@ -15,13 +15,12 @@ fileprivate let apiHeaders = [
     "host": "api.openweathermap.org"
 ]
 
-// Fetches current weather and forecast information from the OpenWeather API
+// MARK: Current Weather Information
+// Fetches current weather information from the OpenWeather API
 // https://openweathermap.org/current
 func fetchCurrentWeather(latitude: Double, longitude: Double) -> CurrentWeatherStruct? {
 
     let apiUrlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(getWeatherApiKey())"
-
-    print(apiUrlString)
 
     /*
     ************************************
@@ -75,8 +74,6 @@ func fetchCurrentWeather(latitude: Double, longitude: Double) -> CurrentWeatherS
             return nil
         }
 
-        print("\(weatherJsonObject)")
-
         return parseCurrentWeather(data: weatherJsonObject)
     } catch {
         return nil
@@ -122,7 +119,6 @@ func parseCurrentWeather(data: [String: Any]) -> CurrentWeatherStruct? {
             extra: extra
         )
     }
-    print("failed current")
     return nil
 }
 
@@ -151,7 +147,6 @@ func parseWeatherDetails(data: [String: Any]) -> WeatherDetailsStruct? {
             icon: icon
         )
     }
-    print("failed weather")
     return nil
 }
 
@@ -168,7 +163,6 @@ func parseTemperatureDetails(data: [String: Any]) -> TemperatureDetailsStruct? {
             high: high
         )
     }
-    print("failed temp")
     return nil
 }
 
@@ -182,7 +176,6 @@ func parseWindDetails(data: [String: Any]) -> WindDetailsStruct? {
             gust: data["gust"] as? Double   // not always available
         )
     }
-    print("failed wind")
     return nil
 }
 
@@ -215,6 +208,12 @@ func parseExtraDetails(data: [String: Any]) -> ExtraDetailsStruct? {
             sunset: sunset
         )
     }
-    print("failed extra")
     return nil
+}
+
+// MARK: Forecast Information
+// Fetches forecast information from the OpenWeather API
+// https://openweathermap.org/forecast5
+func fetchForecasts(latitude: Double, longitude: Double) {
+
 }

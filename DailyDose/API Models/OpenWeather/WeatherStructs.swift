@@ -79,7 +79,7 @@ struct ExtraDetailsStruct {
 
 }
 
-//  JSON format API response example
+//  Current weather JSON format API response example
 //{
 //    "coord": {
 //        "lon": 10.99,
@@ -129,3 +129,7 @@ struct ExtraDetailsStruct {
 //    "name": "Zocca",
 //    "cod": 200
 //}
+
+struct ForecastStruct {
+
+}

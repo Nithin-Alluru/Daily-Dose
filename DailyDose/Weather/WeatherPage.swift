@@ -40,7 +40,7 @@ fileprivate let weatherIcons = [
     "50n": "cloud.fog.fill",
 ]
 
-fileprivate let weatherRefreshInterval: Double = 3*60   // in seconds
+fileprivate let weatherRefreshInterval: Double = 5*60   // in seconds
 
 struct WeatherPage: View {
 
@@ -83,6 +83,16 @@ struct WeatherPage: View {
                 // dynamic background show through
                 .scrollContentBackground(.hidden)
             }   // End of ZStack
+            .toolbarTitleDisplayMode(.inline)
+            .navigationTitle("Weather")
+            .toolbar {
+                ToolbarItem(id: "map") {
+                    NavigationLink(destination: WeatherMap()) {
+                        Image(systemName: "map")
+                    }
+                }
+            }
+
         }   // End of NavigationStack
         .onAppear() {
             startTimer()
@@ -96,6 +106,7 @@ struct WeatherPage: View {
     }   // End of body var
 
     func refreshForecastData() {
+        return;
         // Wrap API call in a Task to avoid blocking
         Task {
             let currentLocation = getUsersCurrentLocation()
@@ -134,7 +145,7 @@ struct CurrentWeatherView: View {
             Spacer()
             VStack {
                 HStack {
-                    Image(systemName: getWeatherIconFromCode(code: icon))
+                    Image(systemName: weatherIcons[icon] ?? "questionmark")
                         .font(.system(size: 80))
                     VStack(alignment: .leading) {
                         Text("\(Int(convertKelvinTemp(kelvin: currentTemp, scale: scale).rounded()))°")
@@ -151,29 +162,6 @@ struct CurrentWeatherView: View {
                 Text(location)
             }
             Spacer()
-        }
-    }
-
-    // https://openweathermap.org/weather-conditions
-    func getWeatherIconFromCode(code: String) -> String {
-        if let icon = weatherIcons[code] {
-            return icon
-        }
-        return "questionmark"
-    }
-
-}
-
-struct HourlyForecastItem: View {
-    
-    let time: String
-    let temperature: Int
-    
-    var body: some View {
-        VStack {
-            Text(time)
-            Image(systemName: "cloud.fill")
-            Text("\(temperature)°")
         }
     }
 
