@@ -45,8 +45,8 @@
 		DB7F42C62B067C7100628F6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7F42C52B067C7100628F6F /* Assets.xcassets */; };
 		DB7F42C92B067C7100628F6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7F42C82B067C7100628F6F /* Preview Assets.xcassets */; };
 		DB86EEE12B129E7200FFF726 /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB86EEE02B129E7200FFF726 /* HexColor.swift */; };
-		DB9071C82B1576D300562BB0 /* DynamicWeatherBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9071C72B1576D300562BB0 /* DynamicWeatherBackground.swift */; };
-		DB9071CA2B159E4200562BB0 /* WeatherMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9071C92B159E4200562BB0 /* WeatherMap.swift */; };
+		DB9071CC2B15CFC500562BB0 /* DynamicWeatherBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9071CB2B15CFC500562BB0 /* DynamicWeatherBackground.swift */; };
+		DB9071CE2B15CFFF00562BB0 /* WeatherMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9071CD2B15CFFF00562BB0 /* WeatherMap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,8 +90,8 @@
 		DB7F42C52B067C7100628F6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB7F42C82B067C7100628F6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DB86EEE02B129E7200FFF726 /* HexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
-		DB9071C72B1576D300562BB0 /* DynamicWeatherBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicWeatherBackground.swift; sourceTree = "<group>"; };
-		DB9071C92B159E4200562BB0 /* WeatherMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMap.swift; sourceTree = "<group>"; };
+		DB9071CB2B15CFC500562BB0 /* DynamicWeatherBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicWeatherBackground.swift; sourceTree = "<group>"; };
+		DB9071CD2B15CFFF00562BB0 /* WeatherMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,8 +243,8 @@
 			isa = PBXGroup;
 			children = (
 				DB4ECC7B2B128880007E7A24 /* WeatherPage.swift */,
-				DB9071C72B1576D300562BB0 /* DynamicWeatherBackground.swift */,
-				DB9071C92B159E4200562BB0 /* WeatherMap.swift */,
+				DB9071CB2B15CFC500562BB0 /* DynamicWeatherBackground.swift */,
+				DB9071CD2B15CFFF00562BB0 /* WeatherMap.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -369,6 +369,7 @@
 				3C5BB5082B0E9F86005F987D /* News.swift in Sources */,
 				3CC8601F2B0EA39C00A28666 /* UtilityFunctions.swift in Sources */,
 				3C5BB5032B0E99F3005F987D /* NewsPage.swift in Sources */,
+				DB9071CE2B15CFFF00562BB0 /* WeatherMap.swift in Sources */,
 				DB7F34BF2B12FD8500202040 /* WeatherConversions.swift in Sources */,
 				25119AA82B15B72E00BE4B3B /* MemeItem.swift in Sources */,
 				25119AA62B15B72E00BE4B3B /* MemeDetails.swift in Sources */,
@@ -380,14 +381,13 @@
 				25119A952B15B70800BE4B3B /* MemesAPIData.swift in Sources */,
 				25119AB62B15C06000BE4B3B /* ContentView.swift in Sources */,
 				DB14581D2B12D098001825A9 /* CurrentLocation.swift in Sources */,
-				DB9071C82B1576D300562BB0 /* DynamicWeatherBackground.swift in Sources */,
-				DB9071CA2B159E4200562BB0 /* WeatherMap.swift in Sources */,
 				DB14581A2B12C0D9001825A9 /* WeatherStructs.swift in Sources */,
 				25119A9D2B15B72200BE4B3B /* FavoriteComics.swift in Sources */,
 				25119AAA2B15BA3700BE4B3B /* DatabaseClasses.swift in Sources */,
 				DB1458172B12BF27001825A9 /* OpenWeatherAPI.swift in Sources */,
 				25119AA52B15B72E00BE4B3B /* Memes.swift in Sources */,
 				25119A912B15B6EC00BE4B3B /* ComicAPIData.swift in Sources */,
+				DB9071CC2B15CFC500562BB0 /* DynamicWeatherBackground.swift in Sources */,
 				25119A9E2B15B72200BE4B3B /* ComicDetails.swift in Sources */,
 				25119AAC2B15BFF000BE4B3B /* UserAuthentication.swift in Sources */,
 				25119A9C2B15B72200BE4B3B /* DailyComic.swift in Sources */,
