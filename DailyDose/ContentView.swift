@@ -19,6 +19,22 @@ struct ContentView: View {
                 .tabItem {
                     Label("Weather", systemImage: "cloud.sun.bolt.fill")
                 }
+            DailyComic()
+            .tabItem {
+                Label("Today's Comic", systemImage: "book.pages.fill")
+            }
+            FavComicsList()
+                .tabItem {
+                    Label("Favorite Comics", systemImage: "bookmark.fill")
+                }
+            Memes()
+                .tabItem {
+                    Label("Memes", systemImage: "bookmark.fill")
+                }
+            FavMemesList()
+                .tabItem {
+                    Label("Favorite Memes", systemImage: "bookmark.fill")
+                }
         }
         .onAppear {
             // Display TabView with opaque background
