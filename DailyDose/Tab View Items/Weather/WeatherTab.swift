@@ -95,17 +95,6 @@ struct WeatherTab: View {
                         }
                     }
                 }
-                Section(header: Text("Weekly forecast")) {
-                    if let info = forecastInfo {
-
-                    } else {
-                        if forecastFetchCompleted {
-                            Text("Unavailable")
-                        } else {
-                            ProgressView()
-                        }
-                    }
-                }
             }   // End of Form
             // Forms are scrollable, so we can hide the background color to let our
             // dynamic background show through
