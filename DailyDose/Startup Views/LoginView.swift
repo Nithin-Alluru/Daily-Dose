@@ -37,11 +37,11 @@ struct LoginView : View {
                         .font(.headline)
                         .padding()
                     
-                    Image("Logo")
+                    Image("DDIcon")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(minWidth: 300, maxWidth: 500, alignment: .center)
-                    
+                        .frame(width: 300, alignment: .center)
+
                     SecureField("Password", text: $enteredPassword)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .frame(width: 300, height: 36)

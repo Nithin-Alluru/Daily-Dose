@@ -15,17 +15,23 @@ struct Article: View {
     var body: some View {
         
         ZStack { // Article Element Outer Container
-            Color.red
+//            Color.red
             
             ZStack { //Article Element inner container
-                Color.yellow
+//                Color.yellow
                 VStack {
                     getImageFromUrl(url: thisArticle.urlToImage, defaultFilename: "NULL")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 300)
-                    Text(thisArticle.title)
-                    
+                    VStack(alignment: .leading) {
+                        Text(thisArticle.title)
+                            .font(.system(size: 20))
+                        HStack {
+                            Image(systemName: "person.circle")
+                            Text(thisArticle.author)
+                        }
+                    }
                     Spacer()
                 }
             } //END inner container
