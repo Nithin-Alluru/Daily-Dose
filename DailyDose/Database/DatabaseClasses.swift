@@ -31,3 +31,35 @@ final class News {
         self.content = content
     }
 }
+
+@Model
+final class Comic {
+    let date: String
+    let safe_title: String
+    let transcript: String
+    let img: String             //the URL
+    let alt: String
+    
+    init(date: String, safe_title: String, transcript: String, img: String, alt: String) {
+        self.date = date
+        self.safe_title = safe_title
+        self.transcript = transcript
+        self.img = img
+        self.alt = alt
+    }
+}
+
+@Model
+final class Meme {
+    let memeUrl: String
+    let title: String
+    let author: String
+    let subreddit: String
+    
+    init(memeUrl: String, title: String, author: String, subreddit: String) {
+        self.memeUrl = memeUrl
+        self.title = title
+        self.author = author
+        self.subreddit = subreddit
+    }
+}
