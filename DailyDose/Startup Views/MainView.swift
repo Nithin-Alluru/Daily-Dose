@@ -46,6 +46,10 @@ struct MainView: View {
                 .tabItem {
                     Label("Favorite Memes", systemImage: "bookmark.fill")
                 }
+            SudokuView()
+                .tabItem {
+                    Label("Sudoku", systemImage: "squareshape.split.3x3")
+                }
             SettingsTab()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
