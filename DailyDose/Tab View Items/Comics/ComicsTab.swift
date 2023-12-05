@@ -10,107 +10,102 @@ import SwiftUI
 
 struct ComicsTab: View {
     @Environment(\.modelContext) private var modelContext
-    //--------------
-    // Alert Message
-    //--------------
+
     @State private var showAlertMessage = false
     @State private var searchCompleted = false
+
     var body: some View {
         NavigationStack {
-            Form {
-                if(searchApi())
-                {
+            ScrollView {
+                if searchApi() {
                     let comic = ComicsList[0]
-                    Section(header: Text("\(comic.safe_title)")) {
+
+                    VStack(alignment: .leading, spacing: 16) {
                         let imgUrl = comic.img
-                        getImageFromUrl(url: imgUrl, defaultFilename: "ImageUnavailable")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(minWidth: 300, maxWidth: 400, alignment: .leading)
-                            .contextMenu {
-                                // Context Menu Item
-                                Button(action: {
-                                    // Copy the apartment photo to universal clipboard for pasting elsewhere
-                                    let imageUrlComponents = imgUrl.components(separatedBy: "/")
-                                    let imageUrlFilename = imageUrlComponents.last ?? ""
-                                    UIPasteboard.general.image = UIImage(named: "\(imageUrlFilename).jpg")
-                                    
-                                    showAlertMessage = true
-                                    alertTitle = "Comic is Copied to Clipboard"
-                                    alertMessage = "You can paste it on your iPhone, iPad, Mac laptop or Mac desktop each running under your Apple ID"
-                                }) {
-                                    Image(systemName: "doc.on.doc")
-                                    Text("Copy Image")
-                                }
-                            }
-                    }
-                    if(comic.transcript != "")
-                    {
-                        Section(header: Text("Transcript")) {
-                            Text(comic.transcript)
-                        }
-                    }
-                    Section(header: Text("ALTERNATE DESCRIPTION")) {
-                        Text(comic.alt)
-                    }
-                    Section(header: Text("ADD COMIC TO FAVORITES")) {
-                        Button(action: {
-                            let newComic = Comic(date: comic.date, safe_title: comic.safe_title, transcript: comic.transcript, img: comic.img, alt: comic.alt)
-                            // Insert the new Book object into the database
-                            modelContext.insert(newComic)
-                            
-                            showAlertMessage = true
-                            alertTitle = "Comic Added!"
-                            alertMessage = "Today's Comic is added to database as a favorite."
-                        }) {
-                            HStack {
-                                Image(systemName: "plus")
+
+                        ZStack(alignment: .bottomTrailing) {
+                            getImageFromUrl(url: imgUrl, defaultFilename: "ImageUnavailable")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .cornerRadius(15)
+                                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 2))
+                                .shadow(radius: 5)  // Add a subtle shadow to the image
+
+                            Button(action: {
+                                let newComic = Comic(date: comic.date, safe_title: comic.transcript, transcript: comic.transcript, img: comic.img, alt: comic.alt)
+                                modelContext.insert(newComic)
+
+                                showAlertMessage = true
+                                alertTitle = "Comic Added!"
+                                alertMessage = "Today's Comic is added to the database as a favorite."
+                            }) {
+                                Image(systemName: "heart.fill")
                                     .imageScale(.medium)
                                     .font(Font.title.weight(.regular))
-                                Text("Add Comic to Favorites")
-                                    .font(.system(size: 16))
+                                    .foregroundColor(.white)
+                                    .padding(8)
+                                    .background(Color.red)
+                                    .clipShape(Circle())
+                                    .shadow(radius: 5)  // Add a subtle shadow to the heart button
                             }
-                            .foregroundColor(.blue)
+                            .padding(8)
                         }
+
+                        if comic.transcript != "" {
+                            Text("Transcript:")
+                                .font(.headline)
+                                .foregroundColor(.black)
+                            Text(comic.transcript)
+                                .foregroundColor(.white)
+                        }
+
+                        Text("ALTERNATE DESCRIPTION:")
+                            .font(.headline)
+                            .foregroundColor(.black) // Change the color to blue for better visibility
+                        Text(comic.alt)
+                            .foregroundColor(.white) // Change the color to blue for better visibility
+                
                     }
-                }
-                else
-                {
+                    .padding()
+                } else {
                     Text("No Comic Today")
+                        .foregroundColor(.red)
+                        .padding()
                 }
-            } // End of Form
-            .font(.system(size: 14))
+            }
             .background(
-                    Image("ComicBackground")
-                        .resizable()
-                )
-            .navigationTitle(Text("Comic Of The Day"))
-            .toolbarTitleDisplayMode(.inline)
-            .alert(alertTitle, isPresented: $showAlertMessage, actions: {
+                LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .top, endPoint: .bottom)
+                    .edgesIgnoringSafeArea(.all)
+            )
+            .navigationTitle("Comic Of The Day")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Image(systemName: "arrow.clockwise.circle")
+                        .imageScale(.large)
+                        .foregroundColor(.white)
+                        .onTapGesture {
+                            // Refresh action
+                            // You may want to implement a refresh function here
+                            getComicsFromApi()
+                        }
+                }
+            }
+            .alert(alertTitle, isPresented: $showAlertMessage) {
                 Button("OK") {}
-            }, message: {
+            } message: {
                 Text(alertMessage)
-            })
-        } // End of NavigationStack
-    } // End of Body var
-    /*
-     ----------------
-     MARK: Search API
-     ----------------
-     */
-    func searchApi() -> Bool{
+            }
+        }
+    }
+
+    func searchApi() -> Bool {
         getComicsFromApi()
-        if(ComicsList.isEmpty) {
-            return false
-        }
-        else
-        {
-            return true
-        }
+        return !ComicsList.isEmpty
     }
 }
 
 #Preview {
     ComicsTab()
 }
+
 

@@ -18,57 +18,85 @@ struct MemesTab: View {
     var body: some View {
         
         NavigationStack {
-            Form {
+            ScrollView {
                 if let meme = meme {
-                    Section(header: Text("Here's Your Meme")) {
-                        let imgUrl = meme.memeUrl
-                        getImageFromUrl(url: imgUrl, defaultFilename: "ImageUnavailable")
+                    VStack(alignment: .leading, spacing: 16) {
+                        getImageFromUrl(url: meme.memeUrl, defaultFilename: "ImageUnavailable")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(minWidth: 300, maxWidth: 400, alignment: .leading)
-                    }
-                    Button("Generate Next Meme") {
-                        // Handle button tap action here
-                        // You can call a function to fetch the next meme or perform any other action
-                        getMeme()
-                    }
-                    .foregroundColor(.blue)
-                    Section(header: Text("ADD MEME TO FAVORITES")) {
-                        Button(action: {
-                            let newMeme = Meme(memeUrl: meme.memeUrl, title: meme.title, author: meme.author, subreddit: meme.subreddit)
-                            // Insert the new Book object into the database
-                            modelContext.insert(newMeme)
+                            .cornerRadius(15)
+                            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 2))
+                            .shadow(radius: 5)  // Add a subtle shadow to the image
+                        .padding(8)
+                        HStack{
+                            Button(action: {
+                                // Handle button tap action here
+                                // You can call a function to fetch the next meme or perform any other action
+                                getMeme()
+                            }) {
+                                Text("Generate Next Meme")
+                                    .font(.headline)
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .fill(Color.blue)
+                                            .shadow(radius: 5)
+                                    )
+                            }
+                            .padding()
                             
-                            showAlertMessage = true
-                            alertTitle = "Meme Added!"
-                            alertMessage = "Meme is added to database as a favorite."
-                        }) {
-                            HStack {
-                                Image(systemName: "plus")
+                            Button(action: {
+                                let newMeme = Meme(memeUrl: meme.memeUrl, title: meme.title, author: meme.author, subreddit: meme.subreddit)
+                                // Insert the new Book object into the database
+                                modelContext.insert(newMeme)
+                                showAlertMessage = true
+                                alertTitle = "Meme Added!"
+                                alertMessage = "Meme is added to database as a favorite."
+                            }) {
+                                Image(systemName: "heart.fill")
                                     .imageScale(.medium)
                                     .font(Font.title.weight(.regular))
-                                Text("Add Meme to Favorites")
-                                    .font(.system(size: 16))
+                                    .foregroundColor(.white)
+                                    .padding(8)
+                                    .background(Color.red)
+                                    .clipShape(Circle())
+                                    .shadow(radius: 10)  // Add a subtle shadow to the heart button
                             }
-                            .foregroundColor(.blue)
                         }
+                        .padding(.trailing, 16) // Add spacing to the leading edge of the HStack
                     }
                 } else {
-                    Button("Generate Meme") {
+                    Button(action: {
                         // Handle button tap action here
                         // You can call a function to fetch the next meme or perform any other action
                         getMeme()
+                    }) {
+                        Text("Generate Meme")
+                            .font(.headline)
+                            .padding()
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color.blue)
+                                    .shadow(radius: 5)
+                            )
                     }
+                    .padding()
                 }
             }
-            .font(.system(size: 14))
-            .navigationTitle(Text("Daily Memes"))
-            .toolbarTitleDisplayMode(.inline)
-            .alert(alertTitle, isPresented: $showAlertMessage, actions: {
+            .background(
+                LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .top, endPoint: .bottom)
+                    .edgesIgnoringSafeArea(.all)
+            )
+            .navigationTitle("Daily Memes")
+            .alert(alertTitle, isPresented: $showAlertMessage) {
                 Button("OK") {}
-            }, message: {
+            } message: {
                 Text(alertMessage)
-            })
+            }
         }
     }
 
@@ -80,4 +108,8 @@ struct MemesTab: View {
             meme = MemesList[0]
         }
     }
+}
+
+#Preview {
+    MemesTab()
 }

@@ -12,10 +12,6 @@
 		25119A912B15B6EC00BE4B3B /* ComicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A8F2B15B6EC00BE4B3B /* ComicAPI.swift */; };
 		25119A952B15B70800BE4B3B /* MemeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A932B15B70800BE4B3B /* MemeAPI.swift */; };
 		25119A962B15B70800BE4B3B /* MemeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A942B15B70800BE4B3B /* MemeStruct.swift */; };
-		25119A9C2B15B72200BE4B3B /* ComicsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A982B15B72200BE4B3B /* ComicsTab.swift */; };
-		25119A9D2B15B72200BE4B3B /* FavoriteComics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A992B15B72200BE4B3B /* FavoriteComics.swift */; };
-		25119A9E2B15B72200BE4B3B /* ComicDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A9A2B15B72200BE4B3B /* ComicDetails.swift */; };
-		25119A9F2B15B72200BE4B3B /* ComicItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119A9B2B15B72200BE4B3B /* ComicItem.swift */; };
 		25119AA52B15B72E00BE4B3B /* MemesTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119AA12B15B72E00BE4B3B /* MemesTab.swift */; };
 		25119AA62B15B72E00BE4B3B /* MemeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119AA22B15B72E00BE4B3B /* MemeDetails.swift */; };
 		25119AA72B15B72E00BE4B3B /* FavoriteMemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25119AA32B15B72E00BE4B3B /* FavoriteMemes.swift */; };
@@ -47,6 +43,14 @@
 		DB67625A2B164C6A00BB0AB4 /* BookmarkedArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6762592B164C6A00BB0AB4 /* BookmarkedArticle.swift */; };
 		DB67625C2B164C7B00BB0AB4 /* Bookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB67625B2B164C7B00BB0AB4 /* Bookmarks.swift */; };
 		DB67625E2B164C9200BB0AB4 /* BookmarksList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB67625D2B164C9200BB0AB4 /* BookmarksList.swift */; };
+		DB7D248D2B1F585400CC7A56 /* SearchResultsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D24862B1F585300CC7A56 /* SearchResultsList.swift */; };
+		DB7D248E2B1F585400CC7A56 /* DatabaseSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D24872B1F585300CC7A56 /* DatabaseSearch.swift */; };
+		DB7D248F2B1F585400CC7A56 /* ComicItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D24882B1F585300CC7A56 /* ComicItem.swift */; };
+		DB7D24902B1F585400CC7A56 /* ComicsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D24892B1F585300CC7A56 /* ComicsTab.swift */; };
+		DB7D24912B1F585400CC7A56 /* FavoriteComics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D248A2B1F585300CC7A56 /* FavoriteComics.swift */; };
+		DB7D24922B1F585400CC7A56 /* ComicDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D248B2B1F585300CC7A56 /* ComicDetails.swift */; };
+		DB7D24932B1F585400CC7A56 /* SearchComics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D248C2B1F585400CC7A56 /* SearchComics.swift */; };
+		DB7D24952B1F58B000CC7A56 /* NotFound.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D24942B1F58B000CC7A56 /* NotFound.swift */; };
 		DB7F34BF2B12FD8500202040 /* WeatherConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F34BE2B12FD8500202040 /* WeatherConversions.swift */; };
 		DB7F42C02B067C6E00628F6F /* DailyDoseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F42BF2B067C6E00628F6F /* DailyDoseApp.swift */; };
 		DB7F42C62B067C7100628F6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7F42C52B067C7100628F6F /* Assets.xcassets */; };
@@ -72,10 +76,6 @@
 		25119A8F2B15B6EC00BE4B3B /* ComicAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicAPI.swift; sourceTree = "<group>"; };
 		25119A932B15B70800BE4B3B /* MemeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeAPI.swift; sourceTree = "<group>"; };
 		25119A942B15B70800BE4B3B /* MemeStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeStruct.swift; sourceTree = "<group>"; };
-		25119A982B15B72200BE4B3B /* ComicsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicsTab.swift; sourceTree = "<group>"; };
-		25119A992B15B72200BE4B3B /* FavoriteComics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteComics.swift; sourceTree = "<group>"; };
-		25119A9A2B15B72200BE4B3B /* ComicDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicDetails.swift; sourceTree = "<group>"; };
-		25119A9B2B15B72200BE4B3B /* ComicItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicItem.swift; sourceTree = "<group>"; };
 		25119AA12B15B72E00BE4B3B /* MemesTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemesTab.swift; sourceTree = "<group>"; };
 		25119AA22B15B72E00BE4B3B /* MemeDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeDetails.swift; sourceTree = "<group>"; };
 		25119AA32B15B72E00BE4B3B /* FavoriteMemes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteMemes.swift; sourceTree = "<group>"; };
@@ -108,6 +108,14 @@
 		DB6762592B164C6A00BB0AB4 /* BookmarkedArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedArticle.swift; sourceTree = "<group>"; };
 		DB67625B2B164C7B00BB0AB4 /* Bookmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmarks.swift; sourceTree = "<group>"; };
 		DB67625D2B164C9200BB0AB4 /* BookmarksList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksList.swift; sourceTree = "<group>"; };
+		DB7D24862B1F585300CC7A56 /* SearchResultsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsList.swift; sourceTree = "<group>"; };
+		DB7D24872B1F585300CC7A56 /* DatabaseSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseSearch.swift; sourceTree = "<group>"; };
+		DB7D24882B1F585300CC7A56 /* ComicItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicItem.swift; sourceTree = "<group>"; };
+		DB7D24892B1F585300CC7A56 /* ComicsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicsTab.swift; sourceTree = "<group>"; };
+		DB7D248A2B1F585300CC7A56 /* FavoriteComics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteComics.swift; sourceTree = "<group>"; };
+		DB7D248B2B1F585300CC7A56 /* ComicDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicDetails.swift; sourceTree = "<group>"; };
+		DB7D248C2B1F585400CC7A56 /* SearchComics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchComics.swift; sourceTree = "<group>"; };
+		DB7D24942B1F58B000CC7A56 /* NotFound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotFound.swift; sourceTree = "<group>"; };
 		DB7F34BE2B12FD8500202040 /* WeatherConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConversions.swift; sourceTree = "<group>"; };
 		DB7F42BC2B067C6E00628F6F /* DailyDose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyDose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7F42BF2B067C6E00628F6F /* DailyDoseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDoseApp.swift; sourceTree = "<group>"; };
@@ -160,10 +168,13 @@
 		25119A972B15B72200BE4B3B /* Comics */ = {
 			isa = PBXGroup;
 			children = (
-				25119A982B15B72200BE4B3B /* ComicsTab.swift */,
-				25119A992B15B72200BE4B3B /* FavoriteComics.swift */,
-				25119A9A2B15B72200BE4B3B /* ComicDetails.swift */,
-				25119A9B2B15B72200BE4B3B /* ComicItem.swift */,
+				DB7D248B2B1F585300CC7A56 /* ComicDetails.swift */,
+				DB7D24882B1F585300CC7A56 /* ComicItem.swift */,
+				DB7D24892B1F585300CC7A56 /* ComicsTab.swift */,
+				DB7D24872B1F585300CC7A56 /* DatabaseSearch.swift */,
+				DB7D248A2B1F585300CC7A56 /* FavoriteComics.swift */,
+				DB7D248C2B1F585400CC7A56 /* SearchComics.swift */,
+				DB7D24862B1F585300CC7A56 /* SearchResultsList.swift */,
 			);
 			path = Comics;
 			sourceTree = "<group>";
@@ -247,6 +258,7 @@
 		3CC8601D2B0EA36700A28666 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DB7D24942B1F58B000CC7A56 /* NotFound.swift */,
 				3C5BB4FF2B0681B6005F987D /* Globals.swift */,
 				DB14581C2B12D098001825A9 /* CurrentLocation.swift */,
 				DB86EEE02B129E7200FFF726 /* HexColor.swift */,
@@ -476,6 +488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB7D248D2B1F585400CC7A56 /* SearchResultsList.swift in Sources */,
 				DB81991C2B1F2ABD00D13A50 /* SudokuGame.swift in Sources */,
 				DB33DD132B1E7EB3006043F8 /* SudokuGenerator.swift in Sources */,
 				DB4ECC7C2B128880007E7A24 /* WeatherTab.swift in Sources */,
@@ -485,11 +498,15 @@
 				25119ABB2B15C38100BE4B3B /* SettingsTab.swift in Sources */,
 				3C5BB5082B0E9F86005F987D /* NewsStruct.swift in Sources */,
 				3CC8601F2B0EA39C00A28666 /* UtilityFunctions.swift in Sources */,
+				DB7D248E2B1F585400CC7A56 /* DatabaseSearch.swift in Sources */,
 				3C5BB5032B0E99F3005F987D /* NewsTab.swift in Sources */,
 				DB7F9AE02B1C202300AE62F9 /* SudokuView.swift in Sources */,
 				DB81991F2B1F2EFD00D13A50 /* SudokuGameView.swift in Sources */,
 				DB6762552B164BC800BB0AB4 /* ArticleList.swift in Sources */,
+				DB7D248F2B1F585400CC7A56 /* ComicItem.swift in Sources */,
+				DB7D24952B1F58B000CC7A56 /* NotFound.swift in Sources */,
 				DBA93A152B16257F007A155A /* WeatherMap.swift in Sources */,
+				DB7D24902B1F585400CC7A56 /* ComicsTab.swift in Sources */,
 				DB9071CE2B15CFFF00562BB0 /* WeatherMapWrapper.swift in Sources */,
 				DB67625A2B164C6A00BB0AB4 /* BookmarkedArticle.swift in Sources */,
 				DB7F34BF2B12FD8500202040 /* WeatherConversions.swift in Sources */,
@@ -501,6 +518,7 @@
 				25119AB52B15C06000BE4B3B /* MainView.swift in Sources */,
 				25119A8C2B15B6CD00BE4B3B /* DatabaseCreation.swift in Sources */,
 				DB7F42C02B067C6E00628F6F /* DailyDoseApp.swift in Sources */,
+				DB7D24932B1F585400CC7A56 /* SearchComics.swift in Sources */,
 				3C9295222B10838500063ECC /* NewsApiData.swift in Sources */,
 				25119A952B15B70800BE4B3B /* MemeAPI.swift in Sources */,
 				DB8199232B1F407700D13A50 /* SudokuValidator.swift in Sources */,
@@ -509,22 +527,20 @@
 				25119AB62B15C06000BE4B3B /* ContentView.swift in Sources */,
 				DB14581D2B12D098001825A9 /* CurrentLocation.swift in Sources */,
 				DB14581A2B12C0D9001825A9 /* WeatherStructs.swift in Sources */,
-				25119A9D2B15B72200BE4B3B /* FavoriteComics.swift in Sources */,
+				DB7D24912B1F585400CC7A56 /* FavoriteComics.swift in Sources */,
 				25119AAA2B15BA3700BE4B3B /* DatabaseClasses.swift in Sources */,
 				DB1458172B12BF27001825A9 /* OpenWeatherAPI.swift in Sources */,
 				25119AA52B15B72E00BE4B3B /* MemesTab.swift in Sources */,
 				25119A912B15B6EC00BE4B3B /* ComicAPI.swift in Sources */,
 				DB9071CC2B15CFC500562BB0 /* ImmersiveWeather.swift in Sources */,
-				25119A9E2B15B72200BE4B3B /* ComicDetails.swift in Sources */,
 				25119AAC2B15BFF000BE4B3B /* UserAuthentication.swift in Sources */,
 				DB67625C2B164C7B00BB0AB4 /* Bookmarks.swift in Sources */,
-				25119A9C2B15B72200BE4B3B /* ComicsTab.swift in Sources */,
 				25119A962B15B70800BE4B3B /* MemeStruct.swift in Sources */,
 				25119AA72B15B72E00BE4B3B /* FavoriteMemes.swift in Sources */,
-				25119A9F2B15B72200BE4B3B /* ComicItem.swift in Sources */,
 				DB8199212B1F30A200D13A50 /* SudokuMainMenuView.swift in Sources */,
 				DB86EEE12B129E7200FFF726 /* HexColor.swift in Sources */,
 				25119A902B15B6EC00BE4B3B /* ComicStruct.swift in Sources */,
+				DB7D24922B1F585400CC7A56 /* ComicDetails.swift in Sources */,
 				DB33DD0D2B1E73C9006043F8 /* SudokuBox.swift in Sources */,
 				DB7F9AE42B1C208400AE62F9 /* SudokuGrid.swift in Sources */,
 				DB67625E2B164C9200BB0AB4 /* BookmarksList.swift in Sources */,
