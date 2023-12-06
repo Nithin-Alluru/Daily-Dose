@@ -1,5 +1,5 @@
 //
-//  HourlyForecastItem.swift
+//  ForecastItemView.swift
 //  DailyDose
 //
 //  Created by CM360 on 11/28/23.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct HourlyForecastItem: View {
+struct ForecastItemView: View {
 
     // Declare a static formatter to avoid recreating it each time
     // https://docs.swift.org/swift-book/documentation/the-swift-programming-language/properties/#Type-Property-Syntax
@@ -42,7 +42,7 @@ struct HourlyForecastItem: View {
     }
 
     func formatTimeStamp(timestamp: Int) -> String {
-        return HourlyForecastItem.timestampFormatter.string(from: Date(timeIntervalSince1970: Double(timestamp)));
+        return ForecastItemView.timestampFormatter.string(from: Date(timeIntervalSince1970: Double(timestamp)));
     }
 
 }

@@ -12,7 +12,6 @@ import SwiftUI
 struct MainView: View {
 
     @EnvironmentObject var displayedArticles: ArticleList
-    @EnvironmentObject var bookmarkedArticles: BookmarksList
 
     var body: some View {
         TabView {
@@ -21,11 +20,6 @@ struct MainView: View {
                     Label("Feed", systemImage: "newspaper.fill")
                 }
                 .environmentObject(displayedArticles)
-            Bookmarks()
-                .tabItem {
-                    Label("Bookmarks", systemImage: "bookmark.fill")
-                }
-                .environmentObject(bookmarkedArticles)
             WeatherTab()
                 .tabItem {
                     Label("Weather", systemImage: "cloud.sun.bolt.fill")
@@ -38,17 +32,9 @@ struct MainView: View {
                 .tabItem {
                     Label("Memes", systemImage: "photo.fill")
                 }
-            FavComicsList()
-                .tabItem {
-                    Label("Favorite Comics", systemImage: "bookmark.fill")
-                }
             SearchComics()
                 .tabItem {
                     Label("Search Comics", systemImage: "magnifyingglass")
-                }
-            FavMemesList()
-                .tabItem {
-                    Label("Favorite Memes", systemImage: "bookmark.fill")
                 }
             SudokuView()
                 .tabItem {

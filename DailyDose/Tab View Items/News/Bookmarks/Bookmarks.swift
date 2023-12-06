@@ -59,7 +59,7 @@ struct Bookmarks: View {
 
             }   // End of List
             .font(.system(size: 14))
-            .navigationTitle("Bookmarks")
+            .navigationTitle("Bookmarked Articles")
             .toolbarTitleDisplayMode(.inline)
             .toolbar {
                 // Place the Edit button on left side of the toolbar

@@ -15,8 +15,10 @@ struct MemesTab: View {
     @State private var showAlertMessage = false
     @State private var searchCompleted = false
     @State private var meme: MemeStruct? = nil // Assuming Meme is the type of the meme object
+
+    @State private var showFavorites = false
+
     var body: some View {
-        
         NavigationStack {
             ScrollView {
                 if let meme = meme {
@@ -92,6 +94,20 @@ struct MemesTab: View {
                     .edgesIgnoringSafeArea(.all)
             )
             .navigationTitle("Daily Memes")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        showFavorites.toggle()
+                    }) {
+                        Image(systemName: "bookmark")
+                            .imageScale(.large)
+                            .foregroundColor(.white)
+                    }
+                    .sheet(isPresented: $showFavorites) {
+                        FavMemesList()
+                    }
+                }
+            }
             .alert(alertTitle, isPresented: $showAlertMessage) {
                 Button("OK") {}
             } message: {

@@ -14,6 +14,8 @@ struct ComicsTab: View {
     @State private var showAlertMessage = false
     @State private var searchCompleted = false
 
+    @State private var showFavorites = false
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -79,15 +81,26 @@ struct ComicsTab: View {
             )
             .navigationTitle("Comic Of The Day")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Image(systemName: "arrow.clockwise.circle")
-                        .imageScale(.large)
-                        .foregroundColor(.white)
-                        .onTapGesture {
-                            // Refresh action
-                            // You may want to implement a refresh function here
-                            getComicsFromApi()
-                        }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: {
+                        getComicsFromApi()
+                    }) {
+                        Image(systemName: "arrow.clockwise")
+                            .imageScale(.large)
+                            .foregroundColor(.white)
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        showFavorites.toggle()
+                    }) {
+                        Image(systemName: "bookmark")
+                            .imageScale(.large)
+                            .foregroundColor(.white)
+                    }
+                    .sheet(isPresented: $showFavorites) {
+                        FavComicsList()
+                    }
                 }
             }
             .alert(alertTitle, isPresented: $showAlertMessage) {

@@ -53,7 +53,11 @@ struct WeatherTab: View {
     @State private var weatherInfo: WeatherStruct?
     @State private var forecastInfo: ForecastStruct?
 
+    // Timer to auto-refresh current weather data
     @State private var timer = Timer.publish(every: weatherRefreshInterval, on: .main, in: .common).autoconnect()
+
+    @State private var selectedCity: City?
+    @State private var showCitySheet = false
 
     @State private var immersiveBg = "01d"
 
@@ -86,9 +90,8 @@ struct WeatherTab: View {
                         }
                     }
                 }
-                .onReceive(timer) { _ in
-                    refreshWeatherData()
-                }
+                .foregroundStyle(.white)
+                .listRowBackground(Rectangle().background(.ultraThinMaterial))
                 Section(header: Text("3h forecasts")) {
                     if let info = forecastInfo {
                         ScrollView(.horizontal) {
@@ -116,7 +119,18 @@ struct WeatherTab: View {
                         }
                     }
                 }
+                .foregroundStyle(.white)
+                .listRowBackground(Rectangle().background(.ultraThinMaterial))
             }   // End of Form
+            // The refreshable modifier enables the common pull-to-refresh feature
+            // https://developer.apple.com/documentation/swiftui/view/refreshable(action:)
+            .refreshable {
+                refreshAll()
+            }
+            // Auto-refresh on timer
+            .onReceive(timer) { _ in
+                refreshWeatherData()
+            }
             // Forms are scrollable, so we can hide the background color to let our
             // dynamic background show through
             .scrollContentBackground(.hidden)
@@ -124,26 +138,46 @@ struct WeatherTab: View {
                 DynamicWeatherBackground(currentWeather: $immersiveBg)
                     .edgesIgnoringSafeArea(.all)
             }
+            // Title/toolbar
             .toolbarTitleDisplayMode(.inline)
             .navigationTitle("Weather")
             .toolbar {
-                ToolbarItem(id: "map") {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: {
+                        showCitySheet.toggle()
+                    }) {
+                        Image(systemName: "list.bullet")
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink(destination: WeatherMap()) {
                         Image(systemName: "map")
                     }
                 }
             }
+            // City selection sheet
+            .sheet(isPresented: $showCitySheet) {
+                CityList(
+                    showCitySheet: $showCitySheet,
+                    selectedCity: $selectedCity
+                )
+            }
         }   // End of NavigationStack
         .onAppear() {
             startTimer()
             if weatherInfo == nil {
-                refreshWeatherData()
+                refreshAll()
             }
         }
         .onDisappear() {
             stopTimer()
         }
     }   // End of body var
+
+    func refreshAll() {
+        refreshWeatherData()
+        refreshForecastData()
+    }
 
     func refreshWeatherData() {
         // Wrap API call in Tasks to avoid blocking
@@ -157,6 +191,9 @@ struct WeatherTab: View {
             }
             weatherFetchCompleted = true
         }
+    }
+
+    func refreshForecastData() {
         Task {
             let currentLocation = getUsersCurrentLocation()
             if let newInfo = fetchForecasts(
@@ -169,15 +206,20 @@ struct WeatherTab: View {
         }
     }
 
-    func refreshForecastData() {
-    }
-
     func startTimer() {
         timer = Timer.publish(every: weatherRefreshInterval, on: .main, in: .common).autoconnect()
     }
 
     func stopTimer() {
         timer.upstream.connect().cancel()
+    }
+
+    func determineColorScheme() {
+
+    }
+
+    func isNight() -> Bool {
+        return false
     }
 
 }

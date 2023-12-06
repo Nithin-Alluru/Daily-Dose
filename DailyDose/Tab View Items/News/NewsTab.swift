@@ -17,8 +17,6 @@ import SwiftData
 
 
 struct NewsTab: View {
-    //@Environment(\.modelContext) private var modelContext
-    //@Query(FetchDescriptor<News>(sortBy: [SortDescriptor(\News.name, order: .forward)])) private var listOfVideosInDatabase: [News]
 
     @EnvironmentObject private var displayedArticles: ArticleList
 
@@ -32,12 +30,13 @@ struct NewsTab: View {
     @State private var alertTitle = ""
     @State private var alertMessage = ""
 
-
     @State var runOnce = false
 
+    // For bookmarks sheet
+    @EnvironmentObject private var bookmarkedArticles: BookmarksList
+    @State private var showingBookmarks = false
+
     var body: some View {
-
-
         NavigationStack {
             ZStack {
                 Color.gray.opacity(0.1)
@@ -114,16 +113,27 @@ struct NewsTab: View {
 
                 } //End VStack
             }
-            //.navigationTitle("Photo Album")
             .toolbarTitleDisplayMode(.inline)
             //.toolbarBackground(Color.green, for: .navigationBar, .tabBar)
-            .navigationTitle("Daily Dose")
+            .navigationTitle("News")
             .toolbar {
-                ToolbarItem(id: "refresh") {
-                    Button("Refresh", systemImage: "arrow.clockwise") {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: {
                         displayedArticles.clear()
                         displayedArticles.getNewsArticlesFromApi(trending: true, source: "", query: "")
-
+                    }) {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        showingBookmarks.toggle()
+                    }) {
+                        Image(systemName: "bookmark")
+                    }
+                    .sheet(isPresented: $showingBookmarks) {
+                        Bookmarks()
+                            .environmentObject(bookmarkedArticles)
                     }
                 }
             }//END TOOLBAR

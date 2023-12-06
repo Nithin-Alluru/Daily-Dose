@@ -1,5 +1,5 @@
 //
-//  DynamicWeatherBackground.swift
+//  ImmersiveWeather.swift
 //  DailyDose
 //
 //  Created by CM360 on 11/27/23.
@@ -22,9 +22,9 @@ fileprivate let weatherBackgrounds = [
     ),
 ]
 
-struct DynamicWeatherBackground: View {
+struct ImmersiveWeather: View {
 
-    @Binding var currentWeather: String
+   let currentWeather: String
 
     var body: some View {
         ZStack {
