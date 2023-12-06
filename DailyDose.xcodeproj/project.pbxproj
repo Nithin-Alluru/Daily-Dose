@@ -40,6 +40,7 @@
 		DB4ECC7C2B128880007E7A24 /* WeatherTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4ECC7B2B128880007E7A24 /* WeatherTab.swift */; };
 		DB64B7A72B20AD2F0048C933 /* CityList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64B7A62B20AD2F0048C933 /* CityList.swift */; };
 		DB64B7AA2B20B17A0048C933 /* MapboxAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64B7A92B20B17A0048C933 /* MapboxAPI.swift */; };
+		DB64B7AC2B20C68B0048C933 /* WeatherSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64B7AB2B20C68B0048C933 /* WeatherSummaryView.swift */; };
 		DB6762552B164BC800BB0AB4 /* ArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6762542B164BC800BB0AB4 /* ArticleList.swift */; };
 		DB6762582B164C4900BB0AB4 /* BookmarkDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6762572B164C4900BB0AB4 /* BookmarkDetails.swift */; };
 		DB67625A2B164C6A00BB0AB4 /* BookmarkedArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6762592B164C6A00BB0AB4 /* BookmarkedArticle.swift */; };
@@ -65,10 +66,10 @@
 		DB8199212B1F30A200D13A50 /* SudokuMainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8199202B1F30A200D13A50 /* SudokuMainMenuView.swift */; };
 		DB8199232B1F407700D13A50 /* SudokuValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8199222B1F407700D13A50 /* SudokuValidator.swift */; };
 		DB86EEE12B129E7200FFF726 /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB86EEE02B129E7200FFF726 /* HexColor.swift */; };
-		DB9071CC2B15CFC500562BB0 /* ImmersiveWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9071CB2B15CFC500562BB0 /* ImmersiveWeather.swift */; };
+		DB9071CC2B15CFC500562BB0 /* ImmersiveWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9071CB2B15CFC500562BB0 /* ImmersiveWeatherView.swift */; };
 		DB9071CE2B15CFFF00562BB0 /* WeatherMapWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9071CD2B15CFFF00562BB0 /* WeatherMapWrapper.swift */; };
 		DBA93A102B15F37B007A155A /* ImmersiveScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA93A0F2B15F37B007A155A /* ImmersiveScenes.swift */; };
-		DBA93A122B16146F007A155A /* HourlyForecastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA93A112B16146F007A155A /* HourlyForecastItem.swift */; };
+		DBA93A122B16146F007A155A /* ForecastItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA93A112B16146F007A155A /* ForecastItemView.swift */; };
 		DBA93A152B16257F007A155A /* WeatherMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA93A142B16257F007A155A /* WeatherMap.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,7 @@
 		DB4ECC7B2B128880007E7A24 /* WeatherTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTab.swift; sourceTree = "<group>"; };
 		DB64B7A62B20AD2F0048C933 /* CityList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityList.swift; sourceTree = "<group>"; };
 		DB64B7A92B20B17A0048C933 /* MapboxAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxAPI.swift; sourceTree = "<group>"; };
+		DB64B7AB2B20C68B0048C933 /* WeatherSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSummaryView.swift; sourceTree = "<group>"; };
 		DB6762542B164BC800BB0AB4 /* ArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleList.swift; sourceTree = "<group>"; };
 		DB6762572B164C4900BB0AB4 /* BookmarkDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkDetails.swift; sourceTree = "<group>"; };
 		DB6762592B164C6A00BB0AB4 /* BookmarkedArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedArticle.swift; sourceTree = "<group>"; };
@@ -133,10 +135,10 @@
 		DB8199202B1F30A200D13A50 /* SudokuMainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuMainMenuView.swift; sourceTree = "<group>"; };
 		DB8199222B1F407700D13A50 /* SudokuValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuValidator.swift; sourceTree = "<group>"; };
 		DB86EEE02B129E7200FFF726 /* HexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
-		DB9071CB2B15CFC500562BB0 /* ImmersiveWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveWeather.swift; sourceTree = "<group>"; };
+		DB9071CB2B15CFC500562BB0 /* ImmersiveWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveWeatherView.swift; sourceTree = "<group>"; };
 		DB9071CD2B15CFFF00562BB0 /* WeatherMapWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapWrapper.swift; sourceTree = "<group>"; };
 		DBA93A0F2B15F37B007A155A /* ImmersiveScenes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveScenes.swift; sourceTree = "<group>"; };
-		DBA93A112B16146F007A155A /* HourlyForecastItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastItem.swift; sourceTree = "<group>"; };
+		DBA93A112B16146F007A155A /* ForecastItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastItemView.swift; sourceTree = "<group>"; };
 		DBA93A142B16257F007A155A /* WeatherMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -263,10 +265,10 @@
 		3CC8601D2B0EA36700A28666 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DB86EEE02B129E7200FFF726 /* HexColor.swift */,
 				DB7D24942B1F58B000CC7A56 /* NotFound.swift */,
 				3C5BB4FF2B0681B6005F987D /* Globals.swift */,
 				DB14581C2B12D098001825A9 /* CurrentLocation.swift */,
-				DB86EEE02B129E7200FFF726 /* HexColor.swift */,
 				3C92951F2B10836100063ECC /* GetJsonDataFromApi.swift */,
 				3CC8601E2B0EA39C00A28666 /* UtilityFunctions.swift */,
 				DB7F34BE2B12FD8500202040 /* WeatherConversions.swift */,
@@ -424,7 +426,7 @@
 		DBA93A0E2B15F33B007A155A /* Immersive Background */ = {
 			isa = PBXGroup;
 			children = (
-				DB9071CB2B15CFC500562BB0 /* ImmersiveWeather.swift */,
+				DB9071CB2B15CFC500562BB0 /* ImmersiveWeatherView.swift */,
 				DBA93A0F2B15F37B007A155A /* ImmersiveScenes.swift */,
 			);
 			path = "Immersive Background";
@@ -433,7 +435,8 @@
 		DBA93A132B16147B007A155A /* Helper Views */ = {
 			isa = PBXGroup;
 			children = (
-				DBA93A112B16146F007A155A /* HourlyForecastItem.swift */,
+				DB64B7AB2B20C68B0048C933 /* WeatherSummaryView.swift */,
+				DBA93A112B16146F007A155A /* ForecastItemView.swift */,
 			);
 			path = "Helper Views";
 			sourceTree = "<group>";
@@ -533,7 +536,7 @@
 				DB9071CE2B15CFFF00562BB0 /* WeatherMapWrapper.swift in Sources */,
 				DB67625A2B164C6A00BB0AB4 /* BookmarkedArticle.swift in Sources */,
 				DB7F34BF2B12FD8500202040 /* WeatherConversions.swift in Sources */,
-				DBA93A122B16146F007A155A /* HourlyForecastItem.swift in Sources */,
+				DBA93A122B16146F007A155A /* ForecastItemView.swift in Sources */,
 				25119AA82B15B72E00BE4B3B /* MemeItem.swift in Sources */,
 				DB6762582B164C4900BB0AB4 /* BookmarkDetails.swift in Sources */,
 				25119AA62B15B72E00BE4B3B /* MemeDetails.swift in Sources */,
@@ -556,7 +559,7 @@
 				DB1458172B12BF27001825A9 /* OpenWeatherAPI.swift in Sources */,
 				25119AA52B15B72E00BE4B3B /* MemesTab.swift in Sources */,
 				25119A912B15B6EC00BE4B3B /* ComicAPI.swift in Sources */,
-				DB9071CC2B15CFC500562BB0 /* ImmersiveWeather.swift in Sources */,
+				DB9071CC2B15CFC500562BB0 /* ImmersiveWeatherView.swift in Sources */,
 				25119AAC2B15BFF000BE4B3B /* UserAuthentication.swift in Sources */,
 				DB67625C2B164C7B00BB0AB4 /* Bookmarks.swift in Sources */,
 				25119A962B15B70800BE4B3B /* MemeStruct.swift in Sources */,
@@ -566,6 +569,7 @@
 				25119A902B15B6EC00BE4B3B /* ComicStruct.swift in Sources */,
 				DB7D24922B1F585400CC7A56 /* ComicDetails.swift in Sources */,
 				DB33DD0D2B1E73C9006043F8 /* SudokuBox.swift in Sources */,
+				DB64B7AC2B20C68B0048C933 /* WeatherSummaryView.swift in Sources */,
 				DB7F9AE42B1C208400AE62F9 /* SudokuGrid.swift in Sources */,
 				DB67625E2B164C9200BB0AB4 /* BookmarksList.swift in Sources */,
 				25119AB32B15C06000BE4B3B /* LoginView.swift in Sources */,

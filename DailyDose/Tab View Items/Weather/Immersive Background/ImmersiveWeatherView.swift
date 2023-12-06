@@ -1,5 +1,5 @@
 //
-//  ImmersiveWeather.swift
+//  ImmersiveWeatherView.swift
 //  DailyDose
 //
 //  Created by CM360 on 11/27/23.
@@ -22,13 +22,13 @@ fileprivate let weatherBackgrounds = [
     ),
 ]
 
-struct ImmersiveWeather: View {
+struct ImmersiveWeatherView: View {
 
    let currentWeather: String
 
     var body: some View {
         ZStack {
-            let currentScene = weatherBackgrounds[currentWeather]!
+            let currentScene = weatherBackgrounds[currentWeather] ?? weatherBackgrounds["01d"]!
             LinearGradient(
                 gradient: Gradient(colors: currentScene.gradient.map { Color(hex: $0) }),
                 startPoint: .top,

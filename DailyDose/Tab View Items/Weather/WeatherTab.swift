@@ -44,6 +44,9 @@ fileprivate let weatherRefreshInterval: Double = 5*60   // in seconds
 
 struct WeatherTab: View {
 
+    // Need to read dark mode preference for overrides
+    @AppStorage("darkMode") private var darkMode = false
+
     @State private var temperatureScale = TemperatureScale.Fahrenheit
 
     // Has at least one fetch attempt completed yet?
@@ -56,33 +59,25 @@ struct WeatherTab: View {
     // Timer to auto-refresh current weather data
     @State private var timer = Timer.publish(every: weatherRefreshInterval, on: .main, in: .common).autoconnect()
 
+    // Currently selected city, or nil for user's location
     @State private var selectedCity: City?
     @State private var showCitySheet = false
-
-    @State private var immersiveBg = "01d"
 
     var body: some View {
         NavigationStack {
             Form {
-                Section(header: Text("Current Location")) {
-                    if let info = weatherInfo {
-                        CurrentWeatherView(
+                // Weather summary
+                if let info = weatherInfo {
+                    Section(header: Text("Current Location")) {
+                        WeatherSummaryView(
                             weather: info,
                             scale: temperatureScale
                         )
-                        .contextMenu {
-                            Button(action: {
-                                immersiveBg = "01d"
-                            }) {
-                                Text("Day")
-                            }
-                            Button(action: {
-                                immersiveBg = "01n"
-                            }) {
-                                Text("Night")
-                            }
-                        }
-                    } else {
+                    }
+                    .foregroundStyle(.white)
+                    .listRowBackground(Rectangle().background(.ultraThinMaterial))
+                } else {
+                    Section(header: Text("Current Location")) {
                         if weatherFetchCompleted {
                             Text("Unavailable")
                         } else {
@@ -90,28 +85,31 @@ struct WeatherTab: View {
                         }
                     }
                 }
-                .foregroundStyle(.white)
-                .listRowBackground(Rectangle().background(.ultraThinMaterial))
-                Section(header: Text("3h forecasts")) {
-                    if let info = forecastInfo {
+                // 3h forecasts
+                if let info = forecastInfo {
+                    Section(header: Text("3h forecasts")) {
                         ScrollView(.horizontal) {
                             HStack(spacing: 0) {
                                 if let current = weatherInfo {
-                                    HourlyForecastItem(
+                                    ForecastItemView(
                                         forecast: current,
                                         scale: temperatureScale,
                                         now: true
                                     )
                                 }
                                 ForEach(info.forecasts, id: \.timestamp) { forecast in
-                                    HourlyForecastItem(
+                                    ForecastItemView(
                                         forecast: forecast,
                                         scale: temperatureScale
                                     )
                                 }
                             }
                         }
-                    } else {
+                    }
+                    .foregroundStyle(.white)
+                    .listRowBackground(Rectangle().background(.ultraThinMaterial))
+                } else {
+                    Section(header: Text("3h forecasts")) {
                         if forecastFetchCompleted {
                             Text("Unavailable")
                         } else {
@@ -119,9 +117,10 @@ struct WeatherTab: View {
                         }
                     }
                 }
-                .foregroundStyle(.white)
-                .listRowBackground(Rectangle().background(.ultraThinMaterial))
             }   // End of Form
+            // Required to both undo the color scheme changes applied to the NavigationStack
+            // (see below) and to force a good background color for the sections.
+            .environment(\.colorScheme, getFormColorScheme())
             // The refreshable modifier enables the common pull-to-refresh feature
             // https://developer.apple.com/documentation/swiftui/view/refreshable(action:)
             .refreshable {
@@ -135,8 +134,12 @@ struct WeatherTab: View {
             // dynamic background show through
             .scrollContentBackground(.hidden)
             .background {
-                DynamicWeatherBackground(currentWeather: $immersiveBg)
-                    .edgesIgnoringSafeArea(.all)
+                if let currentWeather = weatherInfo {
+                    ImmersiveWeatherView(currentWeather: currentWeather.weather[0].icon)
+                        .edgesIgnoringSafeArea(.all)
+                } else {
+                    Color.gray.opacity(0.1)
+                }
             }
             // Title/toolbar
             .toolbarTitleDisplayMode(.inline)
@@ -158,11 +161,18 @@ struct WeatherTab: View {
             // City selection sheet
             .sheet(isPresented: $showCitySheet) {
                 CityList(
-                    showCitySheet: $showCitySheet,
-                    selectedCity: $selectedCity
+                    selectedCity: $selectedCity,
+                    showCitySheet: $showCitySheet
                 )
             }
         }   // End of NavigationStack
+        // Overrides dark mode preference to ensure the navigation title is readable
+        // against the dynamic background. Note that neither .preferredColorScheme
+        // nor .toolbarColorScheme seem to change the entire style correctly, so
+        // .environment is required. (Likely either an iOS bug or an inconsistency
+        // during the UIKit -> SwiftUI transition phase)
+        .environment(\.colorScheme, getNavColorScheme())
+        // Timer control
         .onAppear() {
             startTimer()
             if weatherInfo == nil {
@@ -174,13 +184,15 @@ struct WeatherTab: View {
         }
     }   // End of body var
 
+    // MARK: Weather/forecast refreshing
+
     func refreshAll() {
         refreshWeatherData()
         refreshForecastData()
     }
 
     func refreshWeatherData() {
-        // Wrap API call in Tasks to avoid blocking
+        // Wrap API call in Task to avoid blocking
         Task {
             let currentLocation = getUsersCurrentLocation()
             if let newInfo = fetchCurrentWeather(
@@ -206,6 +218,8 @@ struct WeatherTab: View {
         }
     }
 
+    // MARK: Timer controls
+
     func startTimer() {
         timer = Timer.publish(every: weatherRefreshInterval, on: .main, in: .common).autoconnect()
     }
@@ -214,45 +228,27 @@ struct WeatherTab: View {
         timer.upstream.connect().cancel()
     }
 
-    func determineColorScheme() {
+    // MARK: Color scheme detection
 
+    func isNight(_ weather: WeatherStruct) -> Bool {
+        // Icon suffix indicates day/night
+        return weather.weather[0].icon.hasSuffix("n")
     }
 
-    func isNight() -> Bool {
-        return false
+    func getFormColorScheme() -> ColorScheme {
+        if let weather = weatherInfo {
+            // Form sections look better inverted
+            return isNight(weather) ? .light : .dark
+        } else {
+            return darkMode ? .dark : .light
+        }
     }
 
-}
-
-struct CurrentWeatherView: View {
-
-    let weather: WeatherStruct
-    let scale: TemperatureScale
-
-    var body: some View {
-        HStack {
-            Spacer()
-            VStack {
-                HStack {
-                    Image(systemName: weatherIcons[weather.weather[0].icon] ?? "questionmark")
-                        .font(.system(size: 80))
-                    VStack(alignment: .leading) {
-                        Text("\(Int(convertKelvinTemp(kelvin: weather.temp.current, scale: scale).rounded()))°")
-                        Text(weather.weather[0].group)
-                    }
-                    .font(.system(size: 24))
-                }
-                HStack {
-                    Image(systemName: "arrow.down")
-                    Text("\(Int(convertKelvinTemp(kelvin: weather.temp.low, scale: scale).rounded()))° ")
-                    Image(systemName: "arrow.up")
-                    Text("\(Int(convertKelvinTemp(kelvin: weather.temp.high, scale: scale).rounded()))°")
-                }
-                if let location = weather.locationName {
-                    Text(location)
-                }
-            }
-            Spacer()
+    func getNavColorScheme() -> ColorScheme {
+        if let weather = weatherInfo {
+            return isNight(weather) ? .dark : .light
+        } else {
+            return darkMode ? .dark : .light
         }
     }
 

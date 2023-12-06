@@ -11,10 +11,9 @@ import MapKit
 
 struct CityList: View {
 
-    // Allows us to dismiss the parent sheet
-    @Binding var showCitySheet: Bool
-    // Currently selected city, or nil for user's location
     @Binding var selectedCity: City?
+    // Allows dismissing the parent sheet
+    @Binding var showCitySheet: Bool
 
     var body: some View {
         NavigationStack {
