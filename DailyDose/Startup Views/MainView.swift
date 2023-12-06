@@ -42,6 +42,10 @@ struct MainView: View {
                 .tabItem {
                     Label("Favorite Comics", systemImage: "bookmark.fill")
                 }
+            SearchComics()
+                .tabItem {
+                    Label("Search Comics", systemImage: "magnifyingglass")
+                }
             FavMemesList()
                 .tabItem {
                     Label("Favorite Memes", systemImage: "bookmark.fill")
