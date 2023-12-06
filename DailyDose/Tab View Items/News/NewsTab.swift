@@ -42,7 +42,7 @@ struct NewsTab: View {
                 Color.gray.opacity(0.1)
                 VStack {
                     Group {
-                        /*MARK: Search Bar + Filter*/
+                        // MARK: Search Bar + Filter
                         HStack {
                             TextField("Enter Search Query", text: $searchFieldValue)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -64,8 +64,8 @@ struct NewsTab: View {
                                 .imageScale(.large)
                                 .padding()
                             }
-                        } //END SEARCH BAR + FILTERS
-                        /*MARK: Filters*/
+                        } // END SEARCH BAR + FILTERS
+                        // MARK: Filters
                         if showFilters {
                             HStack {
                                 Text("Specify News Source") //Search by Source
@@ -87,8 +87,11 @@ struct NewsTab: View {
                                 alertMessage = "Please enter a source or a search query!"
 
                             } else {
-                                displayedArticles.clear()
-                                displayedArticles.getNewsArticlesFromApi(trending: trending, source: sourceFieldValue, query: searchFieldValue)
+                                displayedArticles.queryApiAndPopulate(
+                                    trending: trending,
+                                    source: sourceFieldValue,
+                                    query: searchFieldValue
+                                )
                             }
                         }
                         .buttonStyle(.bordered)
@@ -99,28 +102,24 @@ struct NewsTab: View {
                                 Article(thisArticle: n)
                             }
                         }
-                    } //end TabView
+                    } // End of TabView
                     .tabViewStyle(PageTabViewStyle())
                     .onAppear() {
                         UIPageControl.appearance().currentPageIndicatorTintColor = .black
                         UIPageControl.appearance().pageIndicatorTintColor = .gray
                         if !runOnce {
-                            print("Hello".localizedStandardContains(""))
-                            getListOfArticles()
+                            refreshTrendingArticles()
                             runOnce = true
                         }
                     }
-
-                } //End VStack
+                } // End of VStack
             }
             .toolbarTitleDisplayMode(.inline)
-            //.toolbarBackground(Color.green, for: .navigationBar, .tabBar)
             .navigationTitle("News")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {
-                        displayedArticles.clear()
-                        displayedArticles.getNewsArticlesFromApi(trending: true, source: "", query: "")
+                        refreshTrendingArticles()
                     }) {
                         Image(systemName: "arrow.clockwise")
                     }
@@ -136,22 +135,23 @@ struct NewsTab: View {
                             .environmentObject(bookmarkedArticles)
                     }
                 }
-            }//END TOOLBAR
+            } // End of toolbar
             .alert(alertTitle, isPresented: $showAlertMessage, actions: {
                 Button("OK") {}
             }, message: {
                 Text(alertMessage)
             })
-
-
-
         }
     }
 
-    private func getListOfArticles() { //-> [NewsStruct]
-        if !runOnce {
-            displayedArticles.getNewsArticlesFromApi(trending: true, source: "", query: "")
+    private func refreshTrendingArticles() {
+        Task {
+            displayedArticles.queryApiAndPopulate(
+                trending: true,
+                source: "",
+                query: ""
+            )
         }
-        return //displayedArticles.get()
     }
+
 }

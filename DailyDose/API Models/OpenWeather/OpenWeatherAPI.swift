@@ -20,7 +20,7 @@ fileprivate let apiHeaders = [
 // https://openweathermap.org/current
 func fetchCurrentWeather(latitude: Double, longitude: Double) -> WeatherStruct? {
 
-    let apiUrlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(getWeatherApiKey())"
+    let apiUrlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(openWeatherAPIKey)"
 
     /*
     ************************************
@@ -85,7 +85,7 @@ func fetchCurrentWeather(latitude: Double, longitude: Double) -> WeatherStruct? 
 // https://openweathermap.org/forecast5
 func fetchForecasts(latitude: Double, longitude: Double) -> ForecastStruct? {
 
-    let apiUrlString = "https://api.openweathermap.org/data/2.5/forecast?lat=\(latitude)&lon=\(longitude)&appid=\(getWeatherApiKey())"
+    let apiUrlString = "https://api.openweathermap.org/data/2.5/forecast?lat=\(latitude)&lon=\(longitude)&appid=\(openWeatherAPIKey)"
 
     /*
     ************************************

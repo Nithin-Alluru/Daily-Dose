@@ -45,7 +45,7 @@ struct WeatherMapWrapper: UIViewRepresentable {
             mapView.removeOverlay(overlay)
         }
         // Create our tile overlay with OpenWeather's image URL template
-        let tileOverlay = MKTileOverlay(urlTemplate: "https://tile.openweathermap.org/map/\(layer)/{z}/{x}/{y}.png?appid=\(getWeatherApiKey())")
+        let tileOverlay = MKTileOverlay(urlTemplate: "https://tile.openweathermap.org/map/\(layer)/{z}/{x}/{y}.png?appid=\(openWeatherAPIKey)")
         mapView.addOverlay(tileOverlay, level: .aboveRoads)
     }
 
