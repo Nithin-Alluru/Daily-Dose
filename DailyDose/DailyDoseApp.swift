@@ -30,7 +30,8 @@ struct DailyDoseApp: App {
                 .preferredColorScheme(darkMode ? .dark : .light)
                 .environmentObject(displayedArticles)
                 .environmentObject(bookmarkedArticles)
-                .modelContainer(for: [News.self, Comic.self, Meme.self], isUndoEnabled: true)
+                .modelContainer(for: [News.self, City.self, Comic.self, Meme.self], isUndoEnabled: true)
         }
     }
+
 }

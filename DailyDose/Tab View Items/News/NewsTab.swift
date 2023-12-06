@@ -24,7 +24,7 @@ struct NewsTab: View {
     @State private var searchFieldValue = ""
 
     @State private var sourceFieldValue = ""
-    @State private var trending = true
+    @State private var showTrendingOnly = true
     @State private var showAlertMessage = false
 
     @State private var alertTitle = ""
@@ -38,84 +38,72 @@ struct NewsTab: View {
 
     var body: some View {
         NavigationStack {
-            ZStack {
-                Color.gray.opacity(0.1)
-                VStack {
-                    Group {
-                        // MARK: Search Bar + Filter
-                        HStack {
-                            TextField("Enter Search Query", text: $searchFieldValue)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                            //.disableAutocorrection(true)
-                                .textInputAutocapitalization(.never)
-                                .padding(.leading)
-                            if showFilters {
-                                Button("", systemImage: "slider.horizontal.3") {
-                                    showFilters = false
-                                }
-                                .imageScale(.large)
-                                .fontWeight(.bold)
-                                .padding()
-                            }
-                            else {
-                                Button("", systemImage: "slider.horizontal.3") {
-                                    showFilters = true
-                                }
-                                .imageScale(.large)
-                                .padding()
-                            }
-                        } // END SEARCH BAR + FILTERS
-                        // MARK: Filters
-                        if showFilters {
+            VStack {
+                Group {
+                    // MARK: Search Bar + Filter
+                    HStack {
+                        TextField("Enter a search query", text: $searchFieldValue)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .textInputAutocapitalization(.never)
+                            .padding(.leading)
+                        Button("", systemImage: "slider.horizontal.3") {
+                            showFilters.toggle()
+                        }
+                        .imageScale(.large)
+                        .fontWeight(showFilters ? .bold : .regular)
+                        .padding()
+                    } // END SEARCH BAR + FILTERS
+                    // MARK: Filters
+                    if showFilters {
+                        Group {
                             HStack {
-                                Text("Specify News Source") //Search by Source
-                                TextField("Enter a News Source", text: $sourceFieldValue)
+                                Text("From:") //Search by Source
+                                TextField("Enter a news source name.", text: $sourceFieldValue)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                                     .disableAutocorrection(true)
                                     .textInputAutocapitalization(.never)
                                     .padding(.leading)
                             }
-                            .padding(.horizontal)
-                            Toggle("Only Trending Searches", isOn: $trending)
-                                .padding(.horizontal)
-
-                        } //END FILTERS
-                        Button("Go") {
-                            if (!trending && sourceFieldValue.isEmpty && searchFieldValue.isEmpty) {
-                                showAlertMessage = true
-                                alertTitle = "Missing Input Data!"
-                                alertMessage = "Please enter a source or a search query!"
-
-                            } else {
-                                displayedArticles.queryApiAndPopulate(
-                                    trending: trending,
-                                    source: sourceFieldValue,
-                                    query: searchFieldValue
-                                )
-                            }
+                            Toggle("Only trending articles", isOn: $showTrendingOnly)
                         }
-                        .buttonStyle(.bordered)
-                    }
-                    TabView {
-                        ForEach(displayedArticles.get(), id:\.title) {
-                            n in NavigationLink(destination: ArticleDetails(thisArticle: n)) {
-                                Article(thisArticle: n)
-                            }
-                        }
-                    } // End of TabView
-                    .tabViewStyle(PageTabViewStyle())
-                    .onAppear() {
-                        UIPageControl.appearance().currentPageIndicatorTintColor = .black
-                        UIPageControl.appearance().pageIndicatorTintColor = .gray
-                        if !runOnce {
-                            refreshTrendingArticles()
-                            runOnce = true
+                        .padding(.horizontal)
+                    } // End filters
+                    Button("Go") {
+                        if (!showTrendingOnly && sourceFieldValue.isEmpty && searchFieldValue.isEmpty) {
+                            showAlertMessage = true
+                            alertTitle = "Missing Input Data!"
+                            alertMessage = "Please enter a source or a search query!"
+                        } else {
+                            displayedArticles.queryApiAndPopulate(
+                                trending: showTrendingOnly,
+                                source: sourceFieldValue,
+                                query: searchFieldValue
+                            )
                         }
                     }
-                } // End of VStack
-            }
+                    .buttonStyle(.bordered)
+                }
+                TabView {
+                    ForEach(displayedArticles.get(), id:\.title) { n in
+                        NavigationLink(destination: ArticleDetails(thisArticle: n)) {
+                            Article(thisArticle: n)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                } // End of TabView
+                .tabViewStyle(PageTabViewStyle())
+                .onAppear() {
+                    UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(named: "ForegroundColor")
+                    UIPageControl.appearance().pageIndicatorTintColor = .gray
+                    if !runOnce {
+                        refreshTrendingArticles()
+                        runOnce = true
+                    }
+                }
+            } // End of VStack
+            .background(Color.gray.opacity(0.1))
             .toolbarTitleDisplayMode(.inline)
-            .navigationTitle("News")
+            .navigationTitle("News Feed")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {

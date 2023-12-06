@@ -11,27 +11,19 @@ import SwiftUI
 struct Article: View {
     let thisArticle: NewsStruct
 
-    //var containerWidth:CGFloat = UIScreen.main.bounds.width - 32.0
     var body: some View {
-
-        ZStack { // Article Element Outer Container
-            Color.white
-            ZStack { //Article Element inner container
-                VStack {
-                    getImageFromUrl(url: thisArticle.urlToImage, defaultFilename: "NULL")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 300)
-                    Text(thisArticle.title)
-                        .font(.custom("Helvetica Neue Condensed Bold", size: 24))
-                        .font(.largeTitle)
-                        .foregroundStyle(.black)
-                    Spacer()
-                }
-            } //END inner container
-            .padding()
-
-        } //End outer container
+        VStack {
+            getImageFromUrl(url: thisArticle.urlToImage, defaultFilename: "ImageUnavailable")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 300)
+            Text(thisArticle.title)
+                .font(.custom("Helvetica Neue Condensed Bold", size: 24))
+                .font(.largeTitle)
+            Spacer()
+        }
+        .padding()
+        .background(Color("BackgroundColor"))
         .padding()
     }
 }

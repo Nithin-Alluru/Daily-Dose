@@ -35,11 +35,13 @@ final class News {
 @Model
 final class City {
     let name: String
+    let regionName: String
     let latitude: Double
     let longitude: Double
 
-    init(name: String, latitude: Double, longitude: Double) {
+    init(name: String, regionName: String, latitude: Double, longitude: Double) {
         self.name = name
+        self.regionName = regionName
         self.latitude = latitude
         self.longitude = longitude
     }

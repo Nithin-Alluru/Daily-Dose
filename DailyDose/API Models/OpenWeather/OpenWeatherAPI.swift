@@ -178,7 +178,7 @@ func parseWeather(data: [String: Any]) -> WeatherStruct? {
         return WeatherStruct(
             locationName: data["name"] as? String,
             timestamp: timestamp,
-            weather: parseWeatherArrays(arrays: weatherJson),
+            weather: parseWeatherArray(array: weatherJson),
             temp: temp,
             wind: parseWindDetails(data: windJson),
             rain: rain,
@@ -189,10 +189,10 @@ func parseWeather(data: [String: Any]) -> WeatherStruct? {
     return nil
 }
 
-func parseWeatherArrays(arrays: [Any]) -> [WeatherDetailsStruct] {
+func parseWeatherArray(array: [Any]) -> [WeatherDetailsStruct] {
     var weatherStructs = [WeatherDetailsStruct]()
-    for array in arrays {
-        if let weatherJson = array as? [String: Any],
+    for weatherObject in array {
+        if let weatherJson = weatherObject as? [String: Any],
            let weatherDetails = parseWeatherDetails(data: weatherJson)
         {
             weatherStructs.append(weatherDetails)

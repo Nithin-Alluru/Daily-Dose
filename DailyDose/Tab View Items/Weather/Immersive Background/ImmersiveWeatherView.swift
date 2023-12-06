@@ -12,11 +12,11 @@ import SwiftUI
 // https://openweathermap.org/weather-conditions
 fileprivate let weatherBackgrounds = [
     // clear sky
-    "01d": ImmersiveSceneStruct(
+    "d": ImmersiveSceneStruct(
         gradient: [0x73b1e6, 0xa5c9e8],
         layers: []
     ),
-    "01n": ImmersiveSceneStruct(
+    "n": ImmersiveSceneStruct(
         gradient: [0x0e0a14, 0x1d1d43],
         layers: ["Immersive Weather/Stars"]
     ),
@@ -28,7 +28,7 @@ struct ImmersiveWeatherView: View {
 
     var body: some View {
         ZStack {
-            let currentScene = weatherBackgrounds[currentWeather] ?? weatherBackgrounds["01d"]!
+            let currentScene = weatherBackgrounds["\(currentWeather.dropFirst(2))"] ?? weatherBackgrounds["d"]!
             LinearGradient(
                 gradient: Gradient(colors: currentScene.gradient.map { Color(hex: $0) }),
                 startPoint: .top,

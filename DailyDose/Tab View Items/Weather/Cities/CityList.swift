@@ -7,9 +7,12 @@
 //
 
 import SwiftUI
-import MapKit
+import SwiftData
 
 struct CityList: View {
+
+    @Environment(\.modelContext) private var modelContext
+    @Query(FetchDescriptor<City>(sortBy: [SortDescriptor(\City.name, order: .forward)])) private var savedCities: [City]
 
     @Binding var selectedCity: City?
     // Allows dismissing the parent sheet
@@ -29,7 +32,18 @@ struct CityList: View {
                     }
                 }
                 Section(header: Text("Saved cities")) {
-
+                    if savedCities.isEmpty {
+                        Text("No saved cities")
+                    } else {
+                        ForEach(savedCities) { city in
+                            Button(action: {
+                                selectCity(newCity: city)
+                            }) {
+                                Text("\(city.name), \(city.regionName)")
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
                 }
             }
             .navigationTitle("Select a Location")
@@ -39,7 +53,7 @@ struct CityList: View {
                     EditButton()
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: SearchCities()) {
                         Image(systemName: "plus")
                     }
                 }

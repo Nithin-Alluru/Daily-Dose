@@ -68,7 +68,13 @@ struct WeatherTab: View {
             Form {
                 // Weather summary
                 if let info = weatherInfo {
-                    Section(header: Text("Current Location")) {
+                    Section(header: {
+                        if let city = selectedCity {
+                            Text(city.name)
+                        } else {
+                            Text("Current Location")
+                        }
+                    }) {
                         WeatherSummaryView(
                             weather: info,
                             scale: temperatureScale
@@ -129,6 +135,10 @@ struct WeatherTab: View {
             // Auto-refresh on timer
             .onReceive(timer) { _ in
                 refreshWeatherData()
+            }
+            // Auto-refresh on city change
+            .onChange(of: selectedCity) {
+                refreshAll()
             }
             // Forms are scrollable, so we can hide the background color to let our
             // dynamic background show through
