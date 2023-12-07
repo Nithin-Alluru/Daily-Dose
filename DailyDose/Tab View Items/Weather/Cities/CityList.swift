@@ -62,7 +62,7 @@ struct CityList: View {
     }
 
     func selectCity(newCity: City?) {
-        selectedCity = nil
+        selectedCity = newCity
         showCitySheet = false
     }
 

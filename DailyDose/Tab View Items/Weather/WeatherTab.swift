@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 // For converting OpenWeather icon codes to SF Symbol names
 // https://openweathermap.org/weather-conditions
@@ -68,7 +69,7 @@ struct WeatherTab: View {
             Form {
                 // Weather summary
                 if let info = weatherInfo {
-                    Section(header: {
+                    Section(header: Group {
                         if let city = selectedCity {
                             Text(city.name)
                         } else {
@@ -132,13 +133,13 @@ struct WeatherTab: View {
             .refreshable {
                 refreshAll()
             }
-            // Auto-refresh on timer
-            .onReceive(timer) { _ in
-                refreshWeatherData()
-            }
             // Auto-refresh on city change
             .onChange(of: selectedCity) {
                 refreshAll()
+            }
+            // Auto-refresh on timer
+            .onReceive(timer) { _ in
+                refreshWeatherData()
             }
             // Forms are scrollable, so we can hide the background color to let our
             // dynamic background show through
@@ -196,6 +197,17 @@ struct WeatherTab: View {
 
     // MARK: Weather/forecast refreshing
 
+    func getSelectedLocation() -> CLLocationCoordinate2D {
+        if let city = selectedCity {
+            return CLLocationCoordinate2D(
+                latitude: city.latitude,
+                longitude: city.longitude
+            )
+        } else {
+            return getUsersCurrentLocation()
+        }
+    }
+
     func refreshAll() {
         refreshWeatherData()
         refreshForecastData()
@@ -204,10 +216,10 @@ struct WeatherTab: View {
     func refreshWeatherData() {
         // Wrap API call in Task to avoid blocking
         Task {
-            let currentLocation = getUsersCurrentLocation()
+            let selectedLocation = getSelectedLocation()
             if let newInfo = fetchCurrentWeather(
-                latitude: currentLocation.latitude,
-                longitude: currentLocation.longitude
+                latitude: selectedLocation.latitude,
+                longitude: selectedLocation.longitude
             ) {
                 weatherInfo = newInfo
             }
@@ -217,10 +229,10 @@ struct WeatherTab: View {
 
     func refreshForecastData() {
         Task {
-            let currentLocation = getUsersCurrentLocation()
+            let selectedLocation = getSelectedLocation()
             if let newInfo = fetchForecasts(
-                latitude: currentLocation.latitude,
-                longitude: currentLocation.longitude
+                latitude: selectedLocation.latitude,
+                longitude: selectedLocation.longitude
             ) {
                 forecastInfo = newInfo
             }
