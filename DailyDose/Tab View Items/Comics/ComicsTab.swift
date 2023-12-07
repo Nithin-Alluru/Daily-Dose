@@ -32,24 +32,9 @@ struct ComicsTab: View {
                                 .cornerRadius(15)
                                 .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 2))
                                 .shadow(radius: 5)  // Add a subtle shadow to the image
-                                // Long press the comic image to display the context menu
-                                .contextMenu {
-                                    // Context Menu Item
-                                    Button(action: {
-                                        // Copy the image to universal clipboard for pasting elsewhere
-                                        UIPasteboard.general.image = getUIImageFromUrl(url: imgUrl, defaultFilename: "ImageUnavailable")
-
-                                        showAlertMessage = true
-                                        alertTitle = "Comic Image is Copied to Clipboard"
-                                        alertMessage = "You can paste it on your iPhone, iPad, Mac laptop or Mac desktop each running under your Apple ID"
-                                    }) {
-                                        Image(systemName: "doc.on.doc")
-                                        Text("Copy Image")
-                                    }
-                                }
 
                             Button(action: {
-                                let newComic = Comic(date: comic.date, safe_title: comic.transcript, transcript: comic.transcript, img: comic.img, alt: comic.alt)
+                                let newComic = Comic(date: comic.date, safe_title: comic.safe_title, transcript: comic.transcript, img: comic.img, alt: comic.alt)
                                 modelContext.insert(newComic)
 
                                 showAlertMessage = true
@@ -68,19 +53,19 @@ struct ComicsTab: View {
                             .padding(8)
                         }
 
-                        if !comic.transcript.isEmpty {
+                        if comic.transcript != "" {
                             Text("Transcript:")
-                                .font(.headline.weight(.bold))
-                                .foregroundColor(.white)
+                                .font(.headline)
+                                .foregroundColor(.black)
                             Text(comic.transcript)
                                 .foregroundColor(.white)
                         }
 
-                        Text("Description:")
-                            .font(.headline.weight(.bold))
-                            .foregroundColor(.white)
+                        Text("ALTERNATE DESCRIPTION:")
+                            .font(.headline)
+                            .foregroundColor(.black) // Change the color to blue for better visibility
                         Text(comic.alt)
-                            .foregroundColor(.white)
+                            .foregroundColor(.white) // Change the color to blue for better visibility
                 
                     }
                     .padding()
@@ -94,7 +79,7 @@ struct ComicsTab: View {
                 LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .top, endPoint: .bottom)
                     .edgesIgnoringSafeArea(.all)
             )
-            .navigationTitle("Comic of the Day")
+            .navigationTitle("Comic Of The Day")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {
