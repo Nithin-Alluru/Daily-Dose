@@ -25,8 +25,8 @@ struct ArticleDetails: View {
                     Text(thisArticle.title)
                         .font(.custom("Helvetica Neue Condensed Bold", size: 24))
                         .font(.largeTitle)
-                        //.foregroundStyle(.black)
-                    getImageFromUrl(url: thisArticle.urlToImage, defaultFilename: "Null")
+                        .padding(.horizontal, 10)
+                    getImageFromUrl(url: thisArticle.urlToImage, defaultFilename: "ImageUnavailable")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 }
@@ -51,18 +51,16 @@ struct ArticleDetails: View {
                                 .font(.caption)
                         }
                     }
-                    .padding(.leading)
-                    //.background(.cyan)
+                    .padding(.horizontal, 10)
                     Spacer()
                 }
                 .frame(maxWidth: .infinity)
-                //.background(.pink)
 
                 Spacer()
                     .frame(minHeight: 20)
                 Group {
-//                    Text(thisArticle._description)
                     Text(thisArticle.content)
+                        .padding(.horizontal, 10)
                 }
                 Link(destination: URL(string: thisArticle.url)!) {
                     HStack {

@@ -83,21 +83,26 @@ struct NewsTab: View {
                     }
                     .buttonStyle(.bordered)
                 }
-                TabView {
-                    ForEach(displayedArticles.get(), id:\.title) { n in
-                        NavigationLink(destination: ArticleDetails(thisArticle: n)) {
-                            Article(thisArticle: n)
+                ZStack {
+                    TabView {
+                        ForEach(displayedArticles.get(), id:\.title) { n in
+                            NavigationLink(destination: ArticleDetails(thisArticle: n)) {
+                                Article(thisArticle: n)
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
-                        .buttonStyle(PlainButtonStyle())
+                    } // End of TabView
+                    .tabViewStyle(PageTabViewStyle())
+                    .onAppear() {
+                        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(named: "ForegroundColor")
+                        UIPageControl.appearance().pageIndicatorTintColor = .gray
+                        if !runOnce {
+                            refreshTrendingArticles()
+                        }
                     }
-                } // End of TabView
-                .tabViewStyle(PageTabViewStyle())
-                .onAppear() {
-                    UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(named: "ForegroundColor")
-                    UIPageControl.appearance().pageIndicatorTintColor = .gray
                     if !runOnce {
-                        refreshTrendingArticles()
-                        runOnce = true
+                        ProgressView()
+                            .controlSize(.extraLarge)
                     }
                 }
             } // End of VStack
@@ -139,6 +144,7 @@ struct NewsTab: View {
                 source: "",
                 query: ""
             )
+            runOnce = true
         }
     }
 

@@ -25,5 +25,6 @@ struct Article: View {
         .padding()
         .background(Color("BackgroundColor"))
         .padding()
+        .shadow(radius: 5)  // Add a subtle shadow
     }
 }

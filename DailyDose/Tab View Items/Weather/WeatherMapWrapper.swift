@@ -3,10 +3,13 @@
 //  DailyDose
 //
 //  Created by Aaron Gomez on 11/27/23.
-//  Copyright © 2023 CS3714 Team 2. All rights reserved.
+//
+//  MKAnnotationView view controller code written by Paul Hudson on 5/28/19.
+//  See below for reference URL.
 //
 
 import SwiftUI
+import SwiftData
 import MapKit
 
 // The Map view in SwiftUI does not yet support tile overlays, so we must use
@@ -19,6 +22,9 @@ import MapKit
 // https://www.rainviewer.com/api/weather-maps-api.html
 
 struct WeatherMapWrapper: UIViewRepresentable {
+
+    @Environment(\.modelContext) private var modelContext
+    @Query(FetchDescriptor<City>()) private var savedCities: [City]
 
     @Binding var mapStyle: MKMapConfiguration
     @Binding var layer: String
@@ -40,6 +46,7 @@ struct WeatherMapWrapper: UIViewRepresentable {
     func updateUIView(_ mapView: MKMapView, context: Context) {
         // Update map style
         mapView.preferredConfiguration = self.mapStyle
+        
         // Remove old overlays (if any)
         for overlay in mapView.overlays {
             mapView.removeOverlay(overlay)
@@ -47,6 +54,21 @@ struct WeatherMapWrapper: UIViewRepresentable {
         // Create our tile overlay with OpenWeather's image URL template
         let tileOverlay = MKTileOverlay(urlTemplate: "https://tile.openweathermap.org/map/\(layer)/{z}/{x}/{y}.png?appid=\(openWeatherAPIKey)")
         mapView.addOverlay(tileOverlay, level: .aboveRoads)
+        
+        // Remove old annotations (if any)
+        for annotation in mapView.annotations {
+            mapView.removeAnnotation(annotation)
+        }
+        // Add city annotations
+        for city in savedCities {
+            let cityAnnotation = MKPointAnnotation()
+            cityAnnotation.title = city.name
+            cityAnnotation.coordinate = CLLocationCoordinate2D(
+                latitude: city.latitude,
+                longitude: city.longitude
+            )
+            mapView.addAnnotation(cityAnnotation)
+        }
     }
 
     // A custom coordinator is required since we want to interact with the MKMapView from
@@ -73,6 +95,26 @@ struct WeatherMapWrapper: UIViewRepresentable {
                 return MKOverlayRenderer(overlay: overlay)
             }
         }
+
+        // Since we do not have access to SwiftUI's Markers on an MKMapView, a different
+        // approach must be used. This code allows us to display MKPointAnnotations:
+        // https://www.hackingwithswift.com/example-code/location/how-to-add-annotations-to-mkmapview-using-mkpointannotation-and-mkpinannotationview
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            guard annotation is MKPointAnnotation else { return nil }
+
+            let identifier = "Annotation"
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+
+            if annotationView == nil {
+                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                annotationView!.canShowCallout = true
+            } else {
+                annotationView!.annotation = annotation
+            }
+
+            return annotationView
+        }
+
 
     }
 
