@@ -124,6 +124,71 @@ struct WeatherTab: View {
                         }
                     }
                 }
+                // Additional details
+                if let info = weatherInfo {
+                    // Wind
+                    if let wind = info.wind {
+                        Section(header: Text("Wind")) {
+                            VStack(alignment: .leading) {
+                                Text(
+                                    String(
+                                        format: "%.2fm/s @ %d° (%@)",
+                                        wind.speed,
+                                        wind.direction,
+                                        compassDirection(angle: Double(wind.direction))
+                                    )
+                                )
+                                if let gust = wind.gust {
+                                    Text(String(format: "with %.2fm/s gusts", gust))
+                                }
+                            }
+                        }
+                        .foregroundStyle(.white)
+                        .listRowBackground(Rectangle().background(.ultraThinMaterial))
+                    }
+                    // Preciptation
+                    if info.rain != nil || info.snow != nil {
+                        Section(header: Text("Preciptation")) {
+                            VStack(alignment: .leading) {
+                                if let rain = info.rain {
+                                    if let rain1h = rain.volume1h {
+                                        Text(String(format: "%.2fmm rain in last 1h", rain1h))
+                                    }
+                                    if let rain3h = rain.volume3h {
+                                        Text(String(format: "%.2fmm rain in last 3h", rain3h))
+                                    }
+                                }
+                                if let snow = info.snow {
+                                    if let snow1h = snow.volume1h {
+                                        Text(String(format: "%.2fmm snow in last 1h", snow1h))
+                                    }
+                                    if let snow3h = snow.volume3h {
+                                        Text(String(format: "%.2fmm snow in last 3h", snow3h))
+                                    }
+                                }
+                            }
+                        }
+                        .foregroundStyle(.white)
+                        .listRowBackground(Rectangle().background(.ultraThinMaterial))
+                    }
+                    // Misc.
+                    Section(header: Text("Additional Info")) {
+                        if let clouds = info.extra.clouds {
+                            Text("Cloud cover: \(clouds)%")
+                        }
+                        if let humidity = info.extra.humidity {
+                            Text("Humidity: \(humidity)%")
+                        }
+                        if let visibility = info.extra.visibility {
+                            Text("Visibility: \(visibility)m")
+                        }
+                        if let pressure = info.extra.pressure {
+                            Text("Pressure: \(pressure) hPa")
+                        }
+                    }
+                    .foregroundStyle(.white)
+                    .listRowBackground(Rectangle().background(.ultraThinMaterial))
+                }
             }   // End of Form
             // Required to both undo the color scheme changes applied to the NavigationStack
             // (see below) and to force a good background color for the sections.

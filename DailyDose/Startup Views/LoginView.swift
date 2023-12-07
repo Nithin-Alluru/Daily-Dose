@@ -12,7 +12,9 @@ import SwiftData
 private let logoCount = 3
 
 struct LoginView : View {
-    
+
+    @AppStorage("darkMode") private var darkMode = false
+
     // Binding Input Parameter
     @Binding var canLogin: Bool
     
@@ -139,7 +141,7 @@ struct LoginView : View {
                             }
                             .tag(1)
                             Link(destination: URL(string: "https://openweathermap.org/api")!) {
-                                Image("OpenWeatherLogoDark")
+                                Image(darkMode ? "OpenWeatherLogoDark" : "OpenWeatherLogoLight")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                             }
