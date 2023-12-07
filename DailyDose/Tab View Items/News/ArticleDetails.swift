@@ -26,7 +26,7 @@ struct ArticleDetails: View {
                         .font(.custom("Helvetica Neue Condensed Bold", size: 24))
                         .font(.largeTitle)
                         .padding(.horizontal, 10)
-                    getImageFromUrl(url: thisArticle.urlToImage, defaultFilename: "Null")
+                    getImageFromUrl(url: thisArticle.urlToImage, defaultFilename: "ImageUnavailable")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 }

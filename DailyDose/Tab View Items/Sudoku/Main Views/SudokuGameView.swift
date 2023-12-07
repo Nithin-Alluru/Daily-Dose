@@ -16,13 +16,6 @@ struct SudokuGameView: View {
 
     var body: some View {
         VStack{
-            // Score header
-            HStack {
-                Text("Errors: 0")
-                Spacer()
-                Text("Time: 00:00")
-            }
-            // Input keys
             if verticalSizeClass == .compact {
                 // Landscape orientation
                 HStack {
