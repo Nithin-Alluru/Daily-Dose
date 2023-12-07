@@ -29,14 +29,13 @@ struct ComicDetails: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(minWidth: 300, maxWidth: 320, alignment: .leading)
+                        // Long press the comic image to display the context menu
                         .contextMenu {
                             // Context Menu Item
                             Button(action: {
-                                // Copy the apartment photo to universal clipboard for pasting elsewhere
-                                let imageUrlComponents = comic.img.components(separatedBy: "/")
-                                let imageUrlFilename = imageUrlComponents.last ?? ""
-                                UIPasteboard.general.image = UIImage(named: "\(imageUrlFilename).jpg")
-                                
+                                // Copy the image to universal clipboard for pasting elsewhere
+                                UIPasteboard.general.image = getUIImageFromUrl(url: comic.img, defaultFilename: "ImageUnavailable")
+
                                 showAlertMessage = true
                                 alertTitle = "Comic Image is Copied to Clipboard"
                                 alertMessage = "You can paste it on your iPhone, iPad, Mac laptop or Mac desktop each running under your Apple ID"

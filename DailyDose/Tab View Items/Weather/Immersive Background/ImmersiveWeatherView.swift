@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// For converting OpenWeather icon codes to SF Symbol names
+// For mapping OpenWeather icon codes to immersive background scenes
 // https://openweathermap.org/weather-conditions
 fileprivate let weatherBackgrounds = [
     // clear sky

@@ -9,6 +9,8 @@
 import SwiftUI
 import SwiftData
 
+private let logoCount = 3
+
 struct LoginView : View {
     
     // Binding Input Parameter
@@ -19,8 +21,9 @@ struct LoginView : View {
     @State private var showInvalidPasswordAlert = false
     @State private var showNoBiometricCapabilityAlert = false
     
-    @State private var index = 0
-    
+    @State private var timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    @State private var logoIndex = 0
+
     var body: some View {
         NavigationStack {
             // Background View
@@ -30,17 +33,16 @@ struct LoginView : View {
             // Foreground View
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
-                    Image("Welcome")
-                        .padding()
-                    
                     Text("Daily Dose")
-                        .font(.headline)
+                        .font(.largeTitle)
                         .padding()
                     
                     Image("DDIcon")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 300, alignment: .center)
+                        .clipShape(RoundedRectangle(cornerRadius: 40))
+                        .shadow(radius: 5)  // Add a subtle shadow to the image
 
                     SecureField("Password", text: $enteredPassword)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -118,6 +120,35 @@ struct LoginView : View {
                             Image(systemName: "touchid")
                                 .font(.system(size: 40))
                                 .padding()
+                        }
+                    }
+                    // API logos scroller
+                    Group {
+                        Text("DailyDose is powered by:")
+                        TabView(selection: $logoIndex) {
+                            Link(destination: URL(string: "https://newsapi.org/docs")!) {
+                                Image("NewsAPILogo")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                            }
+                            .tag(0)
+                            Link(destination: URL(string: "https://docs.mapbox.com/api/search/search-box/")!) {
+                                Image("MapboxLogo")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                            }
+                            .tag(1)
+                            Link(destination: URL(string: "https://openweathermap.org/api")!) {
+                                Image("OpenWeatherLogoDark")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                            }
+                            .tag(2)
+                        }
+                        .tabViewStyle(.page(indexDisplayMode: .never))
+                        .frame(height: 50)
+                        .onReceive(timer) { _ in
+                            logoIndex = (logoIndex + 1) % logoCount
                         }
                     }
                 }   // End of VStack

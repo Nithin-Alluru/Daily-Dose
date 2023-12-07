@@ -29,14 +29,29 @@ struct MemesTab: View {
                             .cornerRadius(15)
                             .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 2))
                             .shadow(radius: 5)  // Add a subtle shadow to the image
-                        .padding(8)
+                            .padding(8)
+                            // Long press the meme image to display the context menu
+                            .contextMenu {
+                                // Context Menu Item
+                                Button(action: {
+                                    // Copy the image to universal clipboard for pasting elsewhere
+                                    UIPasteboard.general.image = getUIImageFromUrl(url: meme.memeUrl, defaultFilename: "ImageUnavailable")
+
+                                    showAlertMessage = true
+                                    alertTitle = "Meme Image is Copied to Clipboard"
+                                    alertMessage = "You can paste it on your iPhone, iPad, Mac laptop or Mac desktop each running under your Apple ID"
+                                }) {
+                                    Image(systemName: "doc.on.doc")
+                                    Text("Copy Image")
+                                }
+                            }
                         HStack{
                             Button(action: {
                                 // Handle button tap action here
                                 // You can call a function to fetch the next meme or perform any other action
                                 getMeme()
                             }) {
-                                Text("Generate Next Meme")
+                                Text("Get Another Meme")
                                     .font(.headline)
                                     .padding()
                                     .foregroundColor(.white)
@@ -75,7 +90,7 @@ struct MemesTab: View {
                         // You can call a function to fetch the next meme or perform any other action
                         getMeme()
                     }) {
-                        Text("Generate Meme")
+                        Text("Get a Meme")
                             .font(.headline)
                             .padding()
                             .foregroundColor(.white)
@@ -93,7 +108,7 @@ struct MemesTab: View {
                 LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .top, endPoint: .bottom)
                     .edgesIgnoringSafeArea(.all)
             )
-            .navigationTitle("Daily Memes")
+            .navigationTitle("Random Memes")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
