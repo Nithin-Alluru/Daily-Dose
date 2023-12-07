@@ -18,6 +18,10 @@ struct CityList: View {
     // Allows dismissing the parent sheet
     @Binding var showCitySheet: Bool
 
+    // City deletion
+    @State private var toBeDeleted: IndexSet?
+    @State private var showConfirmation = false
+
     var body: some View {
         NavigationStack {
             List {
@@ -43,6 +47,24 @@ struct CityList: View {
                             }
                             .buttonStyle(PlainButtonStyle())
                         }
+                        .onDelete(perform: delete)
+                        .alert(isPresented: $showConfirmation) {
+                            Alert(title: Text("Delete Confirmation"),
+                                  message: Text("Are you sure you want to permanently delete this city from your saved list?"),
+                                  primaryButton: .destructive(Text("Delete")) {
+                                /*
+                                 'toBeDeleted (IndexSet).first' is an unsafe pointer to the index number of the array
+                                  element to be deleted. It is nil if the array is empty. Process it as an optional.
+                                 */
+                                 if let index = toBeDeleted?.first {
+                                     let itemToDelete = savedCities[index]
+                                     modelContext.delete(itemToDelete)
+                                 }
+                                 toBeDeleted = nil
+                             }, secondaryButton: .cancel() {
+                                 toBeDeleted = nil
+                             }
+                         )}   // End of alert
                     }
                 }
             }
@@ -64,6 +86,16 @@ struct CityList: View {
     func selectCity(newCity: City?) {
         selectedCity = newCity
         showCitySheet = false
+    }
+
+    /*
+     --------------------------
+     MARK: Delete Selected Item
+     --------------------------
+     */
+    private func delete(at offsets: IndexSet) {
+        toBeDeleted = offsets
+        showConfirmation = true
     }
 
 }
