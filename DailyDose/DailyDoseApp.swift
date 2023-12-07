@@ -16,7 +16,7 @@ struct DailyDoseApp: App {
 
     init() {
         // In DatabaseCreation.swift
-//        init_db()
+        init_db()
         // Ask user for location permission
         getPermissionForLocation()
     }
