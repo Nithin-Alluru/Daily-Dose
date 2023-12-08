@@ -26,7 +26,7 @@ public func conductComicDatabaseSearch() {
     
     do {
         // Create a database container to manage Company, Location, and SocialMedia objects
-        modelContainer = try ModelContainer(for: Comic.self)
+        modelContainer = try ModelContainer(for: News.self, City.self, Comic.self, Meme.self)
     } catch {
         fatalError("Unable to create ModelContainer")
     }

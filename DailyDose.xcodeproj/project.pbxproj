@@ -135,6 +135,7 @@
 		DB7F9AE12B1C205700AE62F9 /* SudokuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuCell.swift; sourceTree = "<group>"; };
 		DB7F9AE32B1C208400AE62F9 /* SudokuGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGrid.swift; sourceTree = "<group>"; };
 		DB8161AA2B22B56000F5C0F0 /* SudokuSaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuSaveManager.swift; sourceTree = "<group>"; };
+		DB8161AC2B22C29900F5C0F0 /* InitialDBContent-WeatherCities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "InitialDBContent-WeatherCities.json"; sourceTree = "<group>"; };
 		DB81991B2B1F2ABD00D13A50 /* SudokuGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGame.swift; sourceTree = "<group>"; };
 		DB81991E2B1F2EFD00D13A50 /* SudokuGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGameView.swift; sourceTree = "<group>"; };
 		DB8199222B1F407700D13A50 /* SudokuValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuValidator.swift; sourceTree = "<group>"; };
@@ -238,6 +239,7 @@
 				25119AA92B15BA3700BE4B3B /* DatabaseClasses.swift */,
 				25119A8B2B15B6CD00BE4B3B /* DatabaseCreation.swift */,
 				3CC860222B0EB19300A28666 /* News */,
+				DB8161AD2B22C30D00F5C0F0 /* Weather */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -399,6 +401,14 @@
 				DB7F9AE12B1C205700AE62F9 /* SudokuCell.swift */,
 			);
 			path = "Board Views";
+			sourceTree = "<group>";
+		};
+		DB8161AD2B22C30D00F5C0F0 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				DB8161AC2B22C29900F5C0F0 /* InitialDBContent-WeatherCities.json */,
+			);
+			name = Weather;
 			sourceTree = "<group>";
 		};
 		DB81991A2B1F2A9700D13A50 /* Logic */ = {
@@ -707,7 +717,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DailyDose/Preview Content\"";
-				DEVELOPMENT_TEAM = 3QGAZZS893;
+				DEVELOPMENT_TEAM = WRDAELJV3M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DailyDose/Info.plist;
@@ -736,7 +746,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DailyDose/Preview Content\"";
-				DEVELOPMENT_TEAM = 3QGAZZS893;
+				DEVELOPMENT_TEAM = WRDAELJV3M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DailyDose/Info.plist;

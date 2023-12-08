@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Blacksburg",
+        "region_name": "Virginia",
+        "latitude": 37.229657,
+        "longitude":  -80.413677
+    },
+    {
+        "name": "Christiansburg",
+        "region_name": "Virginia",
+        "latitude": 37.129852,
+        "longitude": -80.408939
+    },
+    {
+        "name": "London",
+        "region_name": "England",
+        "latitude": 51.507322,
+        "longitude": -0.127647
+    },
+    {
+        "name": "New York",
+        "region_name": "New York",
+        "latitude": 40.7127492,
+        "longitude": -74.0059945
+    },
+    {
+        "name": "Tokyo",
+        "region_name": "Tokyo Prefecture",
+        "latitude": 35.6889853,
+        "longitude": 139.6929116
+    },
+]

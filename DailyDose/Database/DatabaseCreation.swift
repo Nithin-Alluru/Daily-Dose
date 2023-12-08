@@ -14,7 +14,7 @@ public func init_db() {
     var modelContainer: ModelContainer
     do {
         // Create a database container to manage News objects
-        modelContainer = try ModelContainer(for: News.self)
+        modelContainer = try ModelContainer(for: News.self, City.self, Comic.self, Meme.self)
     } catch {
         fatalError("Unable to create ModelContainer")
     }
