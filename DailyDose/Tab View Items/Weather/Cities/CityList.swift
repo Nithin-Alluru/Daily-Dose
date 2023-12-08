@@ -68,14 +68,6 @@ struct CityList: View {
                     }
                 }
             }
-            .onAppear {
-                for city in savedCities {
-                    print(city.name)
-                    print(city.regionName)
-                    print(city.latitude)
-                    print(city.longitude)
-                }
-            }
             .navigationTitle("Select a Location")
             .toolbarTitleDisplayMode(.inline)
             .toolbar {
