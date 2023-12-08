@@ -51,5 +51,21 @@ public func init_db() {
         modelContext.insert(newNews)
     }   // End of the for loop
 
+    // The function is given in UtilityFunctions.swift
+    let cityStructs: [ResolvedCityStruct] = decodeJsonFileIntoArrayOfStructs(fullFilename: "InitialDBContent-WeatherCities.json", fileLocation: "Main Bundle")
+    for cityStruct in cityStructs {
+
+        // Instantiate a new City object and dress it up
+        let newCity = City(
+            name: cityStruct.name,
+            regionName: cityStruct.region_name,
+            latitude: cityStruct.latitude,
+            longitude: cityStruct.longitude
+        )
+
+        // Insert the new City object into the database
+        modelContext.insert(newCity)
+    }   // End of the for loop
+
 }
 

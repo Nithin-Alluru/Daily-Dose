@@ -17,10 +17,6 @@ import MapKit
 // UIViewRepresentable in order to show OpenWeather's image tiles.
 // https://developer.apple.com/tutorials/swiftui/interfacing-with-uikit
 
-// OpenWeather's map overlays are a bit too hard to see and offer no
-// customization, so we will take a look at RainViewer as an alternative:
-// https://www.rainviewer.com/api/weather-maps-api.html
-
 struct WeatherMapWrapper: UIViewRepresentable {
 
     @Environment(\.modelContext) private var modelContext

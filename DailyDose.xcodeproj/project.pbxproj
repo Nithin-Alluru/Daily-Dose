@@ -63,6 +63,8 @@
 		DB7F9AE22B1C205700AE62F9 /* SudokuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F9AE12B1C205700AE62F9 /* SudokuCell.swift */; };
 		DB7F9AE42B1C208400AE62F9 /* SudokuGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F9AE32B1C208400AE62F9 /* SudokuGrid.swift */; };
 		DB8161AB2B22B56000F5C0F0 /* SudokuSaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8161AA2B22B56000F5C0F0 /* SudokuSaveManager.swift */; };
+		DB8161AF2B22E1B900F5C0F0 /* ResolvedCityStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8161AE2B22E1B900F5C0F0 /* ResolvedCityStruct.swift */; };
+		DB8161B12B22E38200F5C0F0 /* InitialDBContent-WeatherCities.json in Resources */ = {isa = PBXBuildFile; fileRef = DB8161B02B22E38200F5C0F0 /* InitialDBContent-WeatherCities.json */; };
 		DB81991C2B1F2ABD00D13A50 /* SudokuGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB81991B2B1F2ABD00D13A50 /* SudokuGame.swift */; };
 		DB81991F2B1F2EFD00D13A50 /* SudokuGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB81991E2B1F2EFD00D13A50 /* SudokuGameView.swift */; };
 		DB8199232B1F407700D13A50 /* SudokuValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8199222B1F407700D13A50 /* SudokuValidator.swift */; };
@@ -133,7 +135,8 @@
 		DB7F9AE12B1C205700AE62F9 /* SudokuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuCell.swift; sourceTree = "<group>"; };
 		DB7F9AE32B1C208400AE62F9 /* SudokuGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGrid.swift; sourceTree = "<group>"; };
 		DB8161AA2B22B56000F5C0F0 /* SudokuSaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuSaveManager.swift; sourceTree = "<group>"; };
-		DB8161AC2B22C29900F5C0F0 /* InitialDBContent-WeatherCities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "InitialDBContent-WeatherCities.json"; sourceTree = "<group>"; };
+		DB8161AE2B22E1B900F5C0F0 /* ResolvedCityStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvedCityStruct.swift; sourceTree = "<group>"; };
+		DB8161B02B22E38200F5C0F0 /* InitialDBContent-WeatherCities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "InitialDBContent-WeatherCities.json"; sourceTree = "<group>"; };
 		DB81991B2B1F2ABD00D13A50 /* SudokuGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGame.swift; sourceTree = "<group>"; };
 		DB81991E2B1F2EFD00D13A50 /* SudokuGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGameView.swift; sourceTree = "<group>"; };
 		DB8199222B1F407700D13A50 /* SudokuValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuValidator.swift; sourceTree = "<group>"; };
@@ -325,6 +328,7 @@
 			children = (
 				DB64B7A92B20B17A0048C933 /* MapboxAPI.swift */,
 				DB250E8B2B2124440028AB29 /* UnresolvedCityStruct.swift */,
+				DB8161AE2B22E1B900F5C0F0 /* ResolvedCityStruct.swift */,
 			);
 			path = Mapbox;
 			sourceTree = "<group>";
@@ -403,7 +407,7 @@
 		DB8161AD2B22C30D00F5C0F0 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				DB8161AC2B22C29900F5C0F0 /* InitialDBContent-WeatherCities.json */,
+				DB8161B02B22E38200F5C0F0 /* InitialDBContent-WeatherCities.json */,
 			);
 			name = Weather;
 			sourceTree = "<group>";
@@ -505,6 +509,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB8161B12B22E38200F5C0F0 /* InitialDBContent-WeatherCities.json in Resources */,
 				3CC860212B0EB0C500A28666 /* InitialDBContent-News.json in Resources */,
 				DB7F42C92B067C7100628F6F /* Preview Assets.xcassets in Resources */,
 				DB7F42C62B067C7100628F6F /* Assets.xcassets in Resources */,
@@ -529,6 +534,7 @@
 				DB64B7AA2B20B17A0048C933 /* MapboxAPI.swift in Sources */,
 				25119ABB2B15C38100BE4B3B /* SettingsTab.swift in Sources */,
 				3C5BB5082B0E9F86005F987D /* NewsStruct.swift in Sources */,
+				DB8161AF2B22E1B900F5C0F0 /* ResolvedCityStruct.swift in Sources */,
 				3CC8601F2B0EA39C00A28666 /* UtilityFunctions.swift in Sources */,
 				DB250E8C2B2124440028AB29 /* UnresolvedCityStruct.swift in Sources */,
 				DB7D248E2B1F585400CC7A56 /* DatabaseSearch.swift in Sources */,
