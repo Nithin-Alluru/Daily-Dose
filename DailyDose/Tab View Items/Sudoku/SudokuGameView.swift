@@ -126,9 +126,6 @@ struct SudokuGameView: View {
             title: Text("Difficulty Selection"),
             message: Text("Select a Sudoku puzzle difficulty."),
             buttons: [
-                .default(Text("DEBUG")) {
-                    activeGame = SudokuGame(grid: generateSudoku(clues: 80))
-                },
                 .default(Text("Beginner")) {
                     activeGame = SudokuGame(grid: generateSudoku(clues: 40))
                 },
