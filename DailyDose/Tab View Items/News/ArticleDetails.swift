@@ -81,8 +81,8 @@ struct ArticleDetails: View {
                         Button("Bookmark This Article", systemImage: "bookmark") {
                             bookmarked = true
 
-                            alertTitle = "News Article Added"
-                            alertMessage = "This article has been bookmarked. You can find it later in the Bookmarks Tab"
+                            alertTitle = "News Article Bookmarked!"
+                            alertMessage = "You can find this article later in the bookmarks menu."
                             showAlertMessage = true
                         }
                     }
@@ -90,8 +90,8 @@ struct ArticleDetails: View {
                         Button("Unookmark This Article", systemImage: "bookmark.fill") {
                             bookmarked = false
 
-                            alertTitle = "News Article Removed"
-                            alertMessage = "This article has been removed from your Bookmarks"
+                            alertTitle = "Article Removed from Bookmarks"
+                            alertMessage = "This article been removed from your bookmarks."
                             showAlertMessage = true
                         }
                     }

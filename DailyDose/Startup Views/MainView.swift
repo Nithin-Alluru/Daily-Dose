@@ -36,7 +36,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Search Comics", systemImage: "magnifyingglass")
                 }
-            SudokuView()
+            SudokuGameView()
                 .tabItem {
                     Label("Sudoku", systemImage: "squareshape.split.3x3")
                 }

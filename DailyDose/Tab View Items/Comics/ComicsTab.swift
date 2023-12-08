@@ -32,7 +32,11 @@ struct ComicsTab: View {
                                 .cornerRadius(15)
                                 .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 2))
                                 .shadow(radius: 5)  // Add a subtle shadow to the image
+<<<<<<< Updated upstream
                                 // Long press the comic image to display the context menu
+=======
+                                // Long press the meme image to display the context menu
+>>>>>>> Stashed changes
                                 .contextMenu {
                                     // Context Menu Item
                                     Button(action: {
@@ -70,15 +74,24 @@ struct ComicsTab: View {
 
                         if !comic.transcript.isEmpty {
                             Text("Transcript:")
+<<<<<<< Updated upstream
                                 .font(.headline.weight(.bold))
+=======
+                                .font(.headline)
+>>>>>>> Stashed changes
                                 .foregroundColor(.white)
                             Text(comic.transcript)
                                 .foregroundColor(.white)
                         }
 
                         Text("Description:")
+<<<<<<< Updated upstream
                             .font(.headline.weight(.bold))
                             .foregroundColor(.white)
+=======
+                            .font(.headline)
+                            .foregroundColor(.white) // Change the color to blue for better visibility
+>>>>>>> Stashed changes
                         Text(comic.alt)
                             .foregroundColor(.white)
                 
