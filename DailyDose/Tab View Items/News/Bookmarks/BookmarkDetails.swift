@@ -86,8 +86,8 @@ struct BookmarkDetails: View {
                             modelContext.insert(thisArticle)
                             bookmarked = true
 
-                            alertTitle = "News Article Added"
-                            alertMessage = "This article has been bookmarked. You can find it later in the Bookmarks Tab"
+                            alertTitle = "News Article Bookmarked!"
+                            alertMessage = "You can find this article later in the bookmarks menu."
                             showAlertMessage = true
                         }
                     }
@@ -97,7 +97,7 @@ struct BookmarkDetails: View {
                             bookmarked = false
 
                             alertTitle = "Article Removed from Bookmarks"
-                            alertMessage = "This article been removed from your Bookmarks."
+                            alertMessage = "This article been removed from your bookmarks."
                             showAlertMessage = true
                         }
                     }

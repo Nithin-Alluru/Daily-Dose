@@ -13,6 +13,8 @@ import Foundation
 // https://developer.apple.com/documentation/combine/observableobject
 class SudokuGame: ObservableObject {
 
+    // Original grid (clues only)
+    let originalGrid: [[Int]]
     // Current grid values
     @Published var grid: [[Int]]
 
@@ -21,6 +23,7 @@ class SudokuGame: ObservableObject {
 
     init(grid: [[Int]]) {
         self.grid = grid
+        self.originalGrid = grid
         self.selectedX = 0
         self.selectedY = 0
     }

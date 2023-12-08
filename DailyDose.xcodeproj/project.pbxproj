@@ -61,12 +61,11 @@
 		DB7F42C02B067C6E00628F6F /* DailyDoseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F42BF2B067C6E00628F6F /* DailyDoseApp.swift */; };
 		DB7F42C62B067C7100628F6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7F42C52B067C7100628F6F /* Assets.xcassets */; };
 		DB7F42C92B067C7100628F6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7F42C82B067C7100628F6F /* Preview Assets.xcassets */; };
-		DB7F9AE02B1C202300AE62F9 /* SudokuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F9ADF2B1C202300AE62F9 /* SudokuView.swift */; };
 		DB7F9AE22B1C205700AE62F9 /* SudokuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F9AE12B1C205700AE62F9 /* SudokuCell.swift */; };
 		DB7F9AE42B1C208400AE62F9 /* SudokuGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7F9AE32B1C208400AE62F9 /* SudokuGrid.swift */; };
+		DB8161AB2B22B56000F5C0F0 /* SudokuSaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8161AA2B22B56000F5C0F0 /* SudokuSaveManager.swift */; };
 		DB81991C2B1F2ABD00D13A50 /* SudokuGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB81991B2B1F2ABD00D13A50 /* SudokuGame.swift */; };
 		DB81991F2B1F2EFD00D13A50 /* SudokuGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB81991E2B1F2EFD00D13A50 /* SudokuGameView.swift */; };
-		DB8199212B1F30A200D13A50 /* SudokuMainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8199202B1F30A200D13A50 /* SudokuMainMenuView.swift */; };
 		DB8199232B1F407700D13A50 /* SudokuValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8199222B1F407700D13A50 /* SudokuValidator.swift */; };
 		DB86EEE12B129E7200FFF726 /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB86EEE02B129E7200FFF726 /* HexColor.swift */; };
 		DB9071CC2B15CFC500562BB0 /* ImmersiveWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9071CB2B15CFC500562BB0 /* ImmersiveWeatherView.swift */; };
@@ -133,12 +132,11 @@
 		DB7F42BF2B067C6E00628F6F /* DailyDoseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDoseApp.swift; sourceTree = "<group>"; };
 		DB7F42C52B067C7100628F6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB7F42C82B067C7100628F6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		DB7F9ADF2B1C202300AE62F9 /* SudokuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuView.swift; sourceTree = "<group>"; };
 		DB7F9AE12B1C205700AE62F9 /* SudokuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuCell.swift; sourceTree = "<group>"; };
 		DB7F9AE32B1C208400AE62F9 /* SudokuGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGrid.swift; sourceTree = "<group>"; };
+		DB8161AA2B22B56000F5C0F0 /* SudokuSaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuSaveManager.swift; sourceTree = "<group>"; };
 		DB81991B2B1F2ABD00D13A50 /* SudokuGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGame.swift; sourceTree = "<group>"; };
 		DB81991E2B1F2EFD00D13A50 /* SudokuGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGameView.swift; sourceTree = "<group>"; };
-		DB8199202B1F30A200D13A50 /* SudokuMainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuMainMenuView.swift; sourceTree = "<group>"; };
 		DB8199222B1F407700D13A50 /* SudokuValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuValidator.swift; sourceTree = "<group>"; };
 		DB86EEE02B129E7200FFF726 /* HexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
 		DB9071CB2B15CFC500562BB0 /* ImmersiveWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveWeatherView.swift; sourceTree = "<group>"; };
@@ -386,7 +384,7 @@
 		DB7F9ADD2B1C1FE600AE62F9 /* Sudoku */ = {
 			isa = PBXGroup;
 			children = (
-				DB81991D2B1F2DB100D13A50 /* Main Views */,
+				DB81991E2B1F2EFD00D13A50 /* SudokuGameView.swift */,
 				DB81991A2B1F2A9700D13A50 /* Logic */,
 				DB7F9ADE2B1C201500AE62F9 /* Board Views */,
 			);
@@ -409,18 +407,9 @@
 				DB81991B2B1F2ABD00D13A50 /* SudokuGame.swift */,
 				DB33DD122B1E7EB3006043F8 /* SudokuGenerator.swift */,
 				DB8199222B1F407700D13A50 /* SudokuValidator.swift */,
+				DB8161AA2B22B56000F5C0F0 /* SudokuSaveManager.swift */,
 			);
 			path = Logic;
-			sourceTree = "<group>";
-		};
-		DB81991D2B1F2DB100D13A50 /* Main Views */ = {
-			isa = PBXGroup;
-			children = (
-				DB7F9ADF2B1C202300AE62F9 /* SudokuView.swift */,
-				DB81991E2B1F2EFD00D13A50 /* SudokuGameView.swift */,
-				DB8199202B1F30A200D13A50 /* SudokuMainMenuView.swift */,
-			);
-			path = "Main Views";
 			sourceTree = "<group>";
 		};
 		DB9071CF2B15D25B00562BB0 /* News */ = {
@@ -537,7 +526,6 @@
 				DB250E8C2B2124440028AB29 /* UnresolvedCityStruct.swift in Sources */,
 				DB7D248E2B1F585400CC7A56 /* DatabaseSearch.swift in Sources */,
 				3C5BB5032B0E99F3005F987D /* NewsTab.swift in Sources */,
-				DB7F9AE02B1C202300AE62F9 /* SudokuView.swift in Sources */,
 				DB81991F2B1F2EFD00D13A50 /* SudokuGameView.swift in Sources */,
 				DB6762552B164BC800BB0AB4 /* ArticleList.swift in Sources */,
 				DB7D248F2B1F585400CC7A56 /* ComicItem.swift in Sources */,
@@ -545,6 +533,7 @@
 				DBA93A152B16257F007A155A /* WeatherMap.swift in Sources */,
 				DB7D24902B1F585400CC7A56 /* ComicsTab.swift in Sources */,
 				DB9071CE2B15CFFF00562BB0 /* WeatherMapWrapper.swift in Sources */,
+				DB8161AB2B22B56000F5C0F0 /* SudokuSaveManager.swift in Sources */,
 				DB67625A2B164C6A00BB0AB4 /* BookmarkedArticle.swift in Sources */,
 				DB7F34BF2B12FD8500202040 /* WeatherConversions.swift in Sources */,
 				DBA93A122B16146F007A155A /* ForecastItemView.swift in Sources */,
@@ -576,7 +565,6 @@
 				DB67625C2B164C7B00BB0AB4 /* Bookmarks.swift in Sources */,
 				25119A962B15B70800BE4B3B /* MemeStruct.swift in Sources */,
 				25119AA72B15B72E00BE4B3B /* FavoriteMemes.swift in Sources */,
-				DB8199212B1F30A200D13A50 /* SudokuMainMenuView.swift in Sources */,
 				DB86EEE12B129E7200FFF726 /* HexColor.swift in Sources */,
 				25119A902B15B6EC00BE4B3B /* ComicStruct.swift in Sources */,
 				DB7D24922B1F585400CC7A56 /* ComicDetails.swift in Sources */,
