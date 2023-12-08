@@ -37,7 +37,6 @@
 		DB14581D2B12D098001825A9 /* CurrentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14581C2B12D098001825A9 /* CurrentLocation.swift */; };
 		DB250E8A2B21184F0028AB29 /* SearchCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB250E892B21184F0028AB29 /* SearchCities.swift */; };
 		DB250E8C2B2124440028AB29 /* UnresolvedCityStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB250E8B2B2124440028AB29 /* UnresolvedCityStruct.swift */; };
-		DB250E8E2B2128330028AB29 /* SearchCitiesResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB250E8D2B2128330028AB29 /* SearchCitiesResults.swift */; };
 		DB33DD0D2B1E73C9006043F8 /* SudokuBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB33DD0C2B1E73C9006043F8 /* SudokuBox.swift */; };
 		DB33DD132B1E7EB3006043F8 /* SudokuGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB33DD122B1E7EB3006043F8 /* SudokuGenerator.swift */; };
 		DB4ECC7C2B128880007E7A24 /* WeatherTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4ECC7B2B128880007E7A24 /* WeatherTab.swift */; };
@@ -107,7 +106,6 @@
 		DB14581E2B12D906001825A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DB250E892B21184F0028AB29 /* SearchCities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCities.swift; sourceTree = "<group>"; };
 		DB250E8B2B2124440028AB29 /* UnresolvedCityStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnresolvedCityStruct.swift; sourceTree = "<group>"; };
-		DB250E8D2B2128330028AB29 /* SearchCitiesResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCitiesResults.swift; sourceTree = "<group>"; };
 		DB33DD0C2B1E73C9006043F8 /* SudokuBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuBox.swift; sourceTree = "<group>"; };
 		DB33DD122B1E7EB3006043F8 /* SudokuGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGenerator.swift; sourceTree = "<group>"; };
 		DB4ECC7B2B128880007E7A24 /* WeatherTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTab.swift; sourceTree = "<group>"; };
@@ -318,7 +316,6 @@
 			children = (
 				DB64B7A62B20AD2F0048C933 /* CityList.swift */,
 				DB250E892B21184F0028AB29 /* SearchCities.swift */,
-				DB250E8D2B2128330028AB29 /* SearchCitiesResults.swift */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -550,7 +547,6 @@
 				25119AA82B15B72E00BE4B3B /* MemeItem.swift in Sources */,
 				DB6762582B164C4900BB0AB4 /* BookmarkDetails.swift in Sources */,
 				25119AA62B15B72E00BE4B3B /* MemeDetails.swift in Sources */,
-				DB250E8E2B2128330028AB29 /* SearchCitiesResults.swift in Sources */,
 				3C9295202B10836100063ECC /* GetJsonDataFromApi.swift in Sources */,
 				25119AB52B15C06000BE4B3B /* MainView.swift in Sources */,
 				25119A8C2B15B6CD00BE4B3B /* DatabaseCreation.swift in Sources */,

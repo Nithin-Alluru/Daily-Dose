@@ -2,7 +2,7 @@
 //  WeatherConversions.swift
 //  DailyDose
 //
-//  Created by CM360 on 11/25/23.
+//  Created by Aaron Gomez on 11/25/23.
 //  Copyright © 2023 CS3714 Team 2. All rights reserved.
 //
 
