@@ -11,7 +11,9 @@ import SwiftUI
 struct SettingsTab: View {
     
     @AppStorage("darkMode") private var darkMode = false
-    
+
+    @AppStorage("preferMetric") private var preferMetric = false
+
     @State private var showEnteredValues = false
     @State private var passwordEntered = ""
     @State private var passwordVerified = ""
@@ -30,6 +32,9 @@ struct SettingsTab: View {
             Form {
                 Section(header: Text("Dark Mode Setting")) {
                     Toggle("Dark Mode", isOn: $darkMode)
+                }
+                Section(header: Text("Weather Temperature Units")) {
+                    Toggle("Prefer metric values?", isOn: $preferMetric)
                 }
                 Section(header: Text("Show / Hide Entered Values")) {
                     Toggle("Show Entered Values", isOn: $showEnteredValues)

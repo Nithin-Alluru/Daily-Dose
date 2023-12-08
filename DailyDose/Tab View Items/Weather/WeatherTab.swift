@@ -48,7 +48,7 @@ struct WeatherTab: View {
     // Need to read dark mode preference for overrides
     @AppStorage("darkMode") private var darkMode = false
 
-    @State private var temperatureScale = TemperatureScale.Fahrenheit
+    @AppStorage("preferMetric") private var preferMetric = false
 
     // Has at least one fetch attempt completed yet?
     @State private var weatherFetchCompleted = false
@@ -78,7 +78,7 @@ struct WeatherTab: View {
                     }) {
                         WeatherSummaryView(
                             weather: info,
-                            scale: temperatureScale
+                            scale: getTemperatureScale()
                         )
                     }
                     .foregroundStyle(.white)
@@ -100,14 +100,14 @@ struct WeatherTab: View {
                                 if let current = weatherInfo {
                                     ForecastItemView(
                                         forecast: current,
-                                        scale: temperatureScale,
+                                        scale: getTemperatureScale(),
                                         now: true
                                     )
                                 }
                                 ForEach(info.forecasts, id: \.timestamp) { forecast in
                                     ForecastItemView(
                                         forecast: forecast,
-                                        scale: temperatureScale
+                                        scale: getTemperatureScale()
                                     )
                                 }
                             }
@@ -337,6 +337,10 @@ struct WeatherTab: View {
         } else {
             return darkMode ? .dark : .light
         }
+    }
+
+    func getTemperatureScale() -> TemperatureScale {
+        return preferMetric ? .Celcius : .Fahrenheit
     }
 
 }
