@@ -89,7 +89,7 @@ struct SearchComics: View {
                             } else {
                                 showAlertMessage = true
                                 alertTitle = "Missing Input Data!"
-                                alertMessage = "Search query cannot be empty!\nEntered yearBuilt must be integer!"
+                                alertMessage = "Search query cannot be empty!"
                             }
                         }
                         .tint(.blue)
