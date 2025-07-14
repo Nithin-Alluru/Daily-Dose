@@ -16,10 +16,10 @@ var alertMessage = ""
 //-------------------------
 
 // Caleb
-let newsAPIKey = "c472c5f827cb4f61b1eb48e725504974"
+let newsAPIKey = "YOUR_NEWSAPI_KEY"
 // Aaron
-let mapboxAPIKey = "pk.eyJ1IjoiYWFyZ216MDIiLCJhIjoiY2xwdTluNG9kMGloeDJ3cnA1aDRsbjhhNSJ9.zh972c5RisZZ-Uc0b-HhUw"
+let mapboxAPIKey = "YOUR_OPENWEATHER_KEY"
 // Caleb
-let openWeatherAPIKey = "e39c8687dd6113bce5e9b5bf14af6bb9"
+let openWeatherAPIKey = "YOUR_MAPBOX_KEY"
 
 
